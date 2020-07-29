@@ -13,10 +13,10 @@
     
     <item>
       <title>动态规划算法（Dynamic-Programming）</title>
-      <link>/blog/dynamic_programming/</link>
+      <link>/blog/algorithms_dynamic_programming/</link>
       <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/dynamic_programming/</guid>
+      <guid>/blog/algorithms_dynamic_programming/</guid>
       <description>Those who cannot remember the past are condemned to repeat it.
 那些不记得过去的人被谴责在重复过去。正是因为人能够站在过去的经验上更进一步，才能像堆积木一样，将成就越堆越高。今天我就来讲讲一个按照这种思路所设计的算法——动态规划。
 I. 定义 动态规划（Dynamic-Programming, 简称DP）是一种在数学、计算机科学、管理学和经济学等等学科中使用的一种将一个复杂问题分解为相对简单的子问题，根据子问题的结果来最终解决复杂问题的一种方法。
