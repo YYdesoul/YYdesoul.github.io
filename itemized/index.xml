@@ -6,24 +6,24 @@
     <description>Recent content in Itemized on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/itemized/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Fancy App 1</title>
+      <title>旅行</title>
       <link>/itemized/item1/</link>
-      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item1/</guid>
       <description> App 1 </description>
     </item>
     
     <item>
-      <title>Fancy App 2</title>
+      <title>读书分享</title>
       <link>/itemized/item2/</link>
-      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item2/</guid>
       <description> App 2 </description>

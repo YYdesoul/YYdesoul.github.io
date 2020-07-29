@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计算机 on YY的主页</title>
+    <link>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+    <description>Recent content in 计算机 on YY的主页</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 28 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>动态规划算法（Dynamic-Programming）</title>
+      <link>/blog/dynamic_programming/</link>
+      <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/dynamic_programming/</guid>
+      <description>Those who cannot remember the past are condemned to repeat it.
+那些不记得过去的人被谴责在重复过去。正是因为人能够站在过去的经验上更进一步，才能像堆积木一样，将成就越堆越高。今天我就来讲讲一个按照这种思路所设计的算法——动态规划。
+I. 定义 动态规划（Dynamic-Programming, 简称DP）是一种在数学、计算机科学、管理学和经济学等等学科中使用的一种将一个复杂问题分解为相对简单的子问题，根据子问题的结果来最终解决复杂问题的一种方法。
+试想一下，如果问你1+2+3+&amp;hellip;+100 = ?这个问题时，是不是不那么容易计算出来？但是如果这个时候告诉你1+2+3+&amp;hellip;+99 = 4950时，你就能很快的知道1+2+3+&amp;hellip;+100 = 4950+100 = 5050.其实，这就是动态规划的思维。简而言之，动态规划算法的核心就是记住已经解决过的子问题的解，并根据这个解去解决相对复杂一点的问题，通过一层一层的求解，最终可以解决很复杂的问题。
+下图是应用动态规划算法解决斐波那契数列的经典例子。假如问题是想计算出fib(6)的值，那么我们就必须先计算出fib(5)和fib(4)的值，要知道fib(4)的值，我们又需要先知道fib(3)和fib(2的值)，以此类推到最底层。因为我们知道fib(1)和fib(2)=1，那么可以因此求得fib(3)，然后求得fib(4)&amp;hellip;最终求得fib(6)。这整个过程就是一个动态规划的过程。
+II. 实现方法 实现动态规划算法，我们往往需要四个步骤：
+ 选择状态变量 初始化 确定状态转移返程 储存结果  1. 选择状态变量
+在这一步中，我们需要将问题拆分为多阶段的子问题。设置状态变量，其在前一阶段中被计算出来，并在后一阶段被使用。如下图所示，阶段1中的结果B, C被传入阶段2，并通过他们计算出结果D,C然后传入阶段3用于计算出最终结果F。这些变量便是状态变量。
+2. 初始化
+在这一步中，我们需要设置边界，也就是在什么情况下停止。在菲波那切数列中边界是fib(1)=1, fib(2)=1。
+3. 确定转移方程
+转移方程是一种方程，其描述了当前子问题的状态变量与上一层的状态变量之间的关系。在菲波那切数列中，转移方程就是fib(n) = fib(n-1) + fib(n-2)。
+4.储存结果
+在这一步中设置结果变量用于储存结果。
+III. 经典习题  Unique Paths(Leetcode 62)  A robot is located at the top-left corner of a m x n grid (marked &amp;lsquo;Start&amp;rsquo; in the diagram below).</description>
+    </item>
+    
+    <item>
+      <title>广度优先搜索算法（Breadth-First-Search）</title>
+      <link>/blog/algorithms_breadth-first-search/</link>
+      <pubDate>Sat, 25 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/algorithms_breadth-first-search/</guid>
+      <description>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。
+I. 算法定义 BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。
+左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&amp;gt;1-&amp;gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5。
+II. 实现方法 由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：
+ 将根节点加入到Queue中 使用while循环，当Queue为空时，结束循环。 将Queue中的节点依次poll出来检查。 如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。  III. 经典习题  Minimum Depth of Binary Tree(Leetcode 111)  Given a binary tree, find its minimum depth.
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+Note: A leaf is a node with no children.
+这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。
+需要的变量:
+Queue&amp;lt;TreeNode&amp;gt; queue = new LinkedList&amp;lt;&amp;gt;(); int depth = 0;  Queue queue, int depth。</description>
+    </item>
+    
+    <item>
+      <title>深度优先搜索算法（Deep-First-Search）</title>
+      <link>/blog/algorithms_deep-first-search/</link>
+      <pubDate>Sat, 25 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/algorithms_deep-first-search/</guid>
+      <description>最近在学习算法与数据结构，在了解了费曼学习法后，我决定写一个专栏来专门讲述这方面的知识。一方面可以以讲带学最有效率的掌握知识，二来可以将知识分享给大家，除此之外在未来还可以查看他们来复习知识，真是个一举三得的事情，话不多说，我们就开始吧，今天首先从”深度优先搜索“（DFS）算法开始。
+I. 算法定义 DFS是一种用于遍历、搜索树或图的一种搜索算法。搜索的灵感顾名思义：先递归下去，再回溯上来。意思是说，当人们需要在图、搜索树或者遍历中搜索某个Object时，DFS会首先一路走到底，直到不能再下，如果找到了对象，就return回去，没有找到就回溯到上一步的地方，然后换一条路继续一路走到黑重复以上过程直到找到对象或者找遍所有Object为止。
+右下图是DFS在查找树上应用的例子。假如我们要找的值为节点2，DFS会首先按一个路线走到不能再走，也就是0-&amp;gt;1-&amp;gt;3。因为节点3没有子节点了，DFS会回到上一级，也就是节点1的位置，然后按照另一条路走到黑。也就是0-&amp;gt;1-&amp;gt;3-&amp;gt;4。由于4没有子节点，DFS会回到节点1，然后节点1所有的子节点都已经去过了，于是乎再回到节点0，然后去到节点2，最终找到它，路线就是0-&amp;gt;1-&amp;gt;3-&amp;gt;4-&amp;gt;2。
+DFS是一种非常古老的算法，早在古希腊神话中，雅典城的英雄忒休斯正是靠着阿里阿德涅之线在米诺斯王宫找到了米诺陶诺斯之牛并杀掉它为民除害的。
+II. 实现方法 通常DFS用递归(Recursion)来实现。步骤如下：
+ 首先设置递归的边界，当遇到边界（走到底时）停止递归。 设置递归的过程。  III. 经典习题  Same Tree (Leetcode 100)  Given two binary trees, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+这道题非常的简单，判断两个binary tree是否相同。按照DFS算法的思路，我们步骤如下：
+ 设置递归的边界，也就是当两棵树的中的一棵的节点没有子节点时，停止递归。
+ 如果两棵树中某个相同位置节点的值不一样，return false。
+ 如果两棵树中某个相同位置节点的值一样，那么执行递归, 判断此节点的左右两个子节点是否相等直到没有子节点为止。
+代码
+  /** * Definition for a binary tree node.</description>
+    </item>
+    
+  </channel>
+</rss>

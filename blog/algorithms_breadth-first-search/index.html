@@ -1,0 +1,1543 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "/"
+        },
+        "articleSection" : "blog",
+        "name" : "广度优先搜索算法（Breadth-First-Search）",
+        "headline" : "广度优先搜索算法（Breadth-First-Search）",
+        "description" : "算法专栏",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-07-25 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-07-25 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/algorithms_breadth-first-search/",
+        "wordCount" : "384",
+        "keywords" : [ "计算机","算法","Blog" ]
+    }
+    </script>
+        
+            
+                <title>广度优先搜索算法（Breadth-First-Search）</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.52" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="YY的主页">
+  <meta name="msapplication-tooltip" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="小羽">
+        
+        
+            <meta name="description" content="算法专栏">
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="广度优先搜索算法（Breadth-First-Search）"/>
+<meta name="twitter:description" content="算法专栏"/>
+
+        <meta property="og:title" content="广度优先搜索算法（Breadth-First-Search）" />
+<meta property="og:description" content="算法专栏" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/algorithms_breadth-first-search/" /><meta property="article:published_time" content="2020-07-25T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-07-25T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="广度优先搜索算法（Breadth-First-Search）">
+<meta itemprop="description" content="算法专栏">
+
+
+<meta itemprop="datePublished" content="2020-07-25T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-07-25T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="384">
+
+
+
+<meta itemprop="keywords" content="计算机,算法," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>首页
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>关于
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/itemized/">
+                            <i class="fa fa-list">&nbsp;</i>归档
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="fa fa-sitemap">&nbsp;</i>分类
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-tags">&nbsp;</i>标签
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/contact/">
+                            <i class="fa fa-envelope-o">&nbsp;</i>联系
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type=hidden name=domains value="yanyusoul.com">
+                    <input type=hidden name=sitesearch value="yanyusoul.com">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>首页
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>关于
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/itemized/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>归档
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="fa fa-sitemap">&nbsp;</i>分类
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-tags">&nbsp;</i>标签
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/contact/">
+                            <h3>
+                                <i class="fa fa-envelope-o">&nbsp;</i>联系
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>近期博文</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/dynamic_programming/">动态规划算法（Dynamic-Programming）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-28'>
+                                    July 28, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/dynamic_programming/" class="image featured">
+            <img src="/img//" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-25'>
+                                    July 25, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/algorithms_deep-first-search/">深度优先搜索算法（Deep-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-25'>
+                                    July 25, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/algorithms_deep-first-search/" class="image featured">
+            <img src="/img/2020/07/wenming.jpg" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/brandenburgertor/">两百年之风雨，德意志兴衰见证之国门——勃兰登堡门</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2016-09-20'>
+                                    September 20, 2016</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+
+
+        
+        
+        
+
+        <a href="/blog/brandenburgertor/" class="image featured">
+            <img src="/date2016/09/wenming.jpg" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/humboldtuni/">挨打后的创新，世界第一所现代化大学——柏林洪堡大学</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2016-09-20'>
+                                    September 20, 2016</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+
+
+        
+        
+        
+
+        <a href="/blog/humboldtuni/" class="image featured">
+            <img src="/date2016/09/wenming.jpg" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;text=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;description=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/blog/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h1>
+            
+        
+        
+            <p>算法专栏</p>
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-07-25'>
+            July 25, 2020</time>
+        <span class="author">小羽</span>
+        
+            <p>2 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;text=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2falgorithms_breadth-first-search%2f&amp;description=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+      </ul>
+    </section>
+  
+
+  
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+  <div id="content">
+    
+
+<p>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。</p>
+
+<h2 id="i-算法定义">I. 算法定义</h2>
+
+<p>BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。</p>
+
+<p>左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&gt;1-&gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5。</p>
+
+<p><img src="/images/Algorithms/dfs.png" alt="avatar" /></p>
+
+<h2 id="ii-实现方法">II. 实现方法</h2>
+
+<p>由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：</p>
+
+<ol>
+<li>将根节点加入到Queue中</li>
+<li>使用while循环，当Queue为空时，结束循环。</li>
+<li>将Queue中的节点依次poll出来检查。</li>
+<li>如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。</li>
+</ol>
+
+<h2 id="iii-经典习题">III. 经典习题</h2>
+
+<ol>
+<li>Minimum Depth of Binary Tree(Leetcode 111)</li>
+</ol>
+
+<p>Given a binary tree, find its minimum depth.</p>
+
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+
+<p><strong>Note:</strong> A leaf is a node with no children.</p>
+
+<p><img src="/images/Algorithms/Leetcode111.png" alt="avatar" /></p>
+
+<p>这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。</p>
+
+<p><strong>需要的变量</strong>:</p>
+
+<pre><code class="language-java">Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+int depth = 0;
+</code></pre>
+
+<p>Queue queue, int depth。</p>
+
+<p><strong>步骤</strong></p>
+
+<ol>
+<li>我们首先将根节点加入到queue中，将depth初始化为0。</li>
+<li>开始while循环，当queue为空时停止循环。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
+<li>每次循环depth++。</li>
+<li>将queue中的所有值用for循环依次poll出来，如果其没有子节点，就返回depth；如果只有一个子节点为null，那么就将另一个offer进queue里。如果两个子节点都不为null，将它们依次offer到queue中。</li>
+</ol>
+
+<p><strong>代码</strong></p>
+
+<pre><code class="language-java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int minDepth(TreeNode root) {
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        int depth = 0;
+        if (root == null) return depth;
+        queue.add(root);
+        while (!queue.isEmpty()){
+            depth++;
+            int size = queue.size();
+            for (int i=0; i&lt;size; i++) {
+                TreeNode q = queue.poll();
+                if (q.left == null &amp;&amp; q.right == null) return depth;
+                if (q.left != null) queue.offer(q.left);
+                if(q.right != null) queue.offer(q.right);
+            }
+        }
+        return depth;
+    }
+}
+</code></pre>
+
+<ol>
+<li>Binary Tree Level Order Traversal</li>
+</ol>
+
+<p>Given a binary tree, return the <em>level order</em> traversal of its nodes&rsquo; values. (ie, from left to right, level by level).</p>
+
+<p><img src="/images/Algorithms/Leetcode102.png" alt="avatar" /></p>
+
+<p>这道题要求我们写一个函数：输入一个Binary Tree，返回一个List<List<Integer>&gt;,其中包含每一层的所有值。</p>
+
+<p><strong>需要的变量</strong></p>
+
+<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();	//储存结果
+Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();				//用于进行BFS
+</code></pre>
+
+<p><strong>思路</strong></p>
+
+<ol>
+<li>将根节点加入到queue中。</li>
+<li>开始while循环，当queue为空时停止。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
+<li>创建一个list用于储存每一层节点的值，当一层变量结束时，将其add到result中。</li>
+<li>用for循环依次poll出queue中的所有节点，把节点的值加入到list中。</li>
+<li>如果poll出来的节点的子节点不为空就将其offer到queue中。</li>
+<li>如果list不为空，就将其add到result里面去。</li>
+<li>返回result</li>
+</ol>
+
+<p><strong>代码</strong></p>
+
+<pre><code class="language-java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+   public  List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
+        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
+        if (root == null) return result;
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+            int size = queue.size();
+            for (int i=0; i&lt;size; i++) {
+                TreeNode q = queue.poll();
+                list.add(q.val);
+                if (q.left != null) queue.offer(q.left);
+                if (q.right != null)   queue.offer(q.right);
+                }
+            if (!list.isEmpty()) result.add(new ArrayList&lt;&gt;(list));
+        }
+        return result;
+   }
+}
+</code></pre>
+
+<h2 id="iv-总结">IV. 总结</h2>
+
+<p>BFS是一种在图、搜索树和遍历中非常经典且常用的算法。其思路为先找到节点的每一个岔路并标记起来，再依次往前更进一步，直到找到结果或遍历完为止。做法通常为将起始点加入到queue中，然后将queue中的节点取出，搜索结果。如果结果不在，就将节点的子节点继续放到queue中重复以上过程直到找到结果或遍历完所有节点为止。</p>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/%E7%AE%97%E6%B3%95">算法</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/algorithms_deep-first-search/"
+                class="button big previous">深度优先搜索算法（Deep-First-Search）</a></li>
+    
+
+    
+        <li><a href="/blog/dynamic_programming/"
+                class="button big next">动态规划算法（Dynamic-Programming）</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/' class="logo"><img src="/img/main/logo.jpeg" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>YY的主页</h2>
+        <p>YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/YYdesoul" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/in/example" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/oEn.de.soul" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/example" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="mailto:example" title="Email" class="fa fa-envelope"></a></li>
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>近期博文</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/dynamic_programming/">动态规划算法（Dynamic-Programming）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-28'>
+                July 28, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/dynamic_programming/" class="image featured">
+            <img src="/img//" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-25'>
+                July 25, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/072020/07/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/algorithms_deep-first-search/">深度优先搜索算法（Deep-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-25'>
+                July 25, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/algorithms_deep-first-search/" class="image featured">
+            <img src="/img/2020/072020/072020/07/wenming.jpg" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/brandenburgertor/">两百年之风雨，德意志兴衰见证之国门——勃兰登堡门</a>
+              </h3>
+              
+              <time class="published" datetime='2016-09-20'>
+                September 20, 2016
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/brandenburgertor/" class="image featured">
+            <img src="/img//wenming.jpg" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/humboldtuni/">挨打后的创新，世界第一所现代化大学——柏林洪堡大学</a>
+              </h3>
+              
+              <time class="published" datetime='2016-09-20'>
+                September 20, 2016
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/humboldtuni/" class="image featured">
+            <img src="/img/2016/092016/092016/09/wenming.jpg" alt="">
+        </a>
+    
+
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">更多博文</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+  
+  
+    <section id="categories">
+      <header>
+        <h3>
+          <a href="/categories/">分类</a>
+        </h3>
+      </header>
+        
+          
+        
+
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">读书分享</a>
+                <span style="float:right;">4</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                全部
+                <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E5%BD%92%E6%A1%A3/">归档</a>
+                <span style="float:right;">1</span>
+              
+            </header>
+          </article>
+        </p>
+        
+    </section>
+  
+  
+
+  
+  
+    <section id="mini-bio">
+      <h3>关于</h3>
+      <p>关于博主的一些信息。</p>
+      <a href="/about/" class="button">更多</a>
+    </section>
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/YYdesoul" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/in/example" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/oEn.de.soul" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/example" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="mailto:example" title="Email" class="fa fa-envelope"></a></li>
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          YY的主页
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+
