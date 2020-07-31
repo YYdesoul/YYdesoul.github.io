@@ -6,10 +6,32 @@
     <description>Recent content in 计算机 on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 28 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git简明教程</title>
+      <link>/blog/git/</link>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/git/</guid>
+      <description>Github是目前世界上最先进的分布时版本控制系统。我们可以借助它来托管我们的项目。可以说Github是程序员必不可少的高效工具，事实上，我的博客网站正是借助Github来发布到网上的。既然Github如此重要，下面我就来介绍一下Github以及它的基础使用吧。
+Github是一种分布式版本控制系统，极大的方便了开发者们存储项目以及多人开发。开发者们可以将项目上传到Github托管，然后团队中不同的人可以将项目下载到本地进行修改，完成后再将其传回到Github上，所有的修改日志都会显示在Github上，这样就极大的方便了团队共同开发项目。Github也是一个非常大的开源社区，开发者们可以在这里将自己的代码发布出来供其它人观看和使用，Github用户可以查看、星标、Fork各种各样的项目，这样的社区方便了开发者们的交流，促进了项目的发展，帮助了学者学习代码。
+Github基础概念 下面我们首先来介绍一下Github的基础概念。
+仓库（Repository）
+仓库是用来存放项目代码的地方，每个项目对应一个仓库，每个Github用户可以有多个仓库。开发者们也可以对别人的项目进行关注(Watch)、收藏（Star)、复制克隆（Fork）、发起请求（Pull Request）、发送事务卡片（Issue）。下面我们来一一解释这些概念。
+关注（Watch）：如果一个开发者关注了别人的项目，那么他将会收到项目的修改、更新等信息的通知。
+收藏（Star）：如果一个开发者收藏了别人的项目，那么他就可以在自己的Github主页上找到这个项目的链接。
+复制克隆项目（Fork）：如果一个开发者Fork了别人的仓库，那么这个仓库就会被复制到他的Github主页上，复制的仓库和原仓库是彼此独立的，开发者对复制到自己主页的仓库内容进行修改不会影响到原仓库内的项目。
+发起请求（Pull Request）：发起请求是基于Fork之上的。当一个开发者Fork了别人的仓库内的项目，加以修改后想要通知原项目的Git用户代码在他的修改下被优化了，希望原用户将原项目改为他修改后的版本，就可以发送Pull Request申请。如果原项目的用户同意了，那么原项目就会被修改成新的版本。
+发送事务卡片（Issue）：当一个开发者在查看别人仓库中的项目时发现了bug，可以在仓库中发送Issue来和项目开发者进行交流。
+Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，Git仓库分为本地和远程仓库两个部分，本地部分又分为三个区域：工作区、缓存区和仓库区。工作区就是我们本地对项目修改的区域；当修改完成后，我们可以将修改的内容上传，为了避免传入之后又想修改，Git会让修改的文件首先传入缓存区，当我们确定所有修改都已完成的时候，就可以将缓存区内的所有文件传入到Git本地仓库；最后，我们再将本地仓库的文件传到远程仓库即可。一般来说工作流程如下：
+ 使用命令git clone url(仓库地址)将项目从远程仓库下载到本地。   git clone url   修改项目代码。
+ 使用命令git add xxx (要添加的文件，&amp;rdquo;.&amp;ldquo;代表所有文件)将指定文件从工作区传入缓存区。
+  git add xxx   使用命令git commit -m &amp;lsquo;描述&amp;rsquo;将缓存区内的所有文件传入Git本地仓库。   git commit -m &#39;描述&#39;   使用命令git remote add origin url(远程项目地址) 将Git本地仓库和Git远程仓库连接起来。   git remote add origin url   使用命令git push -u origin master 将Git本地仓库内的项目上传到Git远程仓库。   git push -u origin master  常用命令  首次在本地使用git时，需要将本地与git账户进行关联，可以使用命令：   git config --global user.</description>
+    </item>
     
     <item>
       <title>动态规划算法（Dynamic-Programming）</title>
