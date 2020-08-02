@@ -1,0 +1,1190 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "/"
+        },
+        "articleSection" : "blog",
+        "name" : "Java中的&#34;指针&#34;——引用变量",
+        "headline" : "Java中的&#34;指针&#34;——引用变量",
+        "description" : "指针是一种在众多编程语言中非常常见的概念，它的使用非常广泛。实际上，Java为了避免使用上的繁琐，其设计者用引用变量的概念代替了指针，但是实际使用上，两者比较类似，所以本文依旧以指针为题来讲述此类概念。下面我们就来介绍一下指针的概念。
+在介绍指针之前，我们首先要弄清楚Java中的两大重要储存空间——堆和栈。为了使用上的方便，堆(Heap)和栈(Stack)分别用来储存不同的东西。下表对比了两者的特点：
+   储存区域 储存内容 优点 缺点 回收     栈 基本类型的变量和对象的引用变量 存取速度比堆要快，仅次于寄存器，栈数据可以共享 存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量 当超过变量的作用域后，Java会自动释放掉该变量,内存空间可以立即被另作他用   堆 由new等指令创建的对象和数组 可以动态地分配内存大小，生存期也不必事先告诉编译器 由于要在运行时动态分配内存，存取速度较慢 由Java虚拟机的自动垃圾回收器来回收不再使用的数据    为了更加形象的解释这些概念，我们不妨看一看下面的例子：
+A a = new A();  上述代码是在Java编程中时常会会出现的，我们来好好的分析一下，这样简单的一行代码究竟是做了什么。实际上，这小小的一行代码是做了三件事情，这行代码的前半部分申明了引用变量a为A类型，并将其储存到栈(Stack)当中并分配了一个储存地址给它, 其代码为：
+A a;  接着，这行代码创建了一个新的类型为A的对象，这个过程用关键字new来实现，创建的新对象被储存在堆Heap里，并被分配了一个储存地址，其代码为：
+new A();  最后，这行代码中的等号&rdquo;=&ldquo;将储存在堆里的引用变量a指向了栈里新创建的对象A(),这个指的过程用储存地址来实现，也就是说，等号将两个储存地址配对并连接了起来。
+Note: 值得注意的是，在Java中，使用引用变量时，等号&rdquo;=&ldquo;并不是给等号左边的变量赋上右边的新值的意思，而是将等号左边的变量指向右边的对象的地址的意思。当人们将一个引用变量先等于对象a，再等于另一个对象b时，并不是将储存在堆(Heap)中的a对象的值改变成了b，而是将引用变量指向对象a的指针断开，接着将指针指向了对象b。下面我们用一个例子来解释这个过程：
+在一个足球队中，有很多球员，而只有一个队长。有的时候，我们想要更换队长，这个例子用来实现这个过程。我们首先创建两个球员——洛里和凯恩(对象包括球员的姓，名和踢球的位置)：
+Player llorris = new Player(&quot;Llprris&quot;, &quot;Hugo&quot;, &quot;Goalkeeper&quot;); Player kane = new Player(&quot;Kane&quot;, &quot;Harry&quot;, &quot;Center Forward&quot;);  其实这两行代码实现了如下图的情况：
+也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。
+这时候，我们首先将队长设置为洛里，代码为：
+Player captain = llorris;  通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示：",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-08-02 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-08-02 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/cs/point/",
+        "wordCount" : "78",
+        "keywords" : [ "计算机","算法","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Java中的&#34;指针&#34;——引用变量</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.52" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="YY的主页">
+  <meta name="msapplication-tooltip" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="小羽">
+        
+        
+            
+                <meta name="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中的&#34;指针&#34;——引用变量"/>
+<meta name="twitter:description" content="指针是一种在众多编程语言中非常常见的概念，它的使用非常广泛。实际上，Java为了避免使用上的繁琐，其设计者用引用变量的概念代替了指针，但是实际使用上，两者比较类似，所以本文依旧以指针为题来讲述此类概念。下面我们就来介绍一下指针的概念。
+在介绍指针之前，我们首先要弄清楚Java中的两大重要储存空间——堆和栈。为了使用上的方便，堆(Heap)和栈(Stack)分别用来储存不同的东西。下表对比了两者的特点：
+   储存区域 储存内容 优点 缺点 回收     栈 基本类型的变量和对象的引用变量 存取速度比堆要快，仅次于寄存器，栈数据可以共享 存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量 当超过变量的作用域后，Java会自动释放掉该变量,内存空间可以立即被另作他用   堆 由new等指令创建的对象和数组 可以动态地分配内存大小，生存期也不必事先告诉编译器 由于要在运行时动态分配内存，存取速度较慢 由Java虚拟机的自动垃圾回收器来回收不再使用的数据    为了更加形象的解释这些概念，我们不妨看一看下面的例子：
+A a = new A();  上述代码是在Java编程中时常会会出现的，我们来好好的分析一下，这样简单的一行代码究竟是做了什么。实际上，这小小的一行代码是做了三件事情，这行代码的前半部分申明了引用变量a为A类型，并将其储存到栈(Stack)当中并分配了一个储存地址给它, 其代码为：
+A a;  接着，这行代码创建了一个新的类型为A的对象，这个过程用关键字new来实现，创建的新对象被储存在堆Heap里，并被分配了一个储存地址，其代码为：
+new A();  最后，这行代码中的等号&rdquo;=&ldquo;将储存在堆里的引用变量a指向了栈里新创建的对象A(),这个指的过程用储存地址来实现，也就是说，等号将两个储存地址配对并连接了起来。
+Note: 值得注意的是，在Java中，使用引用变量时，等号&rdquo;=&ldquo;并不是给等号左边的变量赋上右边的新值的意思，而是将等号左边的变量指向右边的对象的地址的意思。当人们将一个引用变量先等于对象a，再等于另一个对象b时，并不是将储存在堆(Heap)中的a对象的值改变成了b，而是将引用变量指向对象a的指针断开，接着将指针指向了对象b。下面我们用一个例子来解释这个过程：
+在一个足球队中，有很多球员，而只有一个队长。有的时候，我们想要更换队长，这个例子用来实现这个过程。我们首先创建两个球员——洛里和凯恩(对象包括球员的姓，名和踢球的位置)：
+Player llorris = new Player(&quot;Llprris&quot;, &quot;Hugo&quot;, &quot;Goalkeeper&quot;); Player kane = new Player(&quot;Kane&quot;, &quot;Harry&quot;, &quot;Center Forward&quot;);  其实这两行代码实现了如下图的情况：
+也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。
+这时候，我们首先将队长设置为洛里，代码为：
+Player captain = llorris;  通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示："/>
+
+        <meta property="og:title" content="Java中的&#34;指针&#34;——引用变量" />
+<meta property="og:description" content="指针是一种在众多编程语言中非常常见的概念，它的使用非常广泛。实际上，Java为了避免使用上的繁琐，其设计者用引用变量的概念代替了指针，但是实际使用上，两者比较类似，所以本文依旧以指针为题来讲述此类概念。下面我们就来介绍一下指针的概念。
+在介绍指针之前，我们首先要弄清楚Java中的两大重要储存空间——堆和栈。为了使用上的方便，堆(Heap)和栈(Stack)分别用来储存不同的东西。下表对比了两者的特点：
+   储存区域 储存内容 优点 缺点 回收     栈 基本类型的变量和对象的引用变量 存取速度比堆要快，仅次于寄存器，栈数据可以共享 存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量 当超过变量的作用域后，Java会自动释放掉该变量,内存空间可以立即被另作他用   堆 由new等指令创建的对象和数组 可以动态地分配内存大小，生存期也不必事先告诉编译器 由于要在运行时动态分配内存，存取速度较慢 由Java虚拟机的自动垃圾回收器来回收不再使用的数据    为了更加形象的解释这些概念，我们不妨看一看下面的例子：
+A a = new A();  上述代码是在Java编程中时常会会出现的，我们来好好的分析一下，这样简单的一行代码究竟是做了什么。实际上，这小小的一行代码是做了三件事情，这行代码的前半部分申明了引用变量a为A类型，并将其储存到栈(Stack)当中并分配了一个储存地址给它, 其代码为：
+A a;  接着，这行代码创建了一个新的类型为A的对象，这个过程用关键字new来实现，创建的新对象被储存在堆Heap里，并被分配了一个储存地址，其代码为：
+new A();  最后，这行代码中的等号&rdquo;=&ldquo;将储存在堆里的引用变量a指向了栈里新创建的对象A(),这个指的过程用储存地址来实现，也就是说，等号将两个储存地址配对并连接了起来。
+Note: 值得注意的是，在Java中，使用引用变量时，等号&rdquo;=&ldquo;并不是给等号左边的变量赋上右边的新值的意思，而是将等号左边的变量指向右边的对象的地址的意思。当人们将一个引用变量先等于对象a，再等于另一个对象b时，并不是将储存在堆(Heap)中的a对象的值改变成了b，而是将引用变量指向对象a的指针断开，接着将指针指向了对象b。下面我们用一个例子来解释这个过程：
+在一个足球队中，有很多球员，而只有一个队长。有的时候，我们想要更换队长，这个例子用来实现这个过程。我们首先创建两个球员——洛里和凯恩(对象包括球员的姓，名和踢球的位置)：
+Player llorris = new Player(&quot;Llprris&quot;, &quot;Hugo&quot;, &quot;Goalkeeper&quot;); Player kane = new Player(&quot;Kane&quot;, &quot;Harry&quot;, &quot;Center Forward&quot;);  其实这两行代码实现了如下图的情况：
+也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。
+这时候，我们首先将队长设置为洛里，代码为：
+Player captain = llorris;  通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/cs/point/" /><meta property="article:published_time" content="2020-08-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-08-02T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Java中的&#34;指针&#34;——引用变量">
+<meta itemprop="description" content="指针是一种在众多编程语言中非常常见的概念，它的使用非常广泛。实际上，Java为了避免使用上的繁琐，其设计者用引用变量的概念代替了指针，但是实际使用上，两者比较类似，所以本文依旧以指针为题来讲述此类概念。下面我们就来介绍一下指针的概念。
+在介绍指针之前，我们首先要弄清楚Java中的两大重要储存空间——堆和栈。为了使用上的方便，堆(Heap)和栈(Stack)分别用来储存不同的东西。下表对比了两者的特点：
+   储存区域 储存内容 优点 缺点 回收     栈 基本类型的变量和对象的引用变量 存取速度比堆要快，仅次于寄存器，栈数据可以共享 存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量 当超过变量的作用域后，Java会自动释放掉该变量,内存空间可以立即被另作他用   堆 由new等指令创建的对象和数组 可以动态地分配内存大小，生存期也不必事先告诉编译器 由于要在运行时动态分配内存，存取速度较慢 由Java虚拟机的自动垃圾回收器来回收不再使用的数据    为了更加形象的解释这些概念，我们不妨看一看下面的例子：
+A a = new A();  上述代码是在Java编程中时常会会出现的，我们来好好的分析一下，这样简单的一行代码究竟是做了什么。实际上，这小小的一行代码是做了三件事情，这行代码的前半部分申明了引用变量a为A类型，并将其储存到栈(Stack)当中并分配了一个储存地址给它, 其代码为：
+A a;  接着，这行代码创建了一个新的类型为A的对象，这个过程用关键字new来实现，创建的新对象被储存在堆Heap里，并被分配了一个储存地址，其代码为：
+new A();  最后，这行代码中的等号&rdquo;=&ldquo;将储存在堆里的引用变量a指向了栈里新创建的对象A(),这个指的过程用储存地址来实现，也就是说，等号将两个储存地址配对并连接了起来。
+Note: 值得注意的是，在Java中，使用引用变量时，等号&rdquo;=&ldquo;并不是给等号左边的变量赋上右边的新值的意思，而是将等号左边的变量指向右边的对象的地址的意思。当人们将一个引用变量先等于对象a，再等于另一个对象b时，并不是将储存在堆(Heap)中的a对象的值改变成了b，而是将引用变量指向对象a的指针断开，接着将指针指向了对象b。下面我们用一个例子来解释这个过程：
+在一个足球队中，有很多球员，而只有一个队长。有的时候，我们想要更换队长，这个例子用来实现这个过程。我们首先创建两个球员——洛里和凯恩(对象包括球员的姓，名和踢球的位置)：
+Player llorris = new Player(&quot;Llprris&quot;, &quot;Hugo&quot;, &quot;Goalkeeper&quot;); Player kane = new Player(&quot;Kane&quot;, &quot;Harry&quot;, &quot;Center Forward&quot;);  其实这两行代码实现了如下图的情况：
+也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。
+这时候，我们首先将队长设置为洛里，代码为：
+Player captain = llorris;  通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示：">
+
+
+<meta itemprop="datePublished" content="2020-08-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-08-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="78">
+
+
+
+<meta itemprop="keywords" content="计算机,算法," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>首页
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>关于
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/itemized/">
+                            <i class="fa fa-list">&nbsp;</i>归档
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="fa fa-sitemap">&nbsp;</i>分类
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-tags">&nbsp;</i>标签
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/contact/">
+                            <i class="fa fa-envelope-o">&nbsp;</i>联系
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type=hidden name=domains value="yanyusoul.com">
+                    <input type=hidden name=sitesearch value="yanyusoul.com">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>首页
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>关于
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/itemized/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>归档
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="fa fa-sitemap">&nbsp;</i>分类
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-tags">&nbsp;</i>标签
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/contact/">
+                            <h3>
+                                <i class="fa fa-envelope-o">&nbsp;</i>联系
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>近期博文</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-02'>
+                                    August 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/git/">Git简明教程</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-31'>
+                                    July 31, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_dynamic_programming/">动态规划算法（Dynamic-Programming）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-28'>
+                                    July 28, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
+            <img src="/img//" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-25'>
+                                    July 25, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_deep-first-search/">深度优先搜索算法（Deep-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-07-25'>
+                                    July 25, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_deep-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2fpoint%2f&amp;text=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fpoint%2f&amp;description=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-08-02'>
+            August 2, 2020</time>
+        <span class="author">小羽</span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2fpoint%2f&amp;text=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fpoint%2f&amp;title=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fpoint%2f&amp;description=Java%e4%b8%ad%e7%9a%84%22%e6%8c%87%e9%92%88%22%e2%80%94%e2%80%94%e5%bc%95%e7%94%a8%e5%8f%98%e9%87%8f" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fpoint%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+<p>指针是一种在众多编程语言中非常常见的概念，它的使用非常广泛。实际上，Java为了避免使用上的繁琐，其设计者用<strong>引用变量</strong>的概念代替了指针，但是实际使用上，两者比较类似，所以本文依旧以指针为题来讲述此类概念。下面我们就来介绍一下指针的概念。</p>
+
+<p>在介绍指针之前，我们首先要弄清楚Java中的两大重要储存空间——<strong>堆和栈</strong>。为了使用上的方便，堆(Heap)和栈(Stack)分别用来储存不同的东西。下表对比了两者的特点：</p>
+
+<table>
+<thead>
+<tr>
+<th>储存区域</th>
+<th>储存内容</th>
+<th>优点</th>
+<th>缺点</th>
+<th>回收</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>栈</td>
+<td>基本类型的变量和对象的引用变量</td>
+<td>存取速度比堆要快，仅次于寄存器，栈数据可以共享</td>
+<td>存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量</td>
+<td>当超过变量的作用域后，Java会自动释放掉该变量,内存空间可以立即被另作他用</td>
+</tr>
+
+<tr>
+<td>堆</td>
+<td>由new等指令创建的对象和数组</td>
+<td>可以动态地分配内存大小，生存期也不必事先告诉编译器</td>
+<td>由于要在运行时动态分配内存，存取速度较慢</td>
+<td>由Java虚拟机的自动垃圾回收器来回收不再使用的数据</td>
+</tr>
+</tbody>
+</table>
+
+<p>为了更加形象的解释这些概念，我们不妨看一看下面的例子：</p>
+
+<pre><code class="language-java">A a = new A();
+</code></pre>
+
+<p>上述代码是在Java编程中时常会会出现的，我们来好好的分析一下，这样简单的一行代码究竟是做了什么。实际上，这小小的一行代码是做了三件事情，这行代码的前半部分申明了引用变量a为A类型，并将其储存到栈(Stack)当中并分配了一个储存地址给它, 其代码为：</p>
+
+<pre><code class="language-java">A a;
+</code></pre>
+
+<p>接着，这行代码创建了一个新的类型为A的对象，这个过程用关键字<strong>new</strong>来实现，创建的新对象被储存在堆Heap里，并被分配了一个储存地址，其代码为：</p>
+
+<pre><code class="language-java">new A();
+</code></pre>
+
+<p>最后，这行代码中的等号&rdquo;=&ldquo;将储存在堆里的引用变量<strong>a</strong>指向了栈里新创建的对象<strong>A()</strong>,这个指的过程用储存地址来实现，也就是说，等号将两个储存地址配对并连接了起来。</p>
+
+<p>Note: 值得注意的是，在Java中，使用引用变量时，等号&rdquo;=&ldquo;并不是给等号左边的变量赋上右边的新值的意思，而是<strong>将等号左边的变量指向右边的对象的地址</strong>的意思。当人们将一个引用变量先等于对象a，再等于另一个对象b时，并不是将储存在堆(Heap)中的a对象的值改变成了b，而是<strong>将引用变量指向对象a的指针断开，接着将指针指向了对象b</strong>。下面我们用一个例子来解释这个过程：</p>
+
+<p>在一个足球队中，有很多球员，而只有一个队长。有的时候，我们想要更换队长，这个例子用来实现这个过程。我们首先创建两个球员——洛里和凯恩(对象包括球员的姓，名和踢球的位置)：</p>
+
+<pre><code class="language-java">Player llorris = new Player(&quot;Llprris&quot;, &quot;Hugo&quot;, &quot;Goalkeeper&quot;);
+Player kane = new Player(&quot;Kane&quot;, &quot;Harry&quot;, &quot;Center Forward&quot;);
+</code></pre>
+
+<p>其实这两行代码实现了如下图的情况：</p>
+
+<p><img src="/images/CS/stack_heap1.png" width = "800" height = "500" alt="图片名称" align=center /></p>
+
+<p>也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。</p>
+
+<p>这时候，我们首先将队长设置为洛里，代码为：</p>
+
+<pre><code class="language-java">Player captain = llorris;
+</code></pre>
+
+<p>通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示：</p>
+
+<p><img src="/images/CS/stack_heap2.png" width = "800" height = "500" alt="图片名称" align=center /></p>
+
+<p>接着，我们将队长更改为kane,代码为：</p>
+
+<pre><code class="language-java">captain = kane;
+</code></pre>
+
+<p>这时候，captain指向llorris所指向的对象的指针被删除，而一个新的从captain指向kane所指向的对象的指针被创建，其情况如下图所示：</p>
+
+<p><img src="/images/CS/stack_heap3.png" width = "800" height = "500" alt="图片名称" align=center /></p>
+
+<p>堆(Heap)中llorris所指向的对象的值并没有发生改变，只是引用变量captain所指向的对象发生了变化。</p>
+
+<p>如果我们改变引用变量kane所指的对象的值，那么由于引用变量captain所指的对象和kane相同，那么captain所指对象的值也就改变了。比如我们将kane的位置改为Center Back,代码为：</p>
+
+<pre><code class="language-java">kane.position = &quot;Center Back&quot;;
+</code></pre>
+
+<p>那么，就发生了如下图的变化：</p>
+
+<p><img src="/images/CS/stack_heap4.png" width = "800" height = "500" alt="图片名称" align=center /></p>
+
+<p>所以captain.position的值也会从&rdquo;Center Forward&rdquo;变为&rdquo;Center Back&rdquo;。</p>
+
+<p>Note:</p>
+
+<ol>
+<li>当堆(Heap)中的对象没有被栈(Stack)中的引用变量所指时，java虚拟机(JVM)会在之后自动识别到他们，并将它们扔进回收站，从而不再继续占用储存空间。</li>
+<li>当我们将引用变量指向&rdquo;null&rdquo;后，这个引用变量原本指向的指针会被断开，且不再指向任何对象，但是JVM不会自动删除它们。</li>
+</ol>
+
+<h2 id="总结">总结</h2>
+
+<p>引用变量是Java中非常重要的一个基本概念，在理解上很容易由于&rdquo;=&ldquo;的使用和基本变量时不同造成混淆。引用变量如果C语言中的指针，其被储存在栈(Stack)中，可以用&rdquo;=&ldquo;将其指向堆&rdquo;Heap&rdquo;中的对象。当引用变量再次指向一个新的对象时，原本的指针断开，指向新的对象。当引用变量设置为等于&rdquo;null&rdquo;后，它不再指向任何对象。</p>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/%E7%AE%97%E6%B3%95">算法</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/cs/git/"
+                class="button big previous">Git简明教程</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/' class="logo"><img src="/img/main/logo.jpeg" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>YY的主页</h2>
+        <p>YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~</p>
+      </header>
+    
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>近期博文</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-02'>
+                August 2, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/git/">Git简明教程</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-31'>
+                July 31, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_dynamic_programming/">动态规划算法（Dynamic-Programming）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-28'>
+                July 28, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-25'>
+                July 25, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_deep-first-search/">深度优先搜索算法（Deep-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-07-25'>
+                July 25, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_deep-first-search/" class="image featured">
+            <img src="/img/2020/07/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">更多博文</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+  
+  
+    <section id="categories">
+      <header>
+        <h3>
+          <a href="/categories/">分类</a>
+        </h3>
+      </header>
+        
+          
+        
+
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                <span style="float:right;">5</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">读书分享</a>
+                <span style="float:right;">4</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E5%BD%92%E6%A1%A3/">归档</a>
+                <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+    </section>
+  
+  
+
+  
+  
+    <section id="mini-bio">
+      <h3>关于</h3>
+      <p>关于博主的一些信息。</p>
+      <a href="/about/" class="button">更多</a>
+    </section>
+  
+
+  
+  <section id="footer">
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          YY的主页
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

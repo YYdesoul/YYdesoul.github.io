@@ -3,32 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/git/</loc>
+    <loc>/blog/cs/point/</loc>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/cs/git/</loc>
     <lastmod>2020-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/algorithms_dynamic_programming/</loc>
+    <loc>/blog/cs/algorithms_dynamic_programming/</loc>
     <lastmod>2020-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/algorithms_breadth-first-search/</loc>
+    <loc>/blog/cs/algorithms_breadth-first-search/</loc>
     <lastmod>2020-07-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/algorithms_deep-first-search/</loc>
+    <loc>/blog/cs/algorithms_deep-first-search/</loc>
     <lastmod>2020-07-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/itemized/item1/</loc>
+    <loc>/itemized/cs_itemized/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/itemized/item2/</loc>
+    <loc>/itemized/wenhua/</loc>
+    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/itemized/dushu/</loc>
     <lastmod>2018-02-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,32 +48,22 @@
   </url>
   
   <url>
-    <loc>/itemized/item3/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/itemized/item4/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blog/brandenburgertor/</loc>
+    <loc>/blog/culture/brandenburgertor/</loc>
     <lastmod>2016-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/humboldtuni/</loc>
+    <loc>/blog/culture/humboldtuni/</loc>
     <lastmod>2016-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/siegessaule/</loc>
+    <loc>/blog/culture/siegessaule/</loc>
     <lastmod>2016-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/wenmingzhiguang/</loc>
+    <loc>/blog/culture/wenmingzhiguang/</loc>
     <lastmod>2016-09-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -74,20 +74,13 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/blog/</loc>
-    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,7 +98,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -135,7 +128,7 @@
   
   <url>
     <loc>/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-07-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -144,14 +137,14 @@
   </url>
   
   <url>
-    <loc>/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+    <loc>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+    <loc>/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
