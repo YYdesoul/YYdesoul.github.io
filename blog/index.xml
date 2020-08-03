@@ -6,10 +6,25 @@
     <description>Recent content in Blog on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>双指针算法</title>
+      <link>/blog/cs/algorithms_two-points/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/algorithms_two-points/</guid>
+      <description>在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
+II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&amp;gt;right时，停止遍历。
+Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
+b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
+ 对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
+Given n non-negative integers a1, a2, &amp;hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).</description>
+    </item>
     
     <item>
       <title>Java中的&#34;指针&#34;——引用变量</title>

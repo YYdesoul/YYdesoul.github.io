@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/cs/algorithms_two-points/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/cs/point/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
   </url>
@@ -75,7 +80,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -98,7 +103,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -128,7 +133,7 @@
   
   <url>
     <loc>/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -138,13 +143,13 @@
   
   <url>
     <loc>/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

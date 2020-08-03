@@ -11,9 +11,15 @@
              "@id": "/"
         },
         "articleSection" : "blog",
-        "name" : "动态规划算法（Dynamic-Programming）",
-        "headline" : "动态规划算法（Dynamic-Programming）",
-        "description" : "算法专栏",
+        "name" : "双指针算法",
+        "headline" : "双指针算法",
+        "description" : "在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
+II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
+b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
+ 对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
+Given n non-negative integers a1, a2, &hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,16 +27,16 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-07-28 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-07-28 00:00:00 &#43;0000 UTC",
-        "url" : "/blog/cs/algorithms_dynamic_programming/",
-        "wordCount" : "316",
+        "datePublished": "2020-08-03 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-08-03 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/cs/algorithms_two-points/",
+        "wordCount" : "511",
         "keywords" : [ "计算机","算法","Blog" ]
     }
     </script>
         
             
-                <title>动态规划算法（Dynamic-Programming）</title>
+                <title>双指针算法</title>
             
         
 
@@ -59,31 +65,51 @@
             <meta name="author" content="小羽">
         
         
-            <meta name="description" content="算法专栏">
+            
+                <meta name="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+            
         
 
         <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="动态规划算法（Dynamic-Programming）"/>
-<meta name="twitter:description" content="算法专栏"/>
+<meta name="twitter:title" content="双指针算法"/>
+<meta name="twitter:description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
+II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
+b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
+ 对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
+Given n non-negative integers a1, a2, &hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0)."/>
 
-        <meta property="og:title" content="动态规划算法（Dynamic-Programming）" />
-<meta property="og:description" content="算法专栏" />
+        <meta property="og:title" content="双指针算法" />
+<meta property="og:description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
+II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
+b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
+ 对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
+Given n non-negative integers a1, a2, &hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/cs/algorithms_dynamic_programming/" /><meta property="article:published_time" content="2020-07-28T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-07-28T00:00:00&#43;00:00"/>
+<meta property="og:url" content="/blog/cs/algorithms_two-points/" /><meta property="article:published_time" content="2020-08-03T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-08-03T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         
-<meta itemprop="name" content="动态规划算法（Dynamic-Programming）">
-<meta itemprop="description" content="算法专栏">
+<meta itemprop="name" content="双指针算法">
+<meta itemprop="description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
+II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
+b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
+ 对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
+Given n non-negative integers a1, a2, &hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).">
 
 
-<meta itemprop="datePublished" content="2020-07-28T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-07-28T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="316">
+<meta itemprop="datePublished" content="2020-08-03T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-08-03T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="511">
 
 
 
@@ -348,9 +374,6 @@
 
 
   
-  
-    
-  
 
 
         
@@ -358,7 +381,7 @@
         
 
         <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
-            <img src="/img/2020/07/" alt="">
+            <img src="/img//" alt="">
         </a>
     
 
@@ -386,9 +409,6 @@
 
 
 
-  
-  
-    
   
 
 
@@ -430,7 +450,7 @@
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f&amp;text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e7%ae%97%e6%b3%95%ef%bc%88Dynamic-Programming%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -440,7 +460,7 @@
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -451,7 +471,7 @@
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_dynamic_programming%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -461,7 +481,7 @@
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f&amp;title=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e7%ae%97%e6%b3%95%ef%bc%88Dynamic-Programming%ef%bc%89" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -471,7 +491,7 @@
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f&amp;title=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e7%ae%97%e6%b3%95%ef%bc%88Dynamic-Programming%ef%bc%89" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -481,7 +501,7 @@
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f&amp;title=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e7%ae%97%e6%b3%95%ef%bc%88Dynamic-Programming%ef%bc%89" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -491,7 +511,7 @@
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_dynamic_programming%2f&amp;description=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e7%ae%97%e6%b3%95%ef%bc%88Dynamic-Programming%ef%bc%89" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -501,7 +521,7 @@
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_dynamic_programming%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -520,22 +540,20 @@
   <header>
     <div class="title">
         
-            <h1><a href="/blog/cs/algorithms_dynamic_programming/">动态规划算法（Dynamic-Programming）</a></h1>
+            <h1><a href="/blog/cs/algorithms_two-points/">双指针算法</a></h1>
             
         
-        
-            <p>算法专栏</p>
         
     </div>
     <div class="meta">
         
 
         <time class="published"
-            datetime='2020-07-28'>
-            July 28, 2020</time>
+            datetime='2020-08-03'>
+            August 3, 2020</time>
         <span class="author">小羽</span>
         
-            <p>2 minute read</p>
+            <p>3 minute read</p>
         
         
     </div>
@@ -545,191 +563,237 @@
   
 
   
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
-            <img src="/img/2020/07/" alt="">
-        </a>
-    
-
 
   <div id="content">
     
 
-<p><em>Those who cannot remember the past are condemned to repeat it.</em></p>
-
-<p>那些不记得过去的人被谴责在重复过去。正是因为人能够站在过去的经验上更进一步，才能像堆积木一样，将成就越堆越高。今天我就来讲讲一个按照这种思路所设计的算法——动态规划。</p>
+<p>在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。</p>
 
 <h2 id="i-定义">I. 定义</h2>
 
-<p>动态规划（Dynamic-Programming, 简称DP）是一种在数学、计算机科学、管理学和经济学等等学科中使用的一种将一个复杂问题分解为相对简单的子问题，根据子问题的结果来最终解决复杂问题的一种方法。</p>
+<p><strong>双指针</strong>是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作<strong>左右对撞指针</strong>算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为<strong>快慢指针</strong>算法。下面我们就依次来说明这两种不同的双指针算法。</p>
 
-<p>试想一下，如果问你1+2+3+&hellip;+100 = ?这个问题时，是不是不那么容易计算出来？但是如果这个时候告诉你1+2+3+&hellip;+99 = 4950时，你就能很快的知道1+2+3+&hellip;+100 = 4950+100 = 5050.其实，这就是动态规划的思维。简而言之，动态规划算法的核心就是记住已经解决过的子问题的解，并根据这个解去解决相对复杂一点的问题，通过一层一层的求解，最终可以解决很复杂的问题。</p>
+<h2 id="ii-分类">II. 分类</h2>
 
-<p>下图是应用动态规划算法解决<a href="[https://baike.baidu.com/item/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97](https://baike.baidu.com/item/斐波那契数列)">斐波那契数列</a>的经典例子。假如问题是想计算出fib(6)的值，那么我们就必须先计算出fib(5)和fib(4)的值，要知道fib(4)的值，我们又需要先知道fib(3)和fib(2的值)，以此类推到最底层。因为我们知道fib(1)和fib(2)=1，那么可以因此求得fib(3)，然后求得fib(4)&hellip;最终求得fib(6)。这整个过程就是一个动态规划的过程。</p>
+<h3 id="1-左右对撞指针">1. 左右对撞指针</h3>
 
-<p><img src="/images/Algorithms/fib.png" alt="avatar" /></p>
+<h4 id="a-定义">a. 定义</h4>
 
-<h2 id="ii-实现方法">II. 实现方法</h2>
+<p>左右对撞指针通常在<strong>有序数组（sorted array）</strong>中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。</p>
 
-<p>实现动态规划算法，我们往往需要四个步骤：</p>
+<p>Note: 左右对撞指针适用于<strong>有序数组（sorted array）</strong>。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。</p>
 
-<ol>
-<li>选择状态变量</li>
-<li>初始化</li>
-<li>确定状态转移返程</li>
-<li>储存结果</li>
-</ol>
+<h4 id="b-实现方法">b. 实现方法</h4>
 
-<p><strong>1. 选择状态变量</strong></p>
-
-<p>在这一步中，我们需要将问题拆分为多阶段的子问题。设置状态变量，其在前一阶段中被计算出来，并在后一阶段被使用。如下图所示，阶段1中的结果B, C被传入阶段2，并通过他们计算出结果D,C然后传入阶段3用于计算出最终结果F。这些变量便是状态变量。</p>
-
-<p><img src="/images/Algorithms/state_variable.png" alt="avatar" /></p>
-
-<p><strong>2. 初始化</strong></p>
-
-<p>在这一步中，我们需要设置边界，也就是在什么情况下停止。在菲波那切数列中边界是fib(1)=1, fib(2)=1。</p>
-
-<p><strong>3. 确定转移方程</strong></p>
-
-<p>转移方程是一种方程，其描述了当前子问题的状态变量与上一层的状态变量之间的关系。在菲波那切数列中，转移方程就是fib(n) = fib(n-1) + fib(n-2)。</p>
-
-<p><strong>4.储存结果</strong></p>
-
-<p>在这一步中设置结果变量用于储存结果。</p>
-
-<h2 id="iii-经典习题">III. 经典习题</h2>
+<p>实现左右对撞指针算法，通常分为以下几个步骤：</p>
 
 <ol>
-<li><a href="https://leetcode.com/problems/unique-paths/">Unique Paths</a>(Leetcode 62)</li>
+<li>对无序数组进行排序。</li>
+<li>将左右指针分别指向数组的左右两端</li>
+<li>使用while循环进行遍历，当左指针和右指针相撞时，停止。</li>
+<li>设置左右两个指针的移动条件以及移动方式</li>
+<li>记录结果</li>
 </ol>
 
-<p>A robot is located at the top-left corner of a <em>m</em> x <em>n</em> grid (marked &lsquo;Start&rsquo; in the diagram below).</p>
+<h4 id="c-经典习题">c. 经典习题</h4>
 
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked &lsquo;Finish&rsquo; in the diagram below).</p>
+<p><strong>1) <a href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a>（Leetcode 11)</strong></p>
 
-<p>How many possible unique paths are there?</p>
+<p>Given <em>n</em> non-negative integers <em>a1</em>, <em>a2</em>, &hellip;, <em>an</em> , where each represents a point at coordinate (<em>i</em>, <em>ai</em>). <em>n</em> vertical lines are drawn such that the two endpoints of line <em>i</em> is at (<em>i</em>, <em>ai</em>) and (<em>i</em>, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
 
-<p><img src="/images/Algorithms/Leetcode62.png" alt="avatar" /></p>
+<p><strong>Note:</strong> You may not slant the container and <em>n</em> is at least 2.</p>
 
-<p>这道题要我吗找出在一个mxn网格的图中，计算出从左上角到右下角一共有多少种走法。（每次只能向下和向右走一格）</p>
+<p><img src="/images/Algorithms/Leetcode11.png" alt="avatar" /></p>
 
-<p>首先这道题我们可以分析出，<strong>每一个方格的走法数等于其左边和上方方格的走法数之和</strong>，且在最左边和最上方的方格的走法有且只有一种。所以我们可以按照如下步骤进行解题：</p>
+<p>这道题目的意思是输入一个无序数组，计算最大的长方形水箱面积。数组的index为长方形的长，数组中每个对象的值为长方形的宽。长方形的面积等于长乘以左右两个对象值中较小的那一个。</p>
+
+<p>这道题目是一个典型的用双指针来解决的题目（虽然输入数组为无序数组）。解题思路是这样的，我们在数组的两端设置两个指针，并计算出所对应的面积且保存下来。然后我们移动指向更小的值的指针（如果是左指针就向右移一位，如果是右指针则向左移一位），因为只有移动指向更小值的指针所改变的面积才可能大于改变前的面积。（更大值的的对象在计算面积时并没有被使用，如果移动这个指针，当它所指的对象变得更大时，这个值还是不会被用到，指向更小值时，则面积必然会变小）。</p>
+
+<p>解题步骤如下：</p>
 
 <ol>
-<li><p>创界一个二维数组来模拟网格图，其第一行和第一列的值为1。（初始化）</p></li>
-
-<li><p>将每个方格的走法数作为状态变量。（确定状态变量）</p></li>
-
-<li><p>将转移方程设置为每个方格的走法数（状态变量）等于其左边和上方方格的走法数之和，写成式子也就是：</p></li>
+<li>设置左右指针为数组的左右两端的index,设置area变量用于储存结果。</li>
 </ol>
 
-<pre><code class="language-java">   graph[i][j] = graph[i-1][j] + graph[i][j-1]
+<pre><code class="language-java">int area = 0;
+int left = 0;
+int right = height.length-1;
 </code></pre>
 
 <ol>
-<li>将数组的最后一行且最后一列的值设置为结果并返回。</li>
+<li>使用while循环，当left&lt;right时停止循环。</li>
+</ol>
+
+<pre><code class="language-java">while(left &lt; right){
+			...
+}
+</code></pre>
+
+<ol>
+<li>计算出当前指针指向的长和宽所对应的面积，如果当前面积大于area,那么修改area的值，反之则不变。</li>
+<li>移动指向的对象值更小的指针。</li>
+</ol>
+
+<pre><code class="language-java">if(height[left] &lt; height[right]){
+  left++;
+}else{
+  right++;
+}
+</code></pre>
+
+<ol>
+<li>将结果area返回。</li>
 </ol>
 
 <p><strong>代码</strong></p>
 
 <pre><code class="language-java">class Solution {
-    public int uniquePaths(int m, int n) {
-        int [][] graph = new int[m][n];
-        for (int i=0; i&lt;m;i++){
-            graph[i][0] = 1;
-        }
-        for (int i=0; i&lt;n; i++){
-            graph[0][i] = 1;
-        }
-        for (int i=1; i&lt;m;i++){
-            for (int j=1;j&lt;n;j++){
-                graph[i][j] = graph[i-1][j] + graph[i][j-1];
+    public int maxArea(int[] height) {
+        if (height == null || height.length == 0) return 0;
+        int area = 0;
+        int left = 0;
+        int right = height.length-1;
+        while (left &lt; right){
+            int currArea = (right-left)*Math.min(height[left], height[right]);
+            if (currArea &gt; area) area = currArea;
+            if (height[left] &lt; height[right]){
+               left++;
+            }else{
+               right--;
             }
         }
-        return graph[m-1][n-1];
+        return area;
     }
 }
 </code></pre>
 
+<p><strong>2) <a href="https://leetcode.com/problems/3sum/">3Sum</a>（Leetcode 15)</strong></p>
+
+<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+
+<p><strong>Note:</strong></p>
+
+<p>The solution set must not contain duplicate triplets.</p>
+
+<p><strong>Example:</strong></p>
+
+<p><img src="/images/Algorithms/Leetcode15.png" alt="avatar" /></p>
+
+<p>这道题的意思是输入一个无序数组，选出其中的三个值加起来等于0，找到所有不重复的这类可能性，并将它们以List的形式输出。</p>
+
+<p>这道题目因为是计算三个数相加的值是否等于0，所以我们需要用到3个指针，不过我们可以将一个指针作为base指针，让它按顺序依次遍历整个数组，其它两个指针作为快慢指针来遍历base指针右侧的子数组。当然，由于这个数组为无序数组，我们需要先将其进行排序。</p>
+
+<p>在base指针每一次向右移动后，我们需要重新初始化左右两个指针，然后计算三个指针所指值相加的和，和分为三种情况：</p>
+
 <ol>
-<li><a href="https://leetcode.com/problems/longest-palindromic-substring/">Longest Palindromic Substring</a>(Leetcode 5)</li>
+<li>如果和等于0，就将三个值写入List并存在结果里，并移动两个指针。</li>
+<li>如果和大于0，移动右指针。（因为数组被排序，移动右指针会使和变小）</li>
+<li>如果和小于0，移动左指针。</li>
 </ol>
 
-<p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
+<p>Note: 这里要注意的是，一个数组中可能会有重复的值，为了避免出现重复结果，我们在移动所有指针时都需要跳过重复值，比如一个指针目前指的值为1时，下一次移动它时，要避开后面所有的值为1的index，从而跳转到下一个含有不同值的对象上。</p>
 
-<p><img src="/images/Algorithms/Leetcode5.png" alt="avatar" /></p>
-
-<p>这道题是让我们找到一个String中左右对称的Substring。通过观察后我们发现，左右对称的String一共分为两种：一种是有中心的，如&rdquo;bab&rdquo;;一种是没有中心的，如&rdquo;abba&rdquo;。所以我们每次在判断一个Substring是否为中心对称的String时要判断两次。思路为遍历整个String的每一个字符,如果其中某个字符的左右两边对称，那么就储存其长度并返回true，接下来判断左右两边下一位的字符是否对称，重复此过程直到返回false为止。解题步骤如下：</p>
+<p>解题步骤如下：</p>
 
 <ol>
-<li>设置for循环来遍历String,查看每一个字符的左右对称字符的长度。</li>
-<li>状态变量为当前字符的左右两边相等字符的index(left和right)，如果相等就两边加一（left++, right++）继续判断是否对称，直到找到不对称的字符为止。（选择状态变量)</li>
-<li>用while循环来实现两次动态规划，第一次left index和right index的初始值设置为和正在检查的字符的index相等（判断是否无中心对称）；第二次left index的初始值不变，right index的初始值设置为正在检查的字符的index+1（判断是否有中心对称）。（初始化）</li>
-<li>将Substring的左右两边位置保存下来，如果有更长的就修改它，直到遍历结束为止。（保存结果）</li>
+<li>定义结果List result, 对数组进行排序。</li>
+</ol>
+
+<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
+Arrays.sort(nums);
+</code></pre>
+
+<ol>
+<li>初始化base指针为数组最左端，开启while循环，当base &lt; nums.length-2时停止循环，在循环的开头初始化left和right指针。</li>
+</ol>
+
+<pre><code class="language-java">while(base &lt; nums.length - 2){
+  int right = nums.length - 1;
+  int left = base + 1;
+  ...
+}
+</code></pre>
+
+<ol>
+<li>开启一个新的while循环，当左右指针相撞时停止循环。</li>
+</ol>
+
+<pre><code class="language-java">while(left &lt; right){
+  	...
+}
+</code></pre>
+
+<ol>
+<li>定义sum变量储存和的值，当和等于0时，将指针所指的值储存到result中并将左右指针都移动；当sum大于0时，只移动右指针；当sum小于0时，只移动左指针。</li>
+</ol>
+
+<pre><code class="language-java">                if (sum == 0) {
+                    result.add(Arrays.asList(nums[base], nums[left], nums[right]));
+                    left = moveRight(nums, left + 1);
+                    right = moveLeft(nums, right - 1);
+                } else if (sum &gt; 0) {
+                    right = moveLeft(nums, right - 1);
+                } else {
+                    left = moveRight(nums, left + 1);
+                }
+</code></pre>
+
+<ol>
+<li>当第二个循环结束后，将base指针向右移动一位。</li>
+</ol>
+
+<pre><code class="language-java">base = moveRight(nums, base + 1);
+</code></pre>
+
+<ol>
+<li>实现moveLeft和moveRight函数。</li>
 </ol>
 
 <p><strong>代码</strong></p>
 
 <pre><code class="language-java">class Solution {
-	public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0) return &quot;&quot;;
-        int start = 0;
-        int end = 0;
-        for (int i=0; i&lt;s.length();i++){
-            int len1 = longst(s, i, i);
-            int len2 = longst(s, i, i+1);
-
-            int len = Math.max(len1, len2);
-            if (end - start &lt; len){
-                start = i - (len-1)/2;
-                end = i + len/2;
+    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
+        if (nums == null || nums.length == 0) return result;
+        Arrays.sort(nums);
+        int base = 0;
+        while (base &lt; nums.length - 2) {
+            int right = nums.length - 1;
+            int left = base + 1;
+            while (left &lt; right) {
+                int sum = nums[base] + nums[left] + nums[right];
+                if (sum == 0) {
+                    result.add(Arrays.asList(nums[base], nums[left], nums[right]));
+                    left = moveRight(nums, left + 1);
+                    right = moveLeft(nums, right - 1);
+                } else if (sum &gt; 0) {
+                    right = moveLeft(nums, right - 1);
+                } else {
+                    left = moveRight(nums, left + 1);
+                }
             }
+            base = moveRight(nums, base + 1);
         }
-        return s.substring(start, end+1);
+        return result;
     }
 
-    private static int longst(String s, int left, int right) {
-        while (left&gt;-1 &amp;&amp; right &lt; s.length() &amp;&amp; s.charAt(left)== s.charAt(right)){
-            left--;
-            right++;
+    private int moveLeft(int[] nums, int right) {
+        while (right == nums.length - 1 || (right &gt;= 0 &amp;&amp; nums[right] == nums[right + 1])) {
+            right--;
         }
-        return right-left-1;
+        return right;
+    }
+
+    private int moveRight(int[] nums, int left) {
+        while (left == 0 || (left &lt; nums.length &amp;&amp; nums[left] == nums[left-1])){
+            left++;
+        }
+        return left;
     }
 }
 </code></pre>
 
-<h2 id="iv-总结">IV. 总结</h2>
-
-<p>动态规划算法是一种功能非常强大的计算机算法，其将一个复杂问题分割为若干个层层嵌套的子问题，用上一层中子问题的解来解答下一层的问题直到获得我们原本想要解的那个复杂问题的答案。在动态规划中，步骤一般如下：1.选择状态变量；2.初始化；3.确定转移方程；4.储存结果。在动态规划中，我们往往用循环或者递归来实现嵌套。</p>
-
-<h2 id="v-参考">V. 参考</h2>
-
-<ol>
-<li><a href="https://blog.csdn.net/u013309870/article/details/75193592">https://blog.csdn.net/u013309870/article/details/75193592</a></li>
-<li><a href="https://www.zhihu.com/question/23995189">https://www.zhihu.com/question/23995189</a></li>
-</ol>
+<h3 id="2-快慢指针">2. 快慢指针</h3>
 
   </div>
 
@@ -775,13 +839,10 @@
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/algorithms_breadth-first-search/"
-                class="button big previous">广度优先搜索算法（Breadth-First-Search）</a></li>
+        <li><a href="/blog/cs/point/"
+                class="button big previous">Java中的&#34;指针&#34;——引用变量</a></li>
     
 
-    
-        <li><a href="/blog/cs/git/"
-                class="button big next">Git简明教程</a></li>
     
 </ul>
 
@@ -1024,9 +1085,6 @@
 
 
 
-  
-  
-    
   
 
 
