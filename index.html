@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-08-03 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-08-03 00:00:00 &#43;0000 UTC",
+        "datePublished": "2020-08-05 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-08-05 00:00:00 &#43;0000 UTC",
         "url" : "/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -70,7 +70,7 @@
 <meta property="og:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-08-03T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2020-08-05T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -284,7 +284,19 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/cs/algorithms_two-points/">双指针算法</a></h3>
+                                <h3><a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-05'>
+                                    August 5, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a></h3>
                                 
                                 <time class="published" datetime=
                                     '2020-08-03'>
@@ -357,45 +369,6 @@
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-07-25'>
-                                    July 25, 2020</time>
-                            </header>
-                            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/07/" alt="">
-        </a>
-    
-
-
-                        </article>
-                
 
                 
                     <a href=
@@ -418,7 +391,7 @@
   <header>
     <div class="title">
         
-            <h2><a href="/blog/cs/algorithms_two-points/">双指针算法</a></h2>
+            <h2><a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a></h2>
         
         
     </div>
@@ -426,11 +399,11 @@
         
 
         <time class="published"
-            datetime='2020-08-03'>
-            August 3, 2020</time>
+            datetime='2020-08-05'>
+            August 5, 2020</time>
         <span class="author">小羽</span>
         
-            <p>3 minute read</p>
+            <p>2 minute read</p>
         
         
     </div>
@@ -444,233 +417,214 @@
   <div id="content">
     
 
-<p>在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。</p>
+<p>在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。</p>
 
 <h2 id="i-定义">I. 定义</h2>
 
-<p><strong>双指针</strong>是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作<strong>左右对撞指针</strong>算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为<strong>快慢指针</strong>算法。下面我们就依次来说明这两种不同的双指针算法。</p>
+<p>快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的<strong>快指针（fast）</strong>和一个较慢的<strong>慢指针（slow）</strong>。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。</p>
 
-<h2 id="ii-分类">II. 分类</h2>
+<p><strong>Note</strong>：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。</p>
 
-<h3 id="1-左右对撞指针">1. 左右对撞指针</h3>
+<h2 id="ii-实现方法">II. 实现方法</h2>
 
-<h4 id="a-定义">a. 定义</h4>
-
-<p>左右对撞指针通常在<strong>有序数组（sorted array）</strong>中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。</p>
-
-<p>Note: 左右对撞指针适用于<strong>有序数组（sorted array）</strong>。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。</p>
-
-<h4 id="b-实现方法">b. 实现方法</h4>
-
-<p>实现左右对撞指针算法，通常分为以下几个步骤：</p>
+<p>实现快慢指针算法通常分为以下几个步骤：</p>
 
 <ol>
-<li>对无序数组进行排序。</li>
-<li>将左右指针分别指向数组的左右两端</li>
-<li>使用while循环进行遍历，当左指针和右指针相撞时，停止。</li>
-<li>设置左右两个指针的移动条件以及移动方式</li>
-<li>记录结果</li>
+<li>将快慢两个指针指向集合的头部。</li>
+<li>移动快指针到满足快慢指针的位置。</li>
+<li>通过while循环使用快慢指针遍历集合。</li>
+<li>返回结果</li>
 </ol>
 
-<h4 id="c-经典习题">c. 经典习题</h4>
+<p><strong>Note</strong>：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。</p>
 
-<p><strong>1) <a href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a>（Leetcode 11)</strong></p>
+<h2 id="iii-经典习题">III. 经典习题</h2>
 
-<p>Given <em>n</em> non-negative integers <em>a1</em>, <em>a2</em>, &hellip;, <em>an</em> , where each represents a point at coordinate (<em>i</em>, <em>ai</em>). <em>n</em> vertical lines are drawn such that the two endpoints of line <em>i</em> is at (<em>i</em>, <em>ai</em>) and (<em>i</em>, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+<p><strong>1) <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Remove Nth Node From End of List</a>(Leetcode 19)</strong></p>
 
-<p><strong>Note:</strong> You may not slant the container and <em>n</em> is at least 2.</p>
+<p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.</p>
 
-<p><img src="/images/Algorithms/Leetcode11.png" alt="avatar" /></p>
+<p><img src="/images/Algorithms/Leetcode19.png" width = "600" height = "250" alt="图片名称" align=center/></p>
 
-<p>这道题目的意思是输入一个无序数组，计算最大的长方形水箱面积。数组的index为长方形的长，数组中每个对象的值为长方形的宽。长方形的面积等于长乘以左右两个对象值中较小的那一个。</p>
+<p>这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。</p>
 
-<p>这道题目是一个典型的用双指针来解决的题目（虽然输入数组为无序数组）。解题思路是这样的，我们在数组的两端设置两个指针，并计算出所对应的面积且保存下来。然后我们移动指向更小的值的指针（如果是左指针就向右移一位，如果是右指针则向左移一位），因为只有移动指向更小值的指针所改变的面积才可能大于改变前的面积。（更大值的的对象在计算面积时并没有被使用，如果移动这个指针，当它所指的对象变得更大时，这个值还是不会被用到，指向更小值时，则面积必然会变小）。</p>
+<p>这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。</p>
+
+<p><strong>Note</strong>：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。</p>
 
 <p>解题步骤如下：</p>
 
 <ol>
-<li>设置左右指针为数组的左右两端的index,设置area变量用于储存结果。</li>
+<li>设置dummy对象其next指向head，避免fast指到null。</li>
 </ol>
 
-<pre><code class="language-java">int area = 0;
-int left = 0;
-int right = height.length-1;
+<pre><code class="language-java">ListNode dummy = new ListNode(0);
+dummy.next = head;
 </code></pre>
 
 <ol>
-<li>使用while循环，当left&lt;right时停止循环。</li>
+<li>设置快慢两个指针指向dummy。</li>
 </ol>
 
-<pre><code class="language-java">while(left &lt; right){
-			...
+<pre><code class="language-java">ListNode slow = dummy;
+ListNode fast = dummy;
+</code></pre>
+
+<ol>
+<li>通过for循环让快指针先移动n次。</li>
+</ol>
+
+<pre><code class="language-java">for (int i=0; i&lt;n; i++){
+  fast = fast.next;
 }
 </code></pre>
 
 <ol>
-<li>计算出当前指针指向的长和宽所对应的面积，如果当前面积大于area,那么修改area的值，反之则不变。</li>
-<li>移动指向的对象值更小的指针。</li>
+<li>通过while循环同时移动快慢两个指针，直到快指针指到链表的底部为止。</li>
 </ol>
 
-<pre><code class="language-java">if(height[left] &lt; height[right]){
-  left++;
-}else{
-  right++;
+<pre><code class="language-java">while(fast.next != null){
+  slow = slow.next;
+  fast = fast.next;
 }
 </code></pre>
 
 <ol>
-<li>将结果area返回。</li>
+<li>断开slow和它下一位的连接，并使其连接它的下下位，这样就完成了删除工作。</li>
 </ol>
+
+<pre><code class="language-java">slow.next = slow.next.next;
+</code></pre>
+
+<ol>
+<li>返回新的链表。</li>
+</ol>
+
+<pre><code class="language-java">return dummy.next;
+</code></pre>
 
 <p><strong>代码</strong></p>
 
-<pre><code class="language-java">class Solution {
-    public int maxArea(int[] height) {
-        if (height == null || height.length == 0) return 0;
-        int area = 0;
-        int left = 0;
-        int right = height.length-1;
-        while (left &lt; right){
-            int currArea = (right-left)*Math.min(height[left], height[right]);
-            if (currArea &gt; area) area = currArea;
-            if (height[left] &lt; height[right]){
-               left++;
-            }else{
-               right--;
-            }
+<pre><code class="language-java">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0); 
+        dummy.next = head;
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        for (int i = 0; i&lt;n;i++) {
+            fast = fast.next;
         }
-        return area;
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 }
 </code></pre>
 
-<p><strong>2) <a href="https://leetcode.com/problems/3sum/">3Sum</a>（Leetcode 15)</strong></p>
+<p><strong>2) <a href="https://leetcode.com/problems/swap-nodes-in-pairs/">Swap Nodes in Pairs</a>(Leetcode 24)</strong></p>
 
-<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<p>Given a linked list, swap every two adjacent nodes and return its head.</p>
 
-<p><strong>Note:</strong></p>
+<p>You may <strong>not</strong> modify the values in the list&rsquo;s nodes, only nodes itself may be changed.</p>
 
-<p>The solution set must not contain duplicate triplets.</p>
+<p><img src="/images/Algorithms/Leetcode24.png" width = "600" height = "250" alt="图片名称" align=center /></p>
 
-<p><strong>Example:</strong></p>
+<p>这道题的意思是输入一个链表，将其对象的位置两两互换（第一位和第二位互换，第三位和第四位互换&hellip;）</p>
 
-<p><img src="/images/Algorithms/Leetcode15.png" alt="avatar" /></p>
-
-<p>这道题的意思是输入一个无序数组，选出其中的三个值加起来等于0，找到所有不重复的这类可能性，并将它们以List的形式输出。</p>
-
-<p>这道题目因为是计算三个数相加的值是否等于0，所以我们需要用到3个指针，不过我们可以将一个指针作为base指针，让它按顺序依次遍历整个数组，其它两个指针作为快慢指针来遍历base指针右侧的子数组。当然，由于这个数组为无序数组，我们需要先将其进行排序。</p>
-
-<p>在base指针每一次向右移动后，我们需要重新初始化左右两个指针，然后计算三个指针所指值相加的和，和分为三种情况：</p>
-
-<ol>
-<li>如果和等于0，就将三个值写入List并存在结果里，并移动两个指针。</li>
-<li>如果和大于0，移动右指针。（因为数组被排序，移动右指针会使和变小）</li>
-<li>如果和小于0，移动左指针。</li>
-</ol>
-
-<p>Note: 这里要注意的是，一个数组中可能会有重复的值，为了避免出现重复结果，我们在移动所有指针时都需要跳过重复值，比如一个指针目前指的值为1时，下一次移动它时，要避开后面所有的值为1的index，从而跳转到下一个含有不同值的对象上。</p>
+<p>这道题的解题思路是这样的。首先令快指针比慢指针走的快一步，定义一个int i来计算对象的位置，是奇数位还是偶数位。如果是偶数位就把快慢两个指针的值互换，如果是奇数位就不变。接着开启while循环直到快指针指到null位置。最后返回链表。</p>
 
 <p>解题步骤如下：</p>
 
 <ol>
-<li>定义结果List result, 对数组进行排序。</li>
+<li>如果输入的链表为null，返回null。</li>
 </ol>
 
-<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
-Arrays.sort(nums);
+<pre><code class="language-java">if (head == null) return head;
 </code></pre>
 
 <ol>
-<li>初始化base指针为数组最左端，开启while循环，当base &lt; nums.length-2时停止循环，在循环的开头初始化left和right指针。</li>
+<li>定义快慢两个指针，慢指针指向头部，快指针指到第二位。</li>
 </ol>
 
-<pre><code class="language-java">while(base &lt; nums.length - 2){
-  int right = nums.length - 1;
-  int left = base + 1;
-  ...
+<pre><code class="language-java">ListNode slow = head;
+ListNode fast = head.next;
+</code></pre>
+
+<ol>
+<li>定义int i, 开启while循环，当快指针指到null时停止循环。如果i为偶数，交换快慢两个指针指向的对象的值，如果i为奇数则不变。</li>
+</ol>
+
+<pre><code class="language-java">int i=0;
+while(fast != null){
+  if (i%2 == 0){
+    int val = slow.val;
+    slow.val = fast.val;
+    fast.val = val;
+  }
+  slow = slow.next;
+  fast = fast.next;
+  i++;
 }
 </code></pre>
 
 <ol>
-<li>开启一个新的while循环，当左右指针相撞时停止循环。</li>
+<li>返回新的链表。</li>
 </ol>
 
-<pre><code class="language-java">while(left &lt; right){
-  	...
-}
+<pre><code class="language-java">return head;
 </code></pre>
-
-<ol>
-<li>定义sum变量储存和的值，当和等于0时，将指针所指的值储存到result中并将左右指针都移动；当sum大于0时，只移动右指针；当sum小于0时，只移动左指针。</li>
-</ol>
-
-<pre><code class="language-java">                if (sum == 0) {
-                    result.add(Arrays.asList(nums[base], nums[left], nums[right]));
-                    left = moveRight(nums, left + 1);
-                    right = moveLeft(nums, right - 1);
-                } else if (sum &gt; 0) {
-                    right = moveLeft(nums, right - 1);
-                } else {
-                    left = moveRight(nums, left + 1);
-                }
-</code></pre>
-
-<ol>
-<li>当第二个循环结束后，将base指针向右移动一位。</li>
-</ol>
-
-<pre><code class="language-java">base = moveRight(nums, base + 1);
-</code></pre>
-
-<ol>
-<li>实现moveLeft和moveRight函数。</li>
-</ol>
 
 <p><strong>代码</strong></p>
 
-<pre><code class="language-java">class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
-        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
-        if (nums == null || nums.length == 0) return result;
-        Arrays.sort(nums);
-        int base = 0;
-        while (base &lt; nums.length - 2) {
-            int right = nums.length - 1;
-            int left = base + 1;
-            while (left &lt; right) {
-                int sum = nums[base] + nums[left] + nums[right];
-                if (sum == 0) {
-                    result.add(Arrays.asList(nums[base], nums[left], nums[right]));
-                    left = moveRight(nums, left + 1);
-                    right = moveLeft(nums, right - 1);
-                } else if (sum &gt; 0) {
-                    right = moveLeft(nums, right - 1);
-                } else {
-                    left = moveRight(nums, left + 1);
-                }
+<pre><code class="language-java">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null) return head;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        int i = 0;
+        while (fast != null){
+            if (i%2 == 0){
+                int val = slow.val;
+                slow.val = fast.val;
+                fast.val = val;
             }
-            base = moveRight(nums, base + 1);
+            slow = slow.next;
+            fast = fast.next;
+            i++;
         }
-        return result;
-    }
-
-    private int moveLeft(int[] nums, int right) {
-        while (right == nums.length - 1 || (right &gt;= 0 &amp;&amp; nums[right] == nums[right + 1])) {
-            right--;
-        }
-        return right;
-    }
-
-    private int moveRight(int[] nums, int left) {
-        while (left == 0 || (left &lt; nums.length &amp;&amp; nums[left] == nums[left-1])){
-            left++;
-        }
-        return left;
+        return head;
     }
 }
 </code></pre>
 
-<h3 id="2-快慢指针">2. 快慢指针</h3>
+<h2 id="iv-总结">IV. 总结</h2>
+
+<p>快慢指针算法是一种通常在链表中使用的功能强大的双指针算法。其步骤为设置快慢两个指针从同一个方向以不同的移动条件遍历集合从而达到相应的目的。</p>
 
   </div>
 
@@ -716,8 +670,8 @@ Arrays.sort(nums);
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/point/"
-                class="button big previous">Java中的&#34;指针&#34;——引用变量</a></li>
+        <li><a href="/blog/cs/algorithms_two-points/"
+                class="button big previous">双指针算法之左右对撞指针</a></li>
     
 
     
@@ -736,7 +690,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -746,7 +700,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -757,7 +711,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -767,7 +721,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -777,7 +731,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -787,7 +741,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -797,7 +751,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -807,7 +761,7 @@ Arrays.sort(nums);
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_two-points%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -954,7 +908,21 @@ Arrays.sort(nums);
           <article class="mini-post">
             <header>
               <h3>
-                <a href="/blog/cs/algorithms_two-points/">双指针算法</a>
+                <a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-05'>
+                August 5, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a>
               </h3>
               
               <time class="published" datetime='2020-08-03'>
@@ -1034,47 +1002,6 @@ Arrays.sort(nums);
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
-              </h3>
-              
-              <time class="published" datetime='2020-07-25'>
-                July 25, 2020
-              </time>
-            </header>
-            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/07/" alt="">
-        </a>
-    
-
-
-          </article>
-        
       </div>
 
       
@@ -1108,7 +1035,7 @@ Arrays.sort(nums);
             <header>
               
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                <span style="float:right;">6</span>
+                <span style="float:right;">7</span>
               
             </header>
           </article>
@@ -1119,7 +1046,7 @@ Arrays.sort(nums);
             <header>
               
                 <a href="/categories/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">读书分享</a>
-                <span style="float:right;">4</span>
+                <span style="float:right;">5</span>
               
             </header>
           </article>

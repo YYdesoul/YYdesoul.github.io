@@ -11,11 +11,11 @@
              "@id": "/"
         },
         "articleSection" : "blog",
-        "name" : "双指针算法",
-        "headline" : "双指针算法",
+        "name" : "双指针算法之左右对撞指针",
+        "headline" : "双指针算法之左右对撞指针",
         "description" : "在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
-I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
-II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。这篇文章专门讲解左右对撞指针，而下篇博文会专门来讲解快慢指针。
+II. 分类  左右对撞指针 快慢指针  III. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为右指针（right），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
 Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
 b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
  对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
@@ -30,13 +30,13 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
         "datePublished": "2020-08-03 00:00:00 &#43;0000 UTC",
         "dateModified" : "2020-08-03 00:00:00 &#43;0000 UTC",
         "url" : "/blog/cs/algorithms_two-points/",
-        "wordCount" : "511",
+        "wordCount" : "514",
         "keywords" : [ "计算机","算法","Blog" ]
     }
     </script>
         
             
-                <title>双指针算法</title>
+                <title>双指针算法之左右对撞指针</title>
             
         
 
@@ -71,19 +71,19 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
         
 
         <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="双指针算法"/>
+<meta name="twitter:title" content="双指针算法之左右对撞指针"/>
 <meta name="twitter:description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
-I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
-II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。这篇文章专门讲解左右对撞指针，而下篇博文会专门来讲解快慢指针。
+II. 分类  左右对撞指针 快慢指针  III. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为右指针（right），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
 Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
 b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
  对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
 Given n non-negative integers a1, a2, &hellip;, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0)."/>
 
-        <meta property="og:title" content="双指针算法" />
+        <meta property="og:title" content="双指针算法之左右对撞指针" />
 <meta property="og:description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
-I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
-II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。这篇文章专门讲解左右对撞指针，而下篇博文会专门来讲解快慢指针。
+II. 分类  左右对撞指针 快慢指针  III. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为右指针（right），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
 Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
 b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
  对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
@@ -97,10 +97,10 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         
-<meta itemprop="name" content="双指针算法">
+<meta itemprop="name" content="双指针算法之左右对撞指针">
 <meta itemprop="description" content="在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
-I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
-II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。这篇文章专门讲解左右对撞指针，而下篇博文会专门来讲解快慢指针。
+II. 分类  左右对撞指针 快慢指针  III. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为右指针（right），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。
 Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
 b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
  对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
@@ -109,7 +109,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 <meta itemprop="datePublished" content="2020-08-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-08-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="511">
+<meta itemprop="wordCount" content="514">
 
 
 
@@ -318,7 +318,19 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/cs/algorithms_two-points/">双指针算法</a></h3>
+                                <h3><a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-05'>
+                                    August 5, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a></h3>
                                 
                                 <time class="published" datetime=
                                     '2020-08-03'>
@@ -374,41 +386,8 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
   
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
-            <img src="/img//" alt="">
-        </a>
+  
     
-
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-07-25'>
-                                    July 25, 2020</time>
-                            </header>
-                            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
   
 
 
@@ -416,7 +395,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
         
         
 
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+        <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
             <img src="/img/2020/07/" alt="">
         </a>
     
@@ -450,7 +429,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%b7%a6%e5%8f%b3%e5%af%b9%e6%92%9e%e6%8c%87%e9%92%88&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -481,7 +460,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%b7%a6%e5%8f%b3%e5%af%b9%e6%92%9e%e6%8c%87%e9%92%88" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -491,7 +470,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%b7%a6%e5%8f%b3%e5%af%b9%e6%92%9e%e6%8c%87%e9%92%88" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -501,7 +480,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%b7%a6%e5%8f%b3%e5%af%b9%e6%92%9e%e6%8c%87%e9%92%88" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -511,7 +490,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_two-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%b7%a6%e5%8f%b3%e5%af%b9%e6%92%9e%e6%8c%87%e9%92%88" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -540,7 +519,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
   <header>
     <div class="title">
         
-            <h1><a href="/blog/cs/algorithms_two-points/">双指针算法</a></h1>
+            <h1><a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a></h1>
             
         
         
@@ -571,19 +550,24 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 
 <h2 id="i-定义">I. 定义</h2>
 
-<p><strong>双指针</strong>是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作<strong>左右对撞指针</strong>算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为<strong>快慢指针</strong>算法。下面我们就依次来说明这两种不同的双指针算法。</p>
+<p><strong>双指针</strong>是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作<strong>左右对撞指针</strong>算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为<strong>快慢指针</strong>算法。这篇文章专门讲解<strong>左右对撞指针</strong>，而下篇博文会专门来讲解快慢指针。</p>
 
 <h2 id="ii-分类">II. 分类</h2>
 
-<h3 id="1-左右对撞指针">1. 左右对撞指针</h3>
+<ol>
+<li>左右对撞指针</li>
+<li>快慢指针</li>
+</ol>
 
-<h4 id="a-定义">a. 定义</h4>
+<h2 id="iii-左右对撞指针">III. 左右对撞指针</h2>
 
-<p>左右对撞指针通常在<strong>有序数组（sorted array）</strong>中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&gt;right时，停止遍历。</p>
+<h3 id="a-定义">a. 定义</h3>
+
+<p>左右对撞指针通常在<strong>有序数组（sorted array）</strong>中被使用。一般将左侧的指针定义为<strong>左指针（left）</strong>，右侧的指针定义为<strong>右指针（right）</strong>，然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是<strong>left&gt;right</strong>时，停止遍历。</p>
 
 <p>Note: 左右对撞指针适用于<strong>有序数组（sorted array）</strong>。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。</p>
 
-<h4 id="b-实现方法">b. 实现方法</h4>
+<h3 id="b-实现方法">b. 实现方法</h3>
 
 <p>实现左右对撞指针算法，通常分为以下几个步骤：</p>
 
@@ -595,7 +579,7 @@ Given n non-negative integers a1, a2, &hellip;, an , where each represents a poi
 <li>记录结果</li>
 </ol>
 
-<h4 id="c-经典习题">c. 经典习题</h4>
+<h3 id="c-经典习题">c. 经典习题</h3>
 
 <p><strong>1) <a href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a>（Leetcode 11)</strong></p>
 
@@ -793,7 +777,9 @@ Arrays.sort(nums);
 }
 </code></pre>
 
-<h3 id="2-快慢指针">2. 快慢指针</h3>
+<h2 id="iv-总结">IV. 总结</h2>
+
+<p>本文主要介绍了双指针算法中的左右对撞指针算法。此算法设立两个指针，从集合的两头向中心进行遍历，当指针相撞时停止。左右对撞指针算法在有序数组中使用非常普遍，所以遇到这类集合应当首先考虑使用左右对撞指针算法来求解。</p>
 
   </div>
 
@@ -843,6 +829,9 @@ Arrays.sort(nums);
                 class="button big previous">Java中的&#34;指针&#34;——引用变量</a></li>
     
 
+    
+        <li><a href="/blog/cs/algorithms_fast-slow-points/"
+                class="button big next">双指针算法之快慢指针</a></li>
     
 </ul>
 
@@ -982,7 +971,21 @@ Arrays.sort(nums);
           <article class="mini-post">
             <header>
               <h3>
-                <a href="/blog/cs/algorithms_two-points/">双指针算法</a>
+                <a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-05'>
+                August 5, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a>
               </h3>
               
               <time class="published" datetime='2020-08-03'>
@@ -1062,44 +1065,6 @@ Arrays.sort(nums);
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
-              </h3>
-              
-              <time class="published" datetime='2020-07-25'>
-                July 25, 2020
-              </time>
-            </header>
-            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/07/" alt="">
-        </a>
-    
-
-
-          </article>
-        
       </div>
 
       
@@ -1133,7 +1098,7 @@ Arrays.sort(nums);
             <header>
               
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                <span style="float:right;">6</span>
+                <span style="float:right;">7</span>
               
             </header>
           </article>
@@ -1144,7 +1109,7 @@ Arrays.sort(nums);
             <header>
               
                 <a href="/categories/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">读书分享</a>
-                <span style="float:right;">4</span>
+                <span style="float:right;">5</span>
               
             </header>
           </article>

@@ -6,20 +6,40 @@
     <description>Recent content in 计算机 on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>双指针算法</title>
+      <title>双指针算法之快慢指针</title>
+      <link>/blog/cs/algorithms_fast-slow-points/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/algorithms_fast-slow-points/</guid>
+      <description>在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。
+I. 定义 快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的快指针（fast）和一个较慢的慢指针（slow）。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。
+Note：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。
+II. 实现方法 实现快慢指针算法通常分为以下几个步骤：
+ 将快慢两个指针指向集合的头部。 移动快指针到满足快慢指针的位置。 通过while循环使用快慢指针遍历集合。 返回结果  Note：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。
+III. 经典习题 1) Remove Nth Node From End of List(Leetcode 19)
+Given a linked list, remove the n-th node from the end of list and return its head.
+这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。
+这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。
+Note：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。
+解题步骤如下：
+ 设置dummy对象其next指向head，避免fast指到null。  ListNode dummy = new ListNode(0); dummy.next = head;   设置快慢两个指针指向dummy。  ListNode slow = dummy; ListNode fast = dummy;   通过for循环让快指针先移动n次。  for (int i=0; i&amp;lt;n; i++){ fast = fast.</description>
+    </item>
+    
+    <item>
+      <title>双指针算法之左右对撞指针</title>
       <link>/blog/cs/algorithms_two-points/</link>
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/cs/algorithms_two-points/</guid>
       <description>在上一篇博文中，我们讨论了Java中指针的定义和使用。这篇文章我们就来聊一聊一种在数组和链表中很常见的算法——双指针算法。
-I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。下面我们就依次来说明这两种不同的双指针算法。
-II. 分类 1. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为（右指针），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&amp;gt;right时，停止遍历。
+I. 定义 双指针是指在遍历集合中的对象是，不仅仅采用单个指针进行访问，而是使用两个指针，以不同的方式对集合进行扫描从而达到相应目的的算法。一般来说，双指针的扫描方式分为两种：一种是两个指针按照相反的方向进行扫描，直到两个指针相撞为止，这类算法被称作左右对撞指针算法；另一种是两个指针按照相同的方向进行扫描，但是运动的条件不相同，在这种状况下往往一个指针走的相对快，另一个相对慢，所以这类算法被成为快慢指针算法。这篇文章专门讲解左右对撞指针，而下篇博文会专门来讲解快慢指针。
+II. 分类  左右对撞指针 快慢指针  III. 左右对撞指针 a. 定义 左右对撞指针通常在有序数组（sorted array）中被使用。一般将左侧的指针定义为左指针（left），右侧的指针定义为右指针（right），然后两个指针从两头向中间进行数组的遍历。当左右指针碰撞时，也就是left&amp;gt;right时，停止遍历。
 Note: 左右对撞指针适用于有序数组（sorted array）。所以在遇到有序数组时，我们应当第一个想到用左右对撞指针来解决问题。当然，在无序数组中，此方法也有应用。
 b. 实现方法 实现左右对撞指针算法，通常分为以下几个步骤：
  对无序数组进行排序。 将左右指针分别指向数组的左右两端 使用while循环进行遍历，当左指针和右指针相撞时，停止。 设置左右两个指针的移动条件以及移动方式 记录结果  c. 经典习题 1) Container With Most Water（Leetcode 11)
@@ -75,7 +95,7 @@ Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，G
       
       <guid>/blog/cs/algorithms_dynamic_programming/</guid>
       <description>Those who cannot remember the past are condemned to repeat it.
-那些不记得过去的人被谴责在重复过去。正是因为人能够站在过去的经验上更进一步，才能像堆积木一样，将成就越堆越高。今天我就来讲讲一个按照这种思路所设计的算法——动态规划。
+ 那些不记得过去的人被谴责在重复过去。正是因为人能够站在过去的经验上更进一步，才能像堆积木一样，将成就越堆越高。今天我就来讲讲一个按照这种思路所设计的算法——动态规划。
 I. 定义 动态规划（Dynamic-Programming, 简称DP）是一种在数学、计算机科学、管理学和经济学等等学科中使用的一种将一个复杂问题分解为相对简单的子问题，根据子问题的结果来最终解决复杂问题的一种方法。
 试想一下，如果问你1+2+3+&amp;hellip;+100 = ?这个问题时，是不是不那么容易计算出来？但是如果这个时候告诉你1+2+3+&amp;hellip;+99 = 4950时，你就能很快的知道1+2+3+&amp;hellip;+100 = 4950+100 = 5050.其实，这就是动态规划的思维。简而言之，动态规划算法的核心就是记住已经解决过的子问题的解，并根据这个解去解决相对复杂一点的问题，通过一层一层的求解，最终可以解决很复杂的问题。
 下图是应用动态规划算法解决斐波那契数列的经典例子。假如问题是想计算出fib(6)的值，那么我们就必须先计算出fib(5)和fib(4)的值，要知道fib(4)的值，我们又需要先知道fib(3)和fib(2的值)，以此类推到最底层。因为我们知道fib(1)和fib(2)=1，那么可以因此求得fib(3)，然后求得fib(4)&amp;hellip;最终求得fib(6)。这整个过程就是一个动态规划的过程。

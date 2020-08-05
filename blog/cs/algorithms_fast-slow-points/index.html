@@ -11,9 +11,20 @@
              "@id": "/"
         },
         "articleSection" : "blog",
-        "name" : "广度优先搜索算法（Breadth-First-Search）",
-        "headline" : "广度优先搜索算法（Breadth-First-Search）",
-        "description" : "算法专栏",
+        "name" : "双指针算法之快慢指针",
+        "headline" : "双指针算法之快慢指针",
+        "description" : "在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。
+I. 定义 快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的快指针（fast）和一个较慢的慢指针（slow）。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。
+Note：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。
+II. 实现方法 实现快慢指针算法通常分为以下几个步骤：
+ 将快慢两个指针指向集合的头部。 移动快指针到满足快慢指针的位置。 通过while循环使用快慢指针遍历集合。 返回结果  Note：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。
+III. 经典习题 1) Remove Nth Node From End of List(Leetcode 19)
+Given a linked list, remove the n-th node from the end of list and return its head.
+这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。
+这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。
+Note：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。
+解题步骤如下：
+ 设置dummy对象其next指向head，避免fast指到null。  ListNode dummy = new ListNode(0); dummy.next = head;   设置快慢两个指针指向dummy。  ListNode slow = dummy; ListNode fast = dummy;   通过for循环让快指针先移动n次。  for (int i=0; i&lt;n; i++){ fast = fast.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,16 +32,16 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-07-25 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-07-25 00:00:00 &#43;0000 UTC",
-        "url" : "/blog/cs/algorithms_breadth-first-search/",
-        "wordCount" : "384",
+        "datePublished": "2020-08-05 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-08-05 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/cs/algorithms_fast-slow-points/",
+        "wordCount" : "388",
         "keywords" : [ "计算机","算法","Blog" ]
     }
     </script>
         
             
-                <title>广度优先搜索算法（Breadth-First-Search）</title>
+                <title>双指针算法之快慢指针</title>
             
         
 
@@ -59,31 +70,66 @@
             <meta name="author" content="小羽">
         
         
-            <meta name="description" content="算法专栏">
+            
+                <meta name="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+            
         
 
         <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="广度优先搜索算法（Breadth-First-Search）"/>
-<meta name="twitter:description" content="算法专栏"/>
+<meta name="twitter:title" content="双指针算法之快慢指针"/>
+<meta name="twitter:description" content="在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。
+I. 定义 快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的快指针（fast）和一个较慢的慢指针（slow）。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。
+Note：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。
+II. 实现方法 实现快慢指针算法通常分为以下几个步骤：
+ 将快慢两个指针指向集合的头部。 移动快指针到满足快慢指针的位置。 通过while循环使用快慢指针遍历集合。 返回结果  Note：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。
+III. 经典习题 1) Remove Nth Node From End of List(Leetcode 19)
+Given a linked list, remove the n-th node from the end of list and return its head.
+这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。
+这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。
+Note：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。
+解题步骤如下：
+ 设置dummy对象其next指向head，避免fast指到null。  ListNode dummy = new ListNode(0); dummy.next = head;   设置快慢两个指针指向dummy。  ListNode slow = dummy; ListNode fast = dummy;   通过for循环让快指针先移动n次。  for (int i=0; i&lt;n; i&#43;&#43;){ fast = fast."/>
 
-        <meta property="og:title" content="广度优先搜索算法（Breadth-First-Search）" />
-<meta property="og:description" content="算法专栏" />
+        <meta property="og:title" content="双指针算法之快慢指针" />
+<meta property="og:description" content="在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。
+I. 定义 快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的快指针（fast）和一个较慢的慢指针（slow）。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。
+Note：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。
+II. 实现方法 实现快慢指针算法通常分为以下几个步骤：
+ 将快慢两个指针指向集合的头部。 移动快指针到满足快慢指针的位置。 通过while循环使用快慢指针遍历集合。 返回结果  Note：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。
+III. 经典习题 1) Remove Nth Node From End of List(Leetcode 19)
+Given a linked list, remove the n-th node from the end of list and return its head.
+这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。
+这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。
+Note：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。
+解题步骤如下：
+ 设置dummy对象其next指向head，避免fast指到null。  ListNode dummy = new ListNode(0); dummy.next = head;   设置快慢两个指针指向dummy。  ListNode slow = dummy; ListNode fast = dummy;   通过for循环让快指针先移动n次。  for (int i=0; i&lt;n; i&#43;&#43;){ fast = fast." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/cs/algorithms_breadth-first-search/" /><meta property="article:published_time" content="2020-07-25T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-07-25T00:00:00&#43;00:00"/>
+<meta property="og:url" content="/blog/cs/algorithms_fast-slow-points/" /><meta property="article:published_time" content="2020-08-05T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-08-05T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         
-<meta itemprop="name" content="广度优先搜索算法（Breadth-First-Search）">
-<meta itemprop="description" content="算法专栏">
+<meta itemprop="name" content="双指针算法之快慢指针">
+<meta itemprop="description" content="在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。
+I. 定义 快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的快指针（fast）和一个较慢的慢指针（slow）。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。
+Note：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。
+II. 实现方法 实现快慢指针算法通常分为以下几个步骤：
+ 将快慢两个指针指向集合的头部。 移动快指针到满足快慢指针的位置。 通过while循环使用快慢指针遍历集合。 返回结果  Note：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。
+III. 经典习题 1) Remove Nth Node From End of List(Leetcode 19)
+Given a linked list, remove the n-th node from the end of list and return its head.
+这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。
+这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。
+Note：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。
+解题步骤如下：
+ 设置dummy对象其next指向head，避免fast指到null。  ListNode dummy = new ListNode(0); dummy.next = head;   设置快慢两个指针指向dummy。  ListNode slow = dummy; ListNode fast = dummy;   通过for循环让快指针先移动n次。  for (int i=0; i&lt;n; i&#43;&#43;){ fast = fast.">
 
 
-<meta itemprop="datePublished" content="2020-07-25T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-07-25T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="384">
+<meta itemprop="datePublished" content="2020-08-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-08-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="388">
 
 
 
@@ -360,9 +406,6 @@
 
 
   
-  
-    
-  
 
 
         
@@ -403,7 +446,7 @@
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;text=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;text=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -413,7 +456,7 @@
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -424,7 +467,7 @@
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -434,7 +477,7 @@
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -444,7 +487,7 @@
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -454,7 +497,7 @@
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;title=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -464,7 +507,7 @@
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;description=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_fast-slow-points%2f&amp;description=%e5%8f%8c%e6%8c%87%e9%92%88%e7%ae%97%e6%b3%95%e4%b9%8b%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -474,7 +517,7 @@
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_fast-slow-points%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -493,19 +536,17 @@
   <header>
     <div class="title">
         
-            <h1><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h1>
+            <h1><a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a></h1>
             
         
-        
-            <p>算法专栏</p>
         
     </div>
     <div class="meta">
         
 
         <time class="published"
-            datetime='2020-07-25'>
-            July 25, 2020</time>
+            datetime='2020-08-05'>
+            August 5, 2020</time>
         <span class="author">小羽</span>
         
             <p>2 minute read</p>
@@ -518,200 +559,218 @@
   
 
   
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/07/" alt="">
-        </a>
-    
-
 
   <div id="content">
     
 
-<p>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。</p>
+<p>在上一篇博文中，我们讨论了左右对撞指针，今天我们来讨论另外一种双指针算法——快慢指针。</p>
 
-<h2 id="i-算法定义">I. 算法定义</h2>
+<h2 id="i-定义">I. 定义</h2>
 
-<p>BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。</p>
+<p>快慢指针是双指针算法中的一种。不同于左右对撞指针，快慢指针中的两个指针是从同一侧但以不同的策略移动的指针。因此，两个指针中会有一个移动较快的<strong>快指针（fast）</strong>和一个较慢的<strong>慢指针（slow）</strong>。当快指针移动到数组的顶端时，停止遍历或进行新一轮遍历。</p>
 
-<p>左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&gt;1-&gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5。</p>
-
-<p><img src="/images/Algorithms/dfs.png" alt="avatar" /></p>
+<p><strong>Note</strong>：由于链表中指针无法往回走的特性，快慢指针在链表中使用非常频繁。遇到链表题目时，应当考虑快慢指针。</p>
 
 <h2 id="ii-实现方法">II. 实现方法</h2>
 
-<p>由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：</p>
+<p>实现快慢指针算法通常分为以下几个步骤：</p>
 
 <ol>
-<li>将根节点加入到Queue中</li>
-<li>使用while循环，当Queue为空时，结束循环。</li>
-<li>将Queue中的节点依次poll出来检查。</li>
-<li>如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。</li>
+<li>将快慢两个指针指向集合的头部。</li>
+<li>移动快指针到满足快慢指针的位置。</li>
+<li>通过while循环使用快慢指针遍历集合。</li>
+<li>返回结果</li>
 </ol>
+
+<p><strong>Note</strong>：为了避免fast指向null，有时需要将快慢指针指向集合的head的前一位。实现这个步骤，我们需要定义一个不干扰结果的对象dummy，并将它的next对象指向集合的head。</p>
 
 <h2 id="iii-经典习题">III. 经典习题</h2>
 
+<p><strong>1) <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Remove Nth Node From End of List</a>(Leetcode 19)</strong></p>
+
+<p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.</p>
+
+<p><img src="/images/Algorithms/Leetcode19.png" width = "600" height = "250" alt="图片名称" align=center/></p>
+
+<p>这道题目是一道典型的在链表上使用快慢指针解决的题目。题意为输入一个链表和一个Integer n，删除其从后往前数第n位的值，并返回新的链表。n的输入永远是合规的。</p>
+
+<p>这道题目的解题 思路是这样的。我们设置快慢两个指针，令快指针先走n步，再同时移动快慢指针，直到快指针走到链表的底部。这时候删除慢指针指向的后一个对象，然后返回新的链表。</p>
+
+<p><strong>Note</strong>：为了避免输入长度为1的链表，删除其中唯一的一项时，快指针会首先走一位指向null的情况出现，我们要在链表的head前增设一个dummy对象。</p>
+
+<p>解题步骤如下：</p>
+
 <ol>
-<li>Minimum Depth of Binary Tree(Leetcode 111)</li>
+<li>设置dummy对象其next指向head，避免fast指到null。</li>
 </ol>
 
-<p>Given a binary tree, find its minimum depth.</p>
-
-<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
-
-<p><strong>Note:</strong> A leaf is a node with no children.</p>
-
-<p><img src="/images/Algorithms/Leetcode111.png" alt="avatar" /></p>
-
-<p>这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。</p>
-
-<p><strong>需要的变量</strong>:</p>
-
-<pre><code class="language-java">Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-int depth = 0;
+<pre><code class="language-java">ListNode dummy = new ListNode(0);
+dummy.next = head;
 </code></pre>
 
-<p>Queue queue, int depth。</p>
-
-<p><strong>步骤</strong></p>
-
 <ol>
-<li>我们首先将根节点加入到queue中，将depth初始化为0。</li>
-<li>开始while循环，当queue为空时停止循环。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
-<li>每次循环depth++。</li>
-<li>将queue中的所有值用for循环依次poll出来，如果其没有子节点，就返回depth；如果只有一个子节点为null，那么就将另一个offer进queue里。如果两个子节点都不为null，将它们依次offer到queue中。</li>
+<li>设置快慢两个指针指向dummy。</li>
 </ol>
 
-<p><strong>代码</strong></p>
+<pre><code class="language-java">ListNode slow = dummy;
+ListNode fast = dummy;
+</code></pre>
 
-<pre><code class="language-java">/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public int minDepth(TreeNode root) {
-        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-        int depth = 0;
-        if (root == null) return depth;
-        queue.add(root);
-        while (!queue.isEmpty()){
-            depth++;
-            int size = queue.size();
-            for (int i=0; i&lt;size; i++) {
-                TreeNode q = queue.poll();
-                if (q.left == null &amp;&amp; q.right == null) return depth;
-                if (q.left != null) queue.offer(q.left);
-                if(q.right != null) queue.offer(q.right);
-            }
-        }
-        return depth;
-    }
+<ol>
+<li>通过for循环让快指针先移动n次。</li>
+</ol>
+
+<pre><code class="language-java">for (int i=0; i&lt;n; i++){
+  fast = fast.next;
 }
 </code></pre>
 
 <ol>
-<li>Binary Tree Level Order Traversal</li>
+<li>通过while循环同时移动快慢两个指针，直到快指针指到链表的底部为止。</li>
 </ol>
 
-<p>Given a binary tree, return the <em>level order</em> traversal of its nodes&rsquo; values. (ie, from left to right, level by level).</p>
-
-<p><img src="/images/Algorithms/Leetcode102.png" alt="avatar" /></p>
-
-<p>这道题要求我们写一个函数：输入一个Binary Tree，返回一个List<List<Integer>&gt;,其中包含每一层的所有值。</p>
-
-<p><strong>需要的变量</strong></p>
-
-<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();	//储存结果
-Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();				//用于进行BFS
+<pre><code class="language-java">while(fast.next != null){
+  slow = slow.next;
+  fast = fast.next;
+}
 </code></pre>
 
-<p><strong>思路</strong></p>
+<ol>
+<li>断开slow和它下一位的连接，并使其连接它的下下位，这样就完成了删除工作。</li>
+</ol>
+
+<pre><code class="language-java">slow.next = slow.next.next;
+</code></pre>
 
 <ol>
-<li>将根节点加入到queue中。</li>
-<li>开始while循环，当queue为空时停止。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
-<li>创建一个list用于储存每一层节点的值，当一层变量结束时，将其add到result中。</li>
-<li>用for循环依次poll出queue中的所有节点，把节点的值加入到list中。</li>
-<li>如果poll出来的节点的子节点不为空就将其offer到queue中。</li>
-<li>如果list不为空，就将其add到result里面去。</li>
-<li>返回result</li>
+<li>返回新的链表。</li>
 </ol>
+
+<pre><code class="language-java">return dummy.next;
+</code></pre>
 
 <p><strong>代码</strong></p>
 
 <pre><code class="language-java">/**
- * Definition for a binary tree node.
- * public class TreeNode {
+ * Definition for singly-linked list.
+ * public class ListNode {
  *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
 
-   public  List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
-        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
-        if (root == null) return result;
-        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-            int size = queue.size();
-            for (int i=0; i&lt;size; i++) {
-                TreeNode q = queue.poll();
-                list.add(q.val);
-                if (q.left != null) queue.offer(q.left);
-                if (q.right != null)   queue.offer(q.right);
-                }
-            if (!list.isEmpty()) result.add(new ArrayList&lt;&gt;(list));
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0); 
+        dummy.next = head;
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        for (int i = 0; i&lt;n;i++) {
+            fast = fast.next;
         }
-        return result;
-   }
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+}
+</code></pre>
+
+<p><strong>2) <a href="https://leetcode.com/problems/swap-nodes-in-pairs/">Swap Nodes in Pairs</a>(Leetcode 24)</strong></p>
+
+<p>Given a linked list, swap every two adjacent nodes and return its head.</p>
+
+<p>You may <strong>not</strong> modify the values in the list&rsquo;s nodes, only nodes itself may be changed.</p>
+
+<p><img src="/images/Algorithms/Leetcode24.png" width = "600" height = "250" alt="图片名称" align=center /></p>
+
+<p>这道题的意思是输入一个链表，将其对象的位置两两互换（第一位和第二位互换，第三位和第四位互换&hellip;）</p>
+
+<p>这道题的解题思路是这样的。首先令快指针比慢指针走的快一步，定义一个int i来计算对象的位置，是奇数位还是偶数位。如果是偶数位就把快慢两个指针的值互换，如果是奇数位就不变。接着开启while循环直到快指针指到null位置。最后返回链表。</p>
+
+<p>解题步骤如下：</p>
+
+<ol>
+<li>如果输入的链表为null，返回null。</li>
+</ol>
+
+<pre><code class="language-java">if (head == null) return head;
+</code></pre>
+
+<ol>
+<li>定义快慢两个指针，慢指针指向头部，快指针指到第二位。</li>
+</ol>
+
+<pre><code class="language-java">ListNode slow = head;
+ListNode fast = head.next;
+</code></pre>
+
+<ol>
+<li>定义int i, 开启while循环，当快指针指到null时停止循环。如果i为偶数，交换快慢两个指针指向的对象的值，如果i为奇数则不变。</li>
+</ol>
+
+<pre><code class="language-java">int i=0;
+while(fast != null){
+  if (i%2 == 0){
+    int val = slow.val;
+    slow.val = fast.val;
+    fast.val = val;
+  }
+  slow = slow.next;
+  fast = fast.next;
+  i++;
+}
+</code></pre>
+
+<ol>
+<li>返回新的链表。</li>
+</ol>
+
+<pre><code class="language-java">return head;
+</code></pre>
+
+<p><strong>代码</strong></p>
+
+<pre><code class="language-java">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null) return head;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        int i = 0;
+        while (fast != null){
+            if (i%2 == 0){
+                int val = slow.val;
+                slow.val = fast.val;
+                fast.val = val;
+            }
+            slow = slow.next;
+            fast = fast.next;
+            i++;
+        }
+        return head;
+    }
 }
 </code></pre>
 
 <h2 id="iv-总结">IV. 总结</h2>
 
-<p>BFS是一种在图、搜索树和遍历中非常经典且常用的算法。其思路为先找到节点的每一个岔路并标记起来，再依次往前更进一步，直到找到结果或遍历完为止。做法通常为将起始点加入到queue中，然后将queue中的节点取出，搜索结果。如果结果不在，就将节点的子节点继续放到queue中重复以上过程直到找到结果或遍历完所有节点为止。</p>
+<p>快慢指针算法是一种通常在链表中使用的功能强大的双指针算法。其步骤为设置快慢两个指针从同一个方向以不同的移动条件遍历集合从而达到相应的目的。</p>
 
   </div>
 
@@ -757,13 +816,10 @@ class Solution {
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/algorithms_deep-first-search/"
-                class="button big previous">深度优先搜索算法（Deep-First-Search）</a></li>
+        <li><a href="/blog/cs/algorithms_two-points/"
+                class="button big previous">双指针算法之左右对撞指针</a></li>
     
 
-    
-        <li><a href="/blog/cs/algorithms_dynamic_programming/"
-                class="button big next">动态规划算法（Dynamic-Programming）</a></li>
     
 </ul>
 
@@ -980,6 +1036,9 @@ class Solution {
 
 
   
+  
+    
+  
 
 
         
@@ -987,7 +1046,7 @@ class Solution {
         
 
         <a href="/blog/cs/algorithms_dynamic_programming/" class="image featured">
-            <img src="/date2020/07/" alt="">
+            <img src="/img/2020/07/" alt="">
         </a>
     
 
