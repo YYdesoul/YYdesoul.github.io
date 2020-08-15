@@ -6,10 +6,29 @@
     <description>Recent content in Blog on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>正则表达式</title>
+      <link>/blog/cs/regular-expression/</link>
+      <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/regular-expression/</guid>
+      <description>在编程中，我们经常遇到字符串的各种处理问题：如在字符串中找出某个子字符串，亦或者字符串是否匹配某种规则。大量繁琐的规则判断令人焦头烂额，而正则表达式（Regular Expression）正是解决此类问题的一种功能强大的武器。这篇文章介绍了正则表达式的定义、匹配规则以及在java和python中的使用。
+I. 定义 正则表达式是好用字符串描述的一种匹配规则，使用正则表达式可以快速判定给定的字符串是否符合匹配规则，除此之外还可以从字符串中搜索、提取、替换等符合规则的子字符串。
+举例来说，当我们想要判断一串字符串数字是否符合电话号码的数字规则时（3位区号-8位数字，如027-12345678），可以使用正则表达式：&amp;rdquo;\d{3}-\d{8}&amp;ldquo;来进行判断。
+II. 匹配规则 正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：
+III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.regex内建了正则表达式引擎。下面我来给大家一一讲述正则表达式不同功能在java中的实现。
+1. 规则匹配
+String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
+例子：
+public class Main { public static void main(String[] args){ String re = &amp;quot;java|python&amp;quot;;	//正则表达式 System.out.println(&amp;quot;java&amp;quot;.matches(re));	//true System.out.println(&amp;quot;python&amp;quot;.matches(re));	//true System.ou..println(&amp;quot;C++&amp;quot;.matches(re));	//false } }  2. 分组匹配
+我们可以用&amp;rdquo;(&amp;hellip;)&amp;rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&amp;quot;(\\d{3})\\-(\\d{8})&amp;quot;); Matcher matcher = pattern.matcher(&amp;quot;027-12345678&amp;quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher.</description>
+    </item>
     
     <item>
       <title>双指针算法之快慢指针</title>
@@ -74,7 +93,7 @@ Player captain = llorris;  通过这行代码，我们首先申明了引用变�
       <guid>/blog/cs/git/</guid>
       <description>Github是目前世界上最先进的分布时版本控制系统。我们可以借助它来托管我们的项目。可以说Github是程序员必不可少的高效工具，事实上，我的博客网站正是借助Github来发布到网上的。既然Github如此重要，下面我就来介绍一下Github以及它的基础使用吧。
 Github是一种分布式版本控制系统，极大的方便了开发者们存储项目以及多人开发。开发者们可以将项目上传到Github托管，然后团队中不同的人可以将项目下载到本地进行修改，完成后再将其传回到Github上，所有的修改日志都会显示在Github上，这样就极大的方便了团队共同开发项目。Github也是一个非常大的开源社区，开发者们可以在这里将自己的代码发布出来供其它人观看和使用，Github用户可以查看、星标、Fork各种各样的项目，这样的社区方便了开发者们的交流，促进了项目的发展，帮助了学者学习代码。
-Github基础概念 下面我们首先来介绍一下Github的基础概念。
+I. Github基础概念 下面我们首先来介绍一下Github的基础概念。
 仓库（Repository）
 仓库是用来存放项目代码的地方，每个项目对应一个仓库，每个Github用户可以有多个仓库。开发者们也可以对别人的项目进行关注(Watch)、收藏（Star)、复制克隆（Fork）、发起请求（Pull Request）、发送事务卡片（Issue）。下面我们来一一解释这些概念。
 关注（Watch）：如果一个开发者关注了别人的项目，那么他将会收到项目的修改、更新等信息的通知。
@@ -82,10 +101,10 @@ Github基础概念 下面我们首先来介绍一下Github的基础概念。
 复制克隆项目（Fork）：如果一个开发者Fork了别人的仓库，那么这个仓库就会被复制到他的Github主页上，复制的仓库和原仓库是彼此独立的，开发者对复制到自己主页的仓库内容进行修改不会影响到原仓库内的项目。
 发起请求（Pull Request）：发起请求是基于Fork之上的。当一个开发者Fork了别人的仓库内的项目，加以修改后想要通知原项目的Git用户代码在他的修改下被优化了，希望原用户将原项目改为他修改后的版本，就可以发送Pull Request申请。如果原项目的用户同意了，那么原项目就会被修改成新的版本。
 发送事务卡片（Issue）：当一个开发者在查看别人仓库中的项目时发现了bug，可以在仓库中发送Issue来和项目开发者进行交流。
-Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，Git仓库分为本地和远程仓库两个部分，本地部分又分为三个区域：工作区、缓存区和仓库区。工作区就是我们本地对项目修改的区域；当修改完成后，我们可以将修改的内容上传，为了避免传入之后又想修改，Git会让修改的文件首先传入缓存区，当我们确定所有修改都已完成的时候，就可以将缓存区内的所有文件传入到Git本地仓库；最后，我们再将本地仓库的文件传到远程仓库即可。一般来说工作流程如下：
+II. Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，Git仓库分为本地和远程仓库两个部分，本地部分又分为三个区域：工作区、缓存区和仓库区。工作区就是我们本地对项目修改的区域；当修改完成后，我们可以将修改的内容上传，为了避免传入之后又想修改，Git会让修改的文件首先传入缓存区，当我们确定所有修改都已完成的时候，就可以将缓存区内的所有文件传入到Git本地仓库；最后，我们再将本地仓库的文件传到远程仓库即可。一般来说工作流程如下：
  使用命令git clone url(仓库地址)将项目从远程仓库下载到本地。   git clone url   修改项目代码。
  使用命令git add xxx (要添加的文件，&amp;rdquo;.&amp;ldquo;代表所有文件)将指定文件从工作区传入缓存区。
-  git add xxx   使用命令git commit -m &amp;lsquo;描述&amp;rsquo;将缓存区内的所有文件传入Git本地仓库。   git commit -m &#39;描述&#39;   使用命令git remote add origin url(远程项目地址) 将Git本地仓库和Git远程仓库连接起来。   git remote add origin url   使用命令git push -u origin master 将Git本地仓库内的项目上传到Git远程仓库。   git push -u origin master  常用命令  首次在本地使用git时，需要将本地与git账户进行关联，可以使用命令：   git config --global user.</description>
+  git add xxx   使用命令git commit -m &amp;lsquo;描述&amp;rsquo;将缓存区内的所有文件传入Git本地仓库。   git commit -m &#39;描述&#39;   使用命令git remote add origin url(远程项目地址) 将Git本地仓库和Git远程仓库连接起来。   git remote add origin url   使用命令git push -u origin master 将Git本地仓库内的项目上传到Git远程仓库。   git push -u origin master  III.</description>
     </item>
     
     <item>

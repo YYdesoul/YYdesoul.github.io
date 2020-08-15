@@ -10,10 +10,20 @@
              "@type": "WebPage",
              "@id": "/"
         },
-        "articleSection" : "",
-        "name" : "YY的主页",
-        "headline" : "YY的主页",
-        "description" : "",
+        "articleSection" : "blog",
+        "name" : "正则表达式的使用",
+        "headline" : "正则表达式的使用",
+        "description" : "在编程中，我们经常遇到字符串的各种处理问题：如在字符串中找出某个子字符串，亦或者字符串是否匹配某种规则。大量繁琐的规则判断令人焦头烂额，而正则表达式（Regular Expression）正是解决此类问题的一种功能强大的武器。这篇文章介绍了正则表达式的定义、匹配规则以及在java和python中的使用。
+I. 定义 正则表达式是好用字符串描述的一种匹配规则，使用正则表达式可以快速判定给定的字符串是否符合匹配规则，除此之外还可以从字符串中搜索、提取、替换等符合规则的子字符串。
+举例来说，当我们想要判断一串字符串数字是否符合电话号码的数字规则时（3位区号-8位数字，如027-12345678），可以使用正则表达式：&rdquo;\d{3}-\d{8}&ldquo;来进行判断。
+II. 匹配规则 正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：
+III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.regex内建了正则表达式引擎。下面我来给大家一一讲述正则表达式不同功能在java中的实现。
+1. 规则匹配
+String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
+例子：
+public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C++&quot;.matches(re));	//false } }  2. 分组匹配
+我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -23,14 +33,14 @@
         "copyrightYear" : "2020",
         "datePublished": "2020-08-15 00:00:00 &#43;0000 UTC",
         "dateModified" : "2020-08-15 00:00:00 &#43;0000 UTC",
-        "url" : "/",
-        "wordCount" : "0",
-        "keywords" : [ "Blog" ]
+        "url" : "/blog/cs/java-regular-expression/",
+        "wordCount" : "430",
+        "keywords" : [ "计算机","Blog" ]
     }
     </script>
         
             
-                <title>YY的主页</title>
+                <title>正则表达式的使用</title>
             
         
 
@@ -56,6 +66,8 @@
 
 
         
+            <meta name="author" content="小羽">
+        
         
             
                 <meta name="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
@@ -63,23 +75,61 @@
         
 
         <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="YY的主页"/>
-<meta name="twitter:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~"/>
+<meta name="twitter:title" content="正则表达式的使用"/>
+<meta name="twitter:description" content="在编程中，我们经常遇到字符串的各种处理问题：如在字符串中找出某个子字符串，亦或者字符串是否匹配某种规则。大量繁琐的规则判断令人焦头烂额，而正则表达式（Regular Expression）正是解决此类问题的一种功能强大的武器。这篇文章介绍了正则表达式的定义、匹配规则以及在java和python中的使用。
+I. 定义 正则表达式是好用字符串描述的一种匹配规则，使用正则表达式可以快速判定给定的字符串是否符合匹配规则，除此之外还可以从字符串中搜索、提取、替换等符合规则的子字符串。
+举例来说，当我们想要判断一串字符串数字是否符合电话号码的数字规则时（3位区号-8位数字，如027-12345678），可以使用正则表达式：&rdquo;\d{3}-\d{8}&ldquo;来进行判断。
+II. 匹配规则 正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：
+III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.regex内建了正则表达式引擎。下面我来给大家一一讲述正则表达式不同功能在java中的实现。
+1. 规则匹配
+String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
+例子：
+public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
+我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher."/>
 
-        <meta property="og:title" content="YY的主页" />
-<meta property="og:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-08-15T00:00:00&#43;00:00"/>
+        <meta property="og:title" content="正则表达式的使用" />
+<meta property="og:description" content="在编程中，我们经常遇到字符串的各种处理问题：如在字符串中找出某个子字符串，亦或者字符串是否匹配某种规则。大量繁琐的规则判断令人焦头烂额，而正则表达式（Regular Expression）正是解决此类问题的一种功能强大的武器。这篇文章介绍了正则表达式的定义、匹配规则以及在java和python中的使用。
+I. 定义 正则表达式是好用字符串描述的一种匹配规则，使用正则表达式可以快速判定给定的字符串是否符合匹配规则，除此之外还可以从字符串中搜索、提取、替换等符合规则的子字符串。
+举例来说，当我们想要判断一串字符串数字是否符合电话号码的数字规则时（3位区号-8位数字，如027-12345678），可以使用正则表达式：&rdquo;\d{3}-\d{8}&ldquo;来进行判断。
+II. 匹配规则 正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：
+III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.regex内建了正则表达式引擎。下面我来给大家一一讲述正则表达式不同功能在java中的实现。
+1. 规则匹配
+String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
+例子：
+public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
+我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/cs/java-regular-expression/" /><meta property="article:published_time" content="2020-08-15T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-08-15T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         
-<meta itemprop="name" content="YY的主页">
-<meta itemprop="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+<meta itemprop="name" content="正则表达式的使用">
+<meta itemprop="description" content="在编程中，我们经常遇到字符串的各种处理问题：如在字符串中找出某个子字符串，亦或者字符串是否匹配某种规则。大量繁琐的规则判断令人焦头烂额，而正则表达式（Regular Expression）正是解决此类问题的一种功能强大的武器。这篇文章介绍了正则表达式的定义、匹配规则以及在java和python中的使用。
+I. 定义 正则表达式是好用字符串描述的一种匹配规则，使用正则表达式可以快速判定给定的字符串是否符合匹配规则，除此之外还可以从字符串中搜索、提取、替换等符合规则的子字符串。
+举例来说，当我们想要判断一串字符串数字是否符合电话号码的数字规则时（3位区号-8位数字，如027-12345678），可以使用正则表达式：&rdquo;\d{3}-\d{8}&ldquo;来进行判断。
+II. 匹配规则 正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：
+III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.regex内建了正则表达式引擎。下面我来给大家一一讲述正则表达式不同功能在java中的实现。
+1. 规则匹配
+String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
+例子：
+public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
+我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher.">
 
+
+<meta itemprop="datePublished" content="2020-08-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-08-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="430">
+
+
+
+<meta itemprop="keywords" content="计算机," />
 
         
 
@@ -122,7 +172,7 @@
     
 <header id="header">
     
-      <h1><a href="/">HOME</a></h1>
+      <h1><a href="/">blog</a></h1>
     
 
     <nav class="links">
@@ -284,7 +334,7 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/cs/regular-expression/">正则表达式</a></h3>
+                                <h3><a href="/blog/cs/java-regular-expression/">正则表达式的使用</a></h3>
                                 
                                 <time class="published" datetime=
                                     '2020-08-15'>
@@ -357,14 +407,109 @@
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2fjava-regular-expression%2f&amp;text=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e4%bd%bf%e7%94%a8&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fjava-regular-expression%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fjava-regular-expression%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fjava-regular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e4%bd%bf%e7%94%a8" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fjava-regular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e4%bd%bf%e7%94%a8" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fjava-regular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e4%bd%bf%e7%94%a8" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fjava-regular-expression%2f&amp;description=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e4%bd%bf%e7%94%a8" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fjava-regular-expression%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
         
-            <article class="post">
+        
+        <article class="post">
   <header>
     <div class="title">
         
-            <h2><a href="/blog/cs/regular-expression/">正则表达式</a></h2>
+            <h1><a href="/blog/cs/java-regular-expression/">正则表达式的使用</a></h1>
+            
         
         
     </div>
@@ -402,9 +547,9 @@
 
 <p>正则表达式的匹配规则是从左向右按规则匹配，常用的匹配规则如下：</p>
 
-<p><img src="/images/CS/regular_expression_rules.png" width = "900" height = "1300" alt="图片名称" align=center /></p>
+<p><img src="/images/CS/regular_expression_rules.png" width = "800" height = "500" alt="图片名称" align=center /></p>
 
-<p><img src="/images/CS/regular_expression_rules2.png" width = "900" height = "500" alt="图片名称" align=center /></p>
+<p><img src="/images/CS/regular_expression_rules2.png" width = "800" height = "500" alt="图片名称" align=center /></p>
 
 <h2 id="iii-在编程语言中的使用">III. 在编程语言中的使用</h2>
 
@@ -504,7 +649,7 @@ public class Main {
         Matcher m = p.matcher(s);
         while (m.find()) {
             String sub = s.substring(m.start(), m.end());
-            System.out.println(sub);		//row, fox, dog
+            System.out.println(sub);										//row, fox, dog
         }
     }
 }
@@ -559,25 +704,25 @@ else:
 
 <pre><code class="language-python">m = re.match(r'^(\d{3})-(\d{8})$', '027-12345678')
 
-m.group(0)		#提取整个字符串：'027-12345678'
-m.group(1)		#提取第一组子字符串：'027'
-m.group(2)		#提取第二组子字符串：'12345678'
+m.group(0)		//提取整个字符串：'027-12345678'
+m.group(1)		//提取第一组子字符串：'027'
+m.group(2)		//提取第二组子字符串：'12345678'
 </code></pre>
 
 <p><strong>3. 非贪婪匹配</strong></p>
 
 <p>python和java一样，默认是贪婪匹配。需要非贪婪匹配时依旧是使用关键字<code>？</code>，例子如下：</p>
 
-<pre><code class="language-python">re.match(r'^(\d+)(0*)$', '987000').groups()	#('987000', '')
-re.match(r'^(\d+?)(0*)$', '987000').groups()	#('987', '000')
+<pre><code class="language-python">re.match(r'^(\d+)(0*)$', '987000').groups()		//('987000', '')
+re.match(r'^(\d+?)(0*)$', '987000').groups()	//('987', '000')
 </code></pre>
 
 <p><strong>4. 分割字符串</strong></p>
 
 <p><code>re.spit(regex, string)</code>函数用来分割字符串。例子如下：</p>
 
-<pre><code class="language-python">re.split(r'\s+', 'a b     c')		#['a', 'b', 'c']
-re.split(r'[\s\,]+', 'a,b, c   d')	#['a', 'b', 'c', 'd']
+<pre><code class="language-python">re.split(r'\s+', 'a b     c')					//['a', 'b', 'c']
+re.split(r'[\s\,]+', 'a,b, c   d')		//['a', 'b', 'c', 'd']
 </code></pre>
 
 <p><strong>5. 搜索字符串</strong></p>
@@ -586,8 +731,8 @@ re.split(r'[\s\,]+', 'a,b, c   d')	#['a', 'b', 'c', 'd']
 
 <pre><code class="language-python">import re
 m = re.search(r'def', 'abcdef')
-m.group(0)	#def
-m.span()	#(3,5)
+m.group(0)		//def
+m.span()			//(3,5)
 </code></pre>
 
 <p><strong>6. 替换字符串</strong></p>
@@ -596,7 +741,7 @@ m.span()	#(3,5)
 
 <pre><code class="language-python">import re
 text = 'how are    you'
-print re.sub('\s+', '-', text)		#how-are-you
+print re.sub('\s+', '-', text)		//how-are-you
 </code></pre>
 
 <h2 id="iii-总结">III. 总结</h2>
@@ -656,101 +801,6 @@ print re.sub('\s+', '-', text)		#how-are-you
 </ul>
 
 
-
-            <section id="share-menu">
-    <section id="social-share-nav">
-        <ul class="links">
-            <header>
-                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
-            </header>
-            
-
-
-
-<li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2fregular-expression%2f&amp;text=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f&amp;via=" target="_blank" class="share-btn twitter">
-    <i class="fa fa-twitter"></i>
-    <p>Twitter</p>
-    </a>
-</li>
-
-
-
-
-<li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fregular-expression%2f" target="_blank" class="share-btn google-plus">
-    <i class="fa fa-google-plus"></i>
-    <p>Google+</p>
-  </a>
-</li>
-
-
-
-
-
-<li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fregular-expression%2f" target="_blank" class="share-btn facebook">
-    <i class="fa fa-facebook"></i>
-    <p>Facebook</p>
-    </a>
-</li>
-
-
-
-
-<li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fregular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f" target="_blank" class="share-btn reddit">
-    <i class="fa fa-reddit-alien"></i>
-    <p>Reddit</p>
-  </a>
-</li>
-
-
-
-
-<li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fregular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f" target="_blank" class="share-btn linkedin">
-      <i class="fa fa-linkedin"></i>
-      <p>LinkedIn</p>
-    </a>
-</li>
-
-
-
-
-<li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fregular-expression%2f&amp;title=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f" target="_blank" class="share-btn stumbleupon">
-    <i class="fa fa-stumbleupon"></i>
-    <p>StumbleUpon</p>
-  </a>
-</li>
-
-
-
-
-<li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fregular-expression%2f&amp;description=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f" target="_blank" class="share-btn pinterest">
-    <i class="fa fa-pinterest-p"></i>
-    <p>Pinterest</p>
-  </a>
-</li>
-
-
-
-
-<li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fregular-expression%2f" target="_blank" class="share-btn email">
-    <i class="fa fa-envelope"></i>
-    <p>Email</p>
-  </a>
-</li>
-
-
-        </ul>
-    </section>
-</section>
-
-        
     </div>
     
 <section id="sidebar">
@@ -886,7 +936,7 @@ print re.sub('\s+', '-', text)		#how-are-you
           <article class="mini-post">
             <header>
               <h3>
-                <a href="/blog/cs/regular-expression/">正则表达式</a>
+                <a href="/blog/cs/java-regular-expression/">正则表达式的使用</a>
               </h3>
               
               <time class="published" datetime='2020-08-15'>
