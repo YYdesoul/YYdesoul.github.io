@@ -22,7 +22,7 @@ III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.r
 String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
 例子：
 public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C++&quot;.matches(re));	//false } }  2. 分组匹配
-我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+我们可以用(...)来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
 import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher.",
         "inLanguage" : "en",
         "author" : "",
@@ -85,7 +85,7 @@ III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.r
 String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
 例子：
 public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
-我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+我们可以用(...)来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
 import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher."/>
 
         <meta property="og:title" content="正则表达式" />
@@ -98,7 +98,7 @@ III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.r
 String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
 例子：
 public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
-我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+我们可以用(...)来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
 import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/cs/regular-expression/" /><meta property="article:published_time" content="2020-08-15T00:00:00&#43;00:00"/>
@@ -119,7 +119,7 @@ III. 在编程语言中的使用 a. Java中的使用 在java标准库java.util.r
 String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。
 例子：
 public class Main { public static void main(String[] args){ String re = &quot;java|python&quot;;	//正则表达式 System.out.println(&quot;java&quot;.matches(re));	//true System.out.println(&quot;python&quot;.matches(re));	//true System.ou..println(&quot;C&#43;&#43;&quot;.matches(re));	//false } }  2. 分组匹配
-我们可以用&rdquo;(&hellip;)&rdquo;来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
+我们可以用(...)来讲正则表达式划分为不同的子规则，而每个子规则就是一个分组。如果我们想提取一串字符串中符合某个子分组规则的子字符串时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：
 import java.util.regex.*; public class Main { public static void main(String[] args){ Pattern pattern = Pattern.compile(&quot;(\\d{3})\\-(\\d{8})&quot;); Matcher matcher = pattern.matcher(&quot;027-12345678&quot;); if (matcher.matches()) {	//判断是否匹配 String whole = matcher.">
 
 
@@ -334,6 +334,18 @@ import java.util.regex.*; public class Main { public static void main(String[] a
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-28'>
+                                    August 28, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/cs/regular-expression/">正则表达式</a></h3>
                                 
                                 <time class="published" datetime=
@@ -375,18 +387,6 @@ import java.util.regex.*; public class Main { public static void main(String[] a
                                 <time class="published" datetime=
                                     '2020-08-02'>
                                     August 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/git/">Git简明教程</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-07-31'>
-                                    July 31, 2020</time>
                             </header>
                             
 
@@ -559,7 +559,7 @@ import java.util.regex.*; public class Main { public static void main(String[] a
 
 <p><strong>1. 规则匹配</strong></p>
 
-<p>String.matches(regex)函数可以直接判断当前String是否符合input中正则表达式的规则。</p>
+<p><code>String.matches(regex)</code>函数可以直接判断当前String是否符合input中正则表达式的规则。</p>
 
 <p>例子：</p>
 
@@ -576,7 +576,7 @@ import java.util.regex.*; public class Main { public static void main(String[] a
 
 <p><strong>2. 分组匹配</strong></p>
 
-<p>我们可以用<strong>&rdquo;(&hellip;)&rdquo;</strong>来讲正则表达式划分为不同的<strong>子规则</strong>，而每个子规则就是一个分组。如果我们想<strong>提取一串字符串中符合某个子分组规则的子字符串</strong>时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：</p>
+<p>我们可以用<code>(...)</code>来讲正则表达式划分为不同的<strong>子规则</strong>，而每个子规则就是一个分组。如果我们想<strong>提取一串字符串中符合某个子分组规则的子字符串</strong>时，可以使用分组匹配。下面我用一个例子来详细讲解分组匹配的使用方法：</p>
 
 <pre><code class="language-java">import java.util.regex.*;
 
@@ -598,7 +598,7 @@ public class Main {
 
 <p><strong>Note</strong>：在java的字符串中，&rdquo;\&ldquo;需要用&rdquo;\\&ldquo;来表示。</p>
 
-<p>在这个例子中，我们首先创建了<strong>Pattern</strong>对象pattern并用<strong>Pattern.compile(regex)</strong>创建了正则表达式。然后我们创建一个<strong>Matcher</strong>对象matcher，并调用<strong>pattern.matcher(String string)</strong>用来输入需要进行判断的字符串。接着我们用Matcher对象的<strong>matches( )</strong>函数来判断字符串是否匹配规则，如果匹配成功就使用Matcher对象的<strong>group(int num)</strong>方法来提取子字符串。</p>
+<p>在这个例子中，我们首先创建了<strong>Pattern</strong>对象pattern并用<code>Pattern.compile(regex)</code>创建了正则表达式。然后我们创建一个<strong>Matcher</strong>对象matcher，并调用<code>pattern.matcher(String string)</code>用来输入需要进行判断的字符串。接着我们用Matcher对象的<code>matches( )</code>函数来判断字符串是否匹配规则，如果匹配成功就使用Matcher对象的<code>group(int num)</code>方法来提取子字符串。</p>
 
 <p><strong>3. 非贪婪匹配</strong></p>
 
@@ -627,11 +627,11 @@ public class Main {
 }
 </code></pre>
 
-<p><strong>Note</strong>：当出现&rdquo;??&ldquo;（如d??）时，前后两个&rdquo;?&ldquo;意义不同。前一个?代表字符可以出现1次或0次，后一个字符代表非贪婪匹配。</p>
+<p><strong>Note</strong>：当出现<code>??</code>（如<code>d??</code>）时，前后两个<code>?</code>意义不同。前一个?代表字符可以出现1次或0次，后一个字符代表非贪婪匹配。</p>
 
 <p><strong>4.分割字符串</strong></p>
 
-<p><strong>String.split(regex)</strong>方法可以用输入的正则表达式分割字符串。例子如下：</p>
+<p><code>String.split(regex)</code>方法可以用输入的正则表达式分割字符串。例子如下：</p>
 
 <pre><code class="language-java">&quot;a b c&quot;.split(&quot;\\s&quot;); // { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; }
 &quot;a b  c&quot;.split(&quot;\\s&quot;); // { &quot;a&quot;, &quot;b&quot;, &quot;&quot;, &quot;c&quot; }
@@ -640,7 +640,7 @@ public class Main {
 
 <p><strong>5. 搜索字符串</strong></p>
 
-<p><strong>Matcher</strong>对象的<strong>find( )</strong>方法可以搜索字符串，并用此对象的<strong>start( )</strong>和<strong>end( )</strong>方法提取它。例子如下：</p>
+<p><strong>Matcher</strong>对象的<code>find( )</code>方法可以搜索字符串，并用此对象的<code>start( )</code>和<code>end( )</code>方法提取它。例子如下：</p>
 
 <pre><code class="language-java">public class Main {
     public static void main(String[] args) {
@@ -657,7 +657,7 @@ public class Main {
 
 <p><strong>6. 替换字符串</strong></p>
 
-<p><strong>String.replaceAll(regex, string)</strong>方法可以用正则表达式找到匹配规则的子字符串并用新的string来替换。例子如下：</p>
+<p><code>String.replaceAll(regex, string)</code>方法可以用正则表达式找到匹配规则的子字符串并用新的string来替换。例子如下：</p>
 
 <pre><code class="language-java">public class Main {
     public static void main(String[] args) {
@@ -670,7 +670,7 @@ public class Main {
 
 <p><strong>6.1 反向引用</strong></p>
 
-<p>可以使用<strong>&ldquo;\$1&rdquo;, &ldquo;\$2&rdquo;</strong>(数字代表是第几组)在替换字符串时进行反向引用。例如，当我们想在找到的字符串前后加上&lt;b&gt;xxxx&lt;\b&gt;可以使用如下代码：</p>
+<p>可以使用<code>$1</code>, <code>$2</code>(数字代表是第几组)在替换字符串时进行反向引用。例如，当我们想在找到的字符串前后加上&lt;b&gt;xxxx&lt;\b&gt;可以使用如下代码：</p>
 
 <pre><code class="language-java">public class Main {
     public static void main(String[] args) {
@@ -683,7 +683,7 @@ public class Main {
 
 <h3 id="b-python中的使用">b. Python中的使用</h3>
 
-<p>Python提供了<strong>re</strong>模块，其中包含了所有正则表达式的功能。由于python字符串本身也用&rdquo;\&ldquo;转义，所以在使用正则表达式时最好使用python的<strong>r</strong>前缀，这样就不用考虑转义的问题了。</p>
+<p>Python提供了<strong>re</strong>模块，其中包含了所有正则表达式的功能。由于python字符串本身也用&rdquo;\&ldquo;转义，所以在使用正则表达式时最好使用python的<code>r</code>前缀，这样就不用考虑转义的问题了。</p>
 
 <p><strong>1. 规则匹配</strong></p>
 
@@ -744,11 +744,11 @@ text = 'how are    you'
 print re.sub('\s+', '-', text)		#how-are-you
 </code></pre>
 
-<h2 id="iii-总结">III. 总结</h2>
+<h2 id="iv-总结">IV. 总结</h2>
 
 <p><strong>正则表达式</strong>是一种功能强大的<strong>字符串匹配规则</strong>。我们可以使用它对字符串进行<strong>匹配、分组匹配与提取、查找、分割、替换</strong>等操作。</p>
 
-<h2 id="iv-参考">IV. 参考</h2>
+<h2 id="v-参考">V. 参考</h2>
 
 <p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945288020320">https://www.liaoxuefeng.com/wiki/1252599548343744/1255945288020320</a></p>
 
@@ -797,6 +797,9 @@ print re.sub('\s+', '-', text)		#how-are-you
                 class="button big previous">双指针算法之快慢指针</a></li>
     
 
+    
+        <li><a href="/blog/cs/algorithms_binary-search/"
+                class="button big next">二分查找</a></li>
     
 </ul>
 
@@ -936,6 +939,20 @@ print re.sub('\s+', '-', text)		#how-are-you
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/blog/cs/algorithms_binary-search/">二分查找</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-28'>
+                August 28, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/blog/cs/regular-expression/">正则表达式</a>
               </h3>
               
@@ -989,20 +1006,6 @@ print re.sub('\s+', '-', text)		#how-are-you
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/git/">Git简明教程</a>
-              </h3>
-              
-              <time class="published" datetime='2020-07-31'>
-                July 31, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
       </div>
 
       
@@ -1036,7 +1039,7 @@ print re.sub('\s+', '-', text)		#how-are-you
             <header>
               
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                <span style="float:right;">8</span>
+                <span style="float:right;">9</span>
               
             </header>
           </article>

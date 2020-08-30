@@ -6,10 +6,27 @@
     <description>Recent content in 算法 on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>二分查找</title>
+      <link>/blog/cs/algorithms_binary-search/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/algorithms_binary-search/</guid>
+      <description>I. 定义 二分法是一种通常用在排序数据集或者不完全排序的数据集中查寻元素的一种算法。其清晰的逻辑，简单的时间复杂度（O(logn)）使得其非常流行。
+II. 二分法的思路 二分法的思路非常简单，我们用一个简单的问题来解释一下。
+假设我们的问题是在一个[1, 2, 3, 4, ..., 99, 100]的数组中找到70这个数的index。解决这个问题我们最开始想到的思路就是遍历整个数组，把70和index 1, index 2, &amp;hellip;index 100 的数比较，最终找到其位置。但是我们知道，这样的算法时间复杂度为O(n), 在实际操作中是非常没有效率的。那么二分法又是怎么来解决这个问题的呢？
+二分法顾名思义，就是将数据集首先从中间切开，分成左右两个子数据集。然后判断出查询的数据集在哪个子数据集中，接着对这个子数据集做这样的递归操作，直到找到要查找的对象或者数据集不可再分为止。
+在数组nums = [1, 2, 3, 4, ..., 99, 100]的数组中找到target = 70这个数的index的问题中，二分法的过程是这样的：
+ 找到中位数也就是index为49的数——50，接着判断target是否等于它。如果等于直接返回中位数的index，如果不等于就继续。 将数组拆分为[1, 2 ,..., 49, 50]和[51, 52, ... 99, 100]两个数组。如果target大于中位数,那么对右侧的子数组再次执行一遍二分法，反之则对左侧子数组执行。 一直循环二分法下去直到找到target或者子数组无法再分为止。  III. 四重境界 二分法的使用分为四重境界。随着境界的提升，难度会加大。让我们依次来分析它们。注意，一定要使二分法不会陷入死循环。
+第一境界——在排序数组上进行二分 在排序数组上使用二分法是最自然的想法，过程就如同在上述二分法思路的那样进行。模板代码如下：
+Java
+public int binarySearch(int[] nums, int start, int end, int target) { while (start + 1 &amp;lt; end) { int mid = start + (end - start) / 2; if (nums[mid] == target) { return mid; }else if (nums[mid] &amp;lt; target) { start = mid; } else { end = mid; } } if (nums[start] == target) { return start; } if (nums[end] == target) { return end; } return -1; }  其步骤是如下：</description>
+    </item>
     
     <item>
       <title>双指针算法之快慢指针</title>
