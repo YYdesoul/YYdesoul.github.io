@@ -21,10 +21,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-07-25 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-07-25 00:00:00 &#43;0000 UTC",
+        "datePublished": "2020-09-01 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-09-01 00:00:00 &#43;0000 UTC",
         "url" : "/blog/cs/algorithms_breadth-first-search/",
-        "wordCount" : "384",
+        "wordCount" : "1478",
         "keywords" : [ "计算机","算法","Blog" ]
     }
     </script>
@@ -69,8 +69,8 @@
         <meta property="og:title" content="广度优先搜索算法（Breadth-First-Search）" />
 <meta property="og:description" content="算法专栏" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/cs/algorithms_breadth-first-search/" /><meta property="article:published_time" content="2020-07-25T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-07-25T00:00:00&#43;00:00"/>
+<meta property="og:url" content="/blog/cs/algorithms_breadth-first-search/" /><meta property="article:published_time" content="2020-09-01T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-09-01T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -81,9 +81,9 @@
 <meta itemprop="description" content="算法专栏">
 
 
-<meta itemprop="datePublished" content="2020-07-25T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-07-25T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="384">
+<meta itemprop="datePublished" content="2020-09-01T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-09-01T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1478">
 
 
 
@@ -292,6 +292,45 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/09/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h3>
                                 
                                 <time class="published" datetime=
@@ -333,18 +372,6 @@
                                 <time class="published" datetime=
                                     '2020-08-03'>
                                     August 3, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-08-02'>
-                                    August 2, 2020</time>
                             </header>
                             
 
@@ -477,11 +504,11 @@
         
 
         <time class="published"
-            datetime='2020-07-25'>
-            July 25, 2020</time>
+            datetime='2020-09-01'>
+            September 1, 2020</time>
         <span class="author">小羽</span>
         
-            <p>2 minute read</p>
+            <p>7 minute read</p>
         
         
     </div>
@@ -514,7 +541,7 @@
         
 
         <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/07/" alt="">
+            <img src="/img/2020/09/" alt="">
         </a>
     
 
@@ -530,6 +557,8 @@
 
 <p>左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&gt;1-&gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5。</p>
 
+<p>BFS的时间复杂度为O(N + M)，N为节点的数量，M为边的数量。</p>
+
 <p><img src="/images/Algorithms/dfs.png" alt="avatar" /></p>
 
 <h2 id="ii-实现方法">II. 实现方法</h2>
@@ -543,11 +572,440 @@
 <li>如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。</li>
 </ol>
 
-<h2 id="iii-经典习题">III. 经典习题</h2>
+<h2 id="iii-使用场景">III. 使用场景</h2>
+
+<p><strong>常见的数据结构</strong></p>
+
+<p>BFS通常在<strong>图(graph)</strong>或者<strong>二叉树(BST)</strong>(实际上BST是一种特殊的图)上使用。在图上使用时，我们往往使用<strong>HashSet</strong>或者<strong>HashMap</strong>来避免指针向回走。</p>
+
+<p><strong>常见的使用场景</strong></p>
 
 <ol>
-<li>Minimum Depth of Binary Tree(Leetcode 111)</li>
+<li>连通块问题（Connected Component）</li>
 </ol>
+
+<p>连通块问题是指通过一个点找到图中所联通的所有点的问题。这类问题我们可以用经典的BFS加上HashSet来解决。</p>
+
+<ol>
+<li>分层遍历（Level Order Traversal）</li>
+</ol>
+
+<p>分层遍历问题要求我们在图中按层次进行遍历，常见的分层遍历问题有简单图的最短路径问题(Simple Graph Shortest Path)</p>
+
+<blockquote>
+<p>Note: 简单图指的是每条边的距离相等，或者都视作长度为单位1的图。</p>
+</blockquote>
+
+<ol>
+<li>拓扑排序（Topological Sorting）</li>
+</ol>
+
+<p>拓扑排序是一种对图中节点的排序。在这种排序中，假若A点指向B点，则A点的序在B点前。同一种图可能有不同的拓扑序。BFS可以用来求任意拓扑序、求一张图是否有拓扑序（如果是图中存在循环则没有拓扑序）、求字典序最小的拓扑序和求图中是否有唯一拓扑序。</p>
+
+<p>在拓扑排序中，我们首先要计算出每个点的<strong>入度(In-degree)</strong>。入度指的是一共有多少条边指向这个点。用BFS解决拓扑排序问题的算法步骤如下：</p>
+
+<p>a). 统计每个点的入度</p>
+
+<p>b). 将入度为0的所有点放入Queue中作为起始节点</p>
+
+<p>c). 依次从Queue中取出一个节点，并将它指向的点的入度-1。</p>
+
+<p>d). 如果它指向的点的入度为0了，就将其添加进Queue中。</p>
+
+<h2 id="iv-经典习题">IV. 经典习题</h2>
+
+<p>1.连通块问题（Connected Component）</p>
+
+<p>a. <a href="https://www.lintcode.com/problem/number-of-islands/description?_from=ladder&amp;&amp;fromId=161">Number of Islands</a>(Lintcode 433)</p>
+
+<p><strong>Description</strong></p>
+
+<p><strong>English</strong></p>
+
+<p>Given a boolean 2D matrix, <code>0</code> is represented as the sea, <code>1</code> is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.</p>
+
+<p>Find the number of islands.</p>
+
+<p><strong>Chinese</strong></p>
+
+<p>给一个 01 矩阵，求不同的岛屿的个数。</p>
+
+<p>0 代表海，1 代表岛，如果两个 1 相邻，那么这两个 1 属于同一个岛。我们只考虑上下左右为相邻。</p>
+
+<p><img src="/images/Algorithms/Lintcode433_2.png" width = "800" height = "280" alt="图片名称" align=center /></p>
+
+<p><img src="/images/Algorithms/Lintcode433.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+
+<p>这道题是一道典型的连通块问题。我们可以用两个for循环遍历整个矩阵，如果遇到岛屿就用bfs对其进行标记并且统计岛屿的数量。</p>
+
+<blockquote>
+<p>Note: 在矩阵的计算中，我们常常使用is_valid()函数来检测是否越界</p>
+</blockquote>
+
+<p><strong>Python代码</strong></p>
+
+<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+
+class Solution:
+    
+    &quot;&quot;&quot;
+    @param grid: a boolean 2D matrix
+    @return: an integer
+    &quot;&quot;&quot;
+    def numIslands(self, grid):
+        # write your code here
+        if not grid or not grid[0]:
+            return 0
+            
+        visited = set()
+        result = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] and (i, j) not in visited:
+                    self.bfs(grid, i, j, visited)
+                    result += 1
+                    
+        return result
+        
+    def bfs(self, grid, x, y, visited):
+        queue = collections.deque([(x, y)])
+        visited.add((x, y))
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in DIRECTIONS:
+                new_x = x + dx
+                new_y = y + dy
+                if not self.is_valid(grid, new_x, new_y, visited):
+                    continue
+                queue.append((new_x, new_y))
+                visited.add((new_x, new_y))
+    
+    def is_valid(self, grid, x, y, visited):
+        n, m = len(grid), len(grid[0])
+        if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):
+            return False
+        if (x, y) in visited:
+            return False
+        return grid[x][y]
+</code></pre>
+
+<p><strong>代码解析</strong></p>
+
+<p>a. 定义常量DIRECTIONS，其定义了每个点可以向上下左右四个方向移动：</p>
+
+<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+</code></pre>
+
+<p>b. 异常检测：</p>
+
+<pre><code class="language-python">if not grid or not grid[0]:
+  return 0
+</code></pre>
+
+<p>c. 申明<code>visited</code>set用来出存已经访问过的点，申明result变量用来储存岛屿的数量：</p>
+
+<pre><code class="language-python">visited = set()
+result = 0
+</code></pre>
+
+<p>d. for循环遍历整个矩阵，如果遍历到一个没有访问过的岛屿就对其进行bfs且将result+1：</p>
+
+<pre><code class="language-python">for i in range(len(grid)):
+  for j in range(len(grid[0])):
+    if grid[i][j] and (i, j) not in visited:
+      self.bfs(grid, i, j, visited)
+      result += 1
+</code></pre>
+
+<p>e. <code>bfs</code>函数找到这个岛屿所有的点并标记：</p>
+
+<pre><code class="language-python">def bfs(self, grid, x, y, visited):
+  queue = collections.deque([(x, y)])	#申明一个Queue
+  visited.add((x, y))	#标记
+  while queue:
+    x, y = queue.popleft()	#取出第一个节点
+    for dx, dy in DIRECTIONS:	#计算出这个节点向不同方向移动后的新节点
+      new_x = x + dx
+      new_y = y + dy
+      if not self.is_valid(grid, new_x, new_y, visited):	#如果节点合法就将其标记且加入到Queue中
+        continue
+        queue.append((new_x, new_y))
+        visited.add((new_x, new_y))
+</code></pre>
+
+<p>e. <code>is_valid</code>函数用来判断点是否合法：</p>
+
+<pre><code class="language-python">def is_valid(self, grid, x, y, visited):
+  n, m = len(grid), len(grid[0])	
+  if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):	#判断是否越界
+    return False
+  if (x, y) in visited:	#判断是否被访问过
+    return False
+  return grid[x][y]
+</code></pre>
+
+<p>2.分层遍历（Level Order Traversal）</p>
+
+<p><a href="https://www.lintcode.com/problem/knight-shortest-path/description?_from=ladder&amp;&amp;fromId=161">Knight Shortest Path</a>(Lintcode 611)</p>
+
+<p><strong>Description</strong></p>
+
+<p><strong>English</strong></p>
+
+<p>Given a knight in a chessboard (a binary matrix with <code>0</code> as empty and <code>1</code> as barrier) with a <code>source</code> position, find the shortest path to a <code>destination</code> position, return the length of the route.
+Return <code>-1</code> if destination cannot be reached.</p>
+
+<blockquote>
+<p>source and destination must be empty.
+Knight can not enter the barrier.
+Path length refers to the number of steps the knight takes.</p>
+</blockquote>
+
+<p><strong>Chinese</strong></p>
+
+<p>给定骑士在棋盘上的 <code>初始</code> 位置(一个2进制矩阵 <code>0</code> 表示空 <code>1</code> 表示有障碍物)，找到到达 <code>终点</code> 的最短路线，返回路线的长度。如果骑士不能到达则返回 <code>-1</code> 。</p>
+
+<blockquote>
+<p>起点跟终点必定为空.
+骑士不能碰到障碍物.
+路径长度指骑士走的步数.</p>
+</blockquote>
+
+<p><img src="/images/Algorithms/Lintcode611.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+
+<p>这道题是一道典型的求最短路径的题。在求解这类问题的时候，我们只需要把求解连通块问题的BFS算法中的Hashset改为Hashmap即可。Hashmap用来标记访问过的点且记录到达每个点的最短路径。</p>
+
+<p>在这道题目中，我们需要首先定义棋子的走法，然后用一个BFS分层遍历直到找到终点为止（或者所有点都越界），最后返回终点在Hashmap中所对应的步数即可。</p>
+
+<p><strong>Python代码</strong></p>
+
+<pre><code class="language-python">&quot;&quot;&quot;
+Definition for a point.
+class Point:
+    def __init__(self, a=0, b=0):
+        self.x = a
+        self.y = b
+&quot;&quot;&quot;
+DIRECTIONS = [
+    (-2, -1), (-2, 1), (-1, 2), (1, 2),
+    (2, 1), (2, -1), (1, -2), (-1, -2)
+]
+class Solution:
+    &quot;&quot;&quot;
+    @param grid: a chessboard included 0 (false) and 1 (true)
+    @param source: a point
+    @param destination: a point
+    @return: the shortest path 
+    &quot;&quot;&quot;
+    def shortestPath(self, grid, source, destination):
+        # write your code here
+        if not grid:
+            return -1
+        
+
+        queue = collections.deque([(source.x, source.y)])
+        distance = {(source.x, source.y): 0}
+        while queue:
+            x, y = queue.popleft()
+            if x == destination.x and y == destination.y:
+                return distance[(x, y)]
+            for dx, dy in DIRECTIONS:
+                next_x, next_y = x + dx, y + dy
+                if self.is_valid(next_x, next_y, grid):
+                    if (next_x, next_y) not in distance:
+                        distance[(next_x, next_y)] = distance[(x, y)] + 1
+                        queue.append((next_x, next_y))
+
+        return -1
+    
+    def is_valid(self, x, y, grid):
+        m, n = len(grid), len(grid[0])
+        if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
+            return True
+        else:
+            return False
+</code></pre>
+
+<p><strong>代码解析</strong></p>
+
+<p>a. 定义走法：</p>
+
+<pre><code class="language-python">DIRECTIONS = [(-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2)]
+</code></pre>
+
+<p>b. 异常检测：</p>
+
+<pre><code class="language-python">if not grid:
+  return -1
+</code></pre>
+
+<p>c. 定义一个Queue，将起点放进去；定义一个Hashmap <code>distance</code>，其key为坐标，其value为最短路径。将起点放入Hashmap：</p>
+
+<pre><code class="language-python">queue = collections.deque([(source.x, source.y)])
+distance = {(source.x, source.y): 0}
+</code></pre>
+
+<p>d. 开始bfs，每次循环从queue中取出一个点，如果这个点和终点相等就返回它在Hashmap中的最短路径。如果不等，找到下一步所有的走法，如果他们合法且不在Hashmap中，那么将他们加入到Hashmap中，且加入到Queue中：</p>
+
+<pre><code class="language-python">while queue:	#如果queue不为空，循环继续
+  x, y = queue.popleft()	#取出第一个点
+  if x == destination.x and y == destination.y:	#如果此点等于终点，返回它在Hashmap中记录的最短路径
+    return distance[(x, y)]
+  for dx, dy in DIRECTIONS:	#遍历所有可以走的新点
+    next_x, next_y = x + dx, y + dy
+    if self.is_valid(next_x, next_y, grid):	
+      if (next_x, next_y) not in distance:	#如果这个点合法且不在Hashmap中
+        distance[(next_x, next_y)] = distance[(x, y)] + 1	#将新的点加入Hashmap
+        queue.append((next_x, next_y))	#将新的点加入queue中
+</code></pre>
+
+<p>e. <code>is_valid</code>函数用来判断点是否越界：</p>
+
+<pre><code class="language-python">def is_valid(self, x, y, grid):
+  m, n = len(grid), len(grid[0])
+  if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
+    return True
+  else:
+    return False
+</code></pre>
+
+<p>3.拓扑排序（Topological Sorting）</p>
+
+<p><strong>Description</strong></p>
+
+<p><strong>English</strong></p>
+
+<p>Given an directed graph, a topological order of the graph nodes is defined as follow:</p>
+
+<ul>
+<li>For each directed edge <code>A -&gt; B</code> in graph, A must before B in the order list.</li>
+<li>The first node in the order can be any node in the graph with no nodes direct to it.</li>
+</ul>
+
+<p>Find any topological order for the given graph.</p>
+
+<blockquote>
+<p>You can assume that there is at least one topological order in the graph.</p>
+</blockquote>
+
+<p><strong>Chinese</strong></p>
+
+<p>给定一个有向图，图节点的拓扑排序定义如下:</p>
+
+<ul>
+<li>对于图中的每一条有向边 <code>A -&gt; B</code> , 在拓扑排序中A一定在B之前.</li>
+<li>拓扑排序中的第一个节点可以是图中的任何一个没有其他节点指向它的节点.</li>
+</ul>
+
+<p>针对给定的有向图找到任意一种拓扑排序的顺序.</p>
+
+<blockquote>
+<p>你可以假设图中至少存在一种拓扑排序</p>
+</blockquote>
+
+<p><img src="/images/Algorithms/Lintcode127.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+
+<p>这道题要我们返回图的任意拓扑序。解题思路是这样的：</p>
+
+<p>a. 计算出每个点的入度并记录在Hashmap中</p>
+
+<p>b. 申明一个Queue，将入度为0的点放进去</p>
+
+<p>c. 用BFS遍历Queue，将Queue中取出来的所有点加入结果数组，其所有neighbor的入度-1</p>
+
+<p>d. 如果neighbor点的入度为0了，将其加入Queue中。</p>
+
+<p><strong>Python代码</strong></p>
+
+<pre><code class="language-python">&quot;&quot;&quot;
+Definition for a Directed graph node
+class DirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
+&quot;&quot;&quot;
+
+
+class Solution:
+    &quot;&quot;&quot;
+    @param: graph: A list of Directed graph node
+    @return: Any topological order for the given graph.
+    &quot;&quot;&quot;
+    def topSort(self, graph):
+        # write your code here
+        if not graph:
+            return []
+            
+        #add in-degree
+        node_to_indegree = self.get_indegree(graph)
+        
+        #bfs
+        order = []
+        start_node = [n for n in graph if node_to_indegree[n] == 0]
+        queue = collections.deque(start_node)
+        while queue:
+            node = queue.popleft()
+            order.append(node)
+            for neighbor in node.neighbors:
+                node_to_indegree[neighbor] -= 1
+                if node_to_indegree[neighbor] == 0:
+                    queue.append(neighbor)
+                    
+        return order
+                
+    def get_indegree(self, graph):
+        node_to_indegree = {x: 0 for x in graph}
+
+        for node in graph:
+            for neighbor in node.neighbors:
+                node_to_indegree[neighbor] += 1
+                
+        return node_to_indegree    
+</code></pre>
+
+<p><strong>代码解析</strong></p>
+
+<p>a. 异常检测：</p>
+
+<pre><code class="language-python">if not graph:
+  return []
+</code></pre>
+
+<p>b. 计算出所有点的入度：</p>
+
+<pre><code class="language-python">node_to_indegree = self.get_indegree(graph)
+
+def get_indegree(self, graph):
+  node_to_indegree = {x: 0 for x in graph}	#初始化所有点的入度为0
+
+  for node in graph:	#遍历图中的每个点的所有neighbor,将其neighbor的入度+1
+    for neighbor in node.neighbors:	
+      node_to_indegree[neighbor] += 1
+
+      return node_to_indegree    
+</code></pre>
+
+<p>c. 定义结果数组和Queue，并将入度为0的点加入其中：</p>
+
+<pre><code class="language-python">order = []
+start_node = [n for n in graph if node_to_indegree[n] == 0]
+queue = collections.deque(start_node)
+</code></pre>
+
+<p>d. 开始bfs算法，将queue中取出的点加入结果数组中，并将其所有neighbor的入度-1，如果neighbor点的入度为0了，将其加入Queue：</p>
+
+<pre><code class="language-python">while queue:	#当queue非空时，继续循环
+  node = queue.popleft()	#取出第一个点
+  order.append(node)	#将点加入结果数组中
+  for neighbor in node.neighbors:	#遍历点的所有neighbor
+    node_to_indegree[neighbor] -= 1	#将neighor的入度-1
+    if node_to_indegree[neighbor] == 0:	#如果入度为0，将其加入queue
+      queue.append(neighbor)
+</code></pre>
+
+<p>4.附加题目</p>
+
+<p>a. Minimum Depth of Binary Tree(Leetcode 111)</p>
 
 <p>Given a binary tree, find its minimum depth.</p>
 
@@ -614,9 +1072,7 @@ class Solution {
 }
 </code></pre>
 
-<ol>
-<li>Binary Tree Level Order Traversal</li>
-</ol>
+<p>b. Binary Tree Level Order Traversal</p>
 
 <p>Given a binary tree, return the <em>level order</em> traversal of its nodes&rsquo; values. (ie, from left to right, level by level).</p>
 
@@ -682,9 +1138,17 @@ class Solution {
 }
 </code></pre>
 
-<h2 id="iv-总结">IV. 总结</h2>
+<h2 id="v-总结">V. 总结</h2>
 
 <p>BFS是一种在图、搜索树和遍历中非常经典且常用的算法。其思路为先找到节点的每一个岔路并标记起来，再依次往前更进一步，直到找到结果或遍历完为止。做法通常为将起始点加入到queue中，然后将queue中的节点取出，搜索结果。如果结果不在，就将节点的子节点继续放到queue中重复以上过程直到找到结果或遍历完所有节点为止。</p>
+
+<h2 id="vi-参考">VI. 参考</h2>
+
+<p><a href="https://www.jiuzhang.com/">https://www.jiuzhang.com/</a></p>
+
+<p><a href="https://leetcode.com/">https://leetcode.com/</a></p>
+
+<p><a href="https://www.lintcode.com/">https://www.lintcode.com/</a></p>
 
   </div>
 
@@ -730,13 +1194,10 @@ class Solution {
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/algorithms_deep-first-search/"
-                class="button big previous">深度优先搜索算法（Deep-First-Search）</a></li>
+        <li><a href="/blog/cs/algorithms_binary-search/"
+                class="button big previous">二分查找</a></li>
     
 
-    
-        <li><a href="/blog/cs/algorithms_dynamic_programming/"
-                class="button big next">动态规划算法（Dynamic-Programming）</a></li>
     
 </ul>
 
@@ -876,6 +1337,47 @@ class Solution {
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-09-01'>
+                September 1, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/date2020/09/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/blog/cs/algorithms_binary-search/">二分查找</a>
               </h3>
               
@@ -923,20 +1425,6 @@ class Solution {
               
               <time class="published" datetime='2020-08-03'>
                 August 3, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a>
-              </h3>
-              
-              <time class="published" datetime='2020-08-02'>
-                August 2, 2020
               </time>
             </header>
             

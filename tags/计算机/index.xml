@@ -6,10 +6,40 @@
     <description>Recent content in 计算机 on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 28 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>广度优先搜索算法（Breadth-First-Search）</title>
+      <link>/blog/cs/algorithms_breadth-first-search/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/algorithms_breadth-first-search/</guid>
+      <description>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。
+I. 算法定义 BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。
+左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&amp;gt;1-&amp;gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5。
+BFS的时间复杂度为O(N + M)，N为节点的数量，M为边的数量。
+II. 实现方法 由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：
+ 将根节点加入到Queue中 使用while循环，当Queue为空时，结束循环。 将Queue中的节点依次poll出来检查。 如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。  III. 使用场景 常见的数据结构
+BFS通常在图(graph)或者二叉树(BST)(实际上BST是一种特殊的图)上使用。在图上使用时，我们往往使用HashSet或者HashMap来避免指针向回走。
+常见的使用场景
+ 连通块问题（Connected Component）  连通块问题是指通过一个点找到图中所联通的所有点的问题。这类问题我们可以用经典的BFS加上HashSet来解决。
+ 分层遍历（Level Order Traversal）  分层遍历问题要求我们在图中按层次进行遍历，常见的分层遍历问题有简单图的最短路径问题(Simple Graph Shortest Path)
+ Note: 简单图指的是每条边的距离相等，或者都视作长度为单位1的图。
+  拓扑排序（Topological Sorting）  拓扑排序是一种对图中节点的排序。在这种排序中，假若A点指向B点，则A点的序在B点前。同一种图可能有不同的拓扑序。BFS可以用来求任意拓扑序、求一张图是否有拓扑序（如果是图中存在循环则没有拓扑序）、求字典序最小的拓扑序和求图中是否有唯一拓扑序。
+在拓扑排序中，我们首先要计算出每个点的入度(In-degree)。入度指的是一共有多少条边指向这个点。用BFS解决拓扑排序问题的算法步骤如下：
+a). 统计每个点的入度
+b). 将入度为0的所有点放入Queue中作为起始节点
+c). 依次从Queue中取出一个节点，并将它指向的点的入度-1。
+d). 如果它指向的点的入度为0了，就将其添加进Queue中。
+IV. 经典习题 1.连通块问题（Connected Component）
+a. Number of Islands(Lintcode 433)
+Description
+English
+Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island.</description>
+    </item>
     
     <item>
       <title>二分查找</title>
@@ -145,24 +175,6 @@ II. 实现方法 实现动态规划算法，我们往往需要四个步骤：
 4.储存结果
 在这一步中设置结果变量用于储存结果。
 III. 经典习题  Unique Paths(Leetcode 62)  A robot is located at the top-left corner of a m x n grid (marked &amp;lsquo;Start&amp;rsquo; in the diagram below).</description>
-    </item>
-    
-    <item>
-      <title>广度优先搜索算法（Breadth-First-Search）</title>
-      <link>/blog/cs/algorithms_breadth-first-search/</link>
-      <pubDate>Sat, 25 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/cs/algorithms_breadth-first-search/</guid>
-      <description>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。
-I. 算法定义 BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。
-左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&amp;gt;1-&amp;gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5。
-II. 实现方法 由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：
- 将根节点加入到Queue中 使用while循环，当Queue为空时，结束循环。 将Queue中的节点依次poll出来检查。 如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。  III. 经典习题  Minimum Depth of Binary Tree(Leetcode 111)  Given a binary tree, find its minimum depth.
-The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-Note: A leaf is a node with no children.
-这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。
-需要的变量:
-Queue&amp;lt;TreeNode&amp;gt; queue = new LinkedList&amp;lt;&amp;gt;(); int depth = 0;  Queue queue, int depth。</description>
     </item>
     
     <item>

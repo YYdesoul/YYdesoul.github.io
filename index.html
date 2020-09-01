@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-08-28 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-08-28 00:00:00 &#43;0000 UTC",
+        "datePublished": "2020-09-01 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-09-01 00:00:00 &#43;0000 UTC",
         "url" : "/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -70,7 +70,7 @@
 <meta property="og:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-08-28T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2020-09-01T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -284,6 +284,45 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/09/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h3>
                                 
                                 <time class="published" datetime=
@@ -330,18 +369,6 @@
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-08-02'>
-                                    August 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
 
                 
                     <a href=
@@ -364,19 +391,21 @@
   <header>
     <div class="title">
         
-            <h2><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h2>
+            <h2><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h2>
         
+        
+            <p>算法专栏</p>
         
     </div>
     <div class="meta">
         
 
         <time class="published"
-            datetime='2020-08-28'>
-            August 28, 2020</time>
+            datetime='2020-09-01'>
+            September 1, 2020</time>
         <span class="author">小羽</span>
         
-            <p>6 minute read</p>
+            <p>7 minute read</p>
         
         
     </div>
@@ -386,458 +415,635 @@
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img//" alt="">
+        </a>
+    
+
 
   <div id="content">
     
 
-<h2 id="i-定义">I. 定义</h2>
+<p>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。</p>
 
-<p><strong>二分法</strong>是一种通常用在<strong>排序数据集或者不完全排序的数据集</strong>中<strong>查寻元素</strong>的一种算法。其清晰的逻辑，简单的时间复杂度（O(logn)）使得其非常流行。</p>
+<h2 id="i-算法定义">I. 算法定义</h2>
 
-<h2 id="ii-二分法的思路">II. 二分法的思路</h2>
+<p>BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。</p>
 
-<p>二分法的思路非常简单，我们用一个简单的问题来解释一下。</p>
+<p>左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&gt;1-&gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5。</p>
 
-<p>假设我们的问题是在一个<code>[1, 2, 3, 4, ..., 99, 100]</code>的数组中找到70这个数的index。解决这个问题我们最开始想到的思路就是遍历整个数组，把70和index 1, index 2, &hellip;index 100 的数比较，最终找到其位置。但是我们知道，这样的算法时间复杂度为O(n), 在实际操作中是非常没有效率的。那么二分法又是怎么来解决这个问题的呢？</p>
+<p>BFS的时间复杂度为O(N + M)，N为节点的数量，M为边的数量。</p>
 
-<p>二分法顾名思义，就是将数据集首先从<strong>中间切开，分成左右两个子数据集</strong>。然后判断出查询的数据集在哪个子数据集中，接着对这个子数据集做这样的递归操作，直到<strong>找到要查找的对象</strong>或者<strong>数据集不可再分</strong>为止。</p>
+<p><img src="/images/Algorithms/dfs.png" alt="avatar" /></p>
 
-<p>在数组<code>nums = [1, 2, 3, 4, ..., 99, 100]</code>的数组中找到<code>target = 70</code>这个数的index的问题中，二分法的过程是这样的：</p>
+<h2 id="ii-实现方法">II. 实现方法</h2>
+
+<p>由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：</p>
 
 <ol>
-<li>找到中位数也就是index为49的数——50，接着判断target是否等于它。如果等于直接返回中位数的index，如果不等于就继续。</li>
-<li>将数组拆分为<code>[1, 2 ,..., 49, 50]</code>和<code>[51, 52, ... 99, 100]</code>两个数组。如果target大于中位数,那么对右侧的子数组再次执行一遍二分法，反之则对左侧子数组执行。</li>
-<li>一直循环二分法下去直到找到target或者子数组无法再分为止。</li>
+<li>将根节点加入到Queue中</li>
+<li>使用while循环，当Queue为空时，结束循环。</li>
+<li>将Queue中的节点依次poll出来检查。</li>
+<li>如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。</li>
 </ol>
 
-<h2 id="iii-四重境界">III. 四重境界</h2>
+<h2 id="iii-使用场景">III. 使用场景</h2>
 
-<p>二分法的使用分为四重境界。随着境界的提升，难度会加大。让我们依次来分析它们。注意，一定要使二分法不会陷入<strong>死循环</strong>。</p>
+<p><strong>常见的数据结构</strong></p>
 
-<h3 id="第一境界-在排序数组上进行二分">第一境界——在排序数组上进行二分</h3>
+<p>BFS通常在<strong>图(graph)</strong>或者<strong>二叉树(BST)</strong>(实际上BST是一种特殊的图)上使用。在图上使用时，我们往往使用<strong>HashSet</strong>或者<strong>HashMap</strong>来避免指针向回走。</p>
 
-<p>在排序数组上使用二分法是最自然的想法，过程就如同在上述二分法思路的那样进行。模板代码如下：</p>
+<p><strong>常见的使用场景</strong></p>
 
-<p><strong>Java</strong></p>
+<ol>
+<li>连通块问题（Connected Component）</li>
+</ol>
 
-<pre><code class="language-java">public int binarySearch(int[] nums, int start, int end, int target) {
-  while (start + 1 &lt; end) {
-    int mid = start + (end - start) / 2;
-    if (nums[mid] == target) {
-      return mid;
-    }else if (nums[mid] &lt; target) {
-      start = mid;
-    } else {
-      end = mid;
-    }
-  }
-  if (nums[start] == target) {
-    return start;
-  }
-  if (nums[end] == target) {
-    return end;
-  }
-  return -1;
-}
-</code></pre>
+<p>连通块问题是指通过一个点找到图中所联通的所有点的问题。这类问题我们可以用经典的BFS加上HashSet来解决。</p>
 
-<p>其步骤是如下：</p>
+<ol>
+<li>分层遍历（Level Order Traversal）</li>
+</ol>
 
-<p>1.将一个数组<code>nums</code>,以及它的左右两端的index还有要找的数<code>target</code>传入到函数中：</p>
-
-<pre><code class="language-java">public int binarySearch(int[] nums, int start, int end, int target) {
-</code></pre>
-
-<p>2.开始<code>while</code>循环，为了避免出现死循环，我们设置当<code>start + 1 &lt; end</code>时循环继续：</p>
-
-<pre><code class="language-java">while (start + 1 &lt; end) {
-</code></pre>
-
-<p>3.计算出中位数的index, 为了避免溢出，在java中要用如下方式进行计算：</p>
-
-<pre><code class="language-java">int mid = start + (end - start) / 2;
-</code></pre>
-
-<p>4.如果中位数和<code>target</code>相等，返回中位数的index：</p>
-
-<pre><code class="language-java">if (nums[mid] == target) {
-  return mid;
-}
-</code></pre>
-
-<p>5.如果中位数小于<code>target</code>,对右侧数组进行新的二分法,反之则左侧：</p>
-
-<pre><code class="language-java">else if (nums[mid] &lt; target) {
-  start = mid;
-} else {
-  end = mid;
-}
-</code></pre>
-
-<p>6.结束循环后，由于我们还没有判断最终的<code>start</code>和<code>end</code>位置上的数是否等于<code>target</code>，所以我们要重新手段判断一次。如果还是没有找到<code>target</code>，则返回-1：</p>
-
-<pre><code class="language-java">if (nums[start] == target) {
-  return start;
-}
-if (nums[end] == target) {
-  return end;
-}
-return -1;
-</code></pre>
-
-<h3 id="第二境界-在不完全排序数据集-ooxx-上二分">第二境界——在不完全排序数据集(OOXX)上二分</h3>
-
-<p>有的时候，数组并不是完全排序的，但是却有一定的规律，当数组中的元素可以分为O和X两种的时候，可能我们依然可以使用二分法来解决问题。</p>
-
-<p><strong>经典习题</strong></p>
-
-<p><a href="https://www.lintcode.com/problem/find-minimum-in-rotated-sorted-array/description?_from=ladder&amp;&amp;fromId=161">Find Minimum in Rotated Sorted Array</a>(Lintcode 159)</p>
-
-<p><strong>Description</strong></p>
-
-<p>Suppose a sorted array in ascending order is rotated at some pivot unknown to you beforehand.</p>
-
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-
-<p>Find the minimum element.</p>
+<p>分层遍历问题要求我们在图中按层次进行遍历，常见的分层遍历问题有简单图的最短路径问题(Simple Graph Shortest Path)</p>
 
 <blockquote>
-<p>You can assume no duplicate exists in the array.</p>
+<p>Note: 简单图指的是每条边的距离相等，或者都视作长度为单位1的图。</p>
 </blockquote>
 
-<p><img src="/images/Algorithms/Lintcode159.png" width = "800" height = "500" alt="图片名称" align=center /></p>
+<ol>
+<li>拓扑排序（Topological Sorting）</li>
+</ol>
 
-<p>这道题目是要我们在一个Rotatd Sorted数组中找到最小值，且数组中没有重复的数。这道题是一道典型的在OOXX数组上使用二分查找的题目。比如在<code>nums = [3, 4, 5, 0, 1, 2]</code>中，前三项就是X,后三项就是O,而我们要找的数就是第一个O。这道题目我们可以通过画图的方式分析出，我们要找的第一个O是一个小于<code>nums[0]</code>，而且小于它的前一项的数。另外所有的O都是小于<code>nums[0]</code>的,这样我们就很容易判断出我们二分后的中位数是在O区间还是X区间了。</p>
+<p>拓扑排序是一种对图中节点的排序。在这种排序中，假若A点指向B点，则A点的序在B点前。同一种图可能有不同的拓扑序。BFS可以用来求任意拓扑序、求一张图是否有拓扑序（如果是图中存在循环则没有拓扑序）、求字典序最小的拓扑序和求图中是否有唯一拓扑序。</p>
 
-<blockquote>
-<p>Note: 当然也有一种例外，那就是最小值为<code>nums[0]</code>(数组在length * n次旋转后后保持不变） 的情况，我们需要首先测试它</p>
-</blockquote>
+<p>在拓扑排序中，我们首先要计算出每个点的<strong>入度(In-degree)</strong>。入度指的是一共有多少条边指向这个点。用BFS解决拓扑排序问题的算法步骤如下：</p>
 
-<p><strong>Java代码</strong></p>
+<p>a). 统计每个点的入度</p>
 
-<pre><code class="language-java">public class Solution {
-    /**
-     * @param nums: a rotated sorted array
-     * @return: the minimum number in the array
-     */
-    public int findMin(int[] nums) {
-        // write your code here
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-        
-        if (nums[0] &lt; nums[nums.length - 1]) {
-            return nums[0];
-        }
-        
-        return binarySearch(nums, 0, nums.length - 1);
-    }
-    
-    private int binarySearch(int[] nums, int start, int end) {
-        while (start + 1 &lt; end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] &lt; nums[start]) {
-                end = mid;
-            }else {
-                start = mid;
-            }
-        }
-        
-        return nums[start] &lt; nums[end] ? nums[start] : nums[end];
-    }
-}
-</code></pre>
+<p>b). 将入度为0的所有点放入Queue中作为起始节点</p>
 
-<p><strong>代码解析</strong></p>
+<p>c). 依次从Queue中取出一个节点，并将它指向的点的入度-1。</p>
 
-<p>1.异常检测：</p>
+<p>d). 如果它指向的点的入度为0了，就将其添加进Queue中。</p>
 
-<pre><code class="language-java">if (nums == null || nums.length == 0) {
-  return -1;
-}
-</code></pre>
+<h2 id="iv-经典习题">IV. 经典习题</h2>
 
-<p>2.判断<code>nums[0]</code>是否为最小数，如果是，返回<code>nums[0]</code>:</p>
+<p>1.连通块问题（Connected Component）</p>
 
-<pre><code class="language-java">if (nums[0] &lt; nums[nums.length - 1]) {
-  return nums[0];
-}
-</code></pre>
-
-<p>3.调用binarySearch函数查找最小数：</p>
-
-<pre><code class="language-java">return binarySearch(nums, 0, nums.length - 1);
-</code></pre>
-
-<p>4.使用binarySearch模板，修改一些部分：当中位数小于start的时候，证明我们在O区间，最小值在左侧数组，所以对左侧子数组再进行二分。反之中位数则在X区间，那么我们要去到包含所有O区间的右侧子数组：</p>
-
-<pre><code class="language-java">while (start + 1 &lt; end) {
-  int mid = start + (end - start) / 2;
-  if (nums[mid] &lt; nums[start]) {	//mid在O区间，最小值在左侧
-    end = mid;
-  }else {													//mid在X区间，最小值在右侧
-    start = mid;
-  }
-}
-</code></pre>
-
-<p>5.对<code>start</code>和<code>end</code>进行手动判断：</p>
-
-<pre><code class="language-java">return nums[start] &lt; nums[end] ? nums[start] : nums[end];
-</code></pre>
-
-<h3 id="第三境界-在未排序的数据集上二分">第三境界——在未排序的数据集上二分</h3>
-
-<p>当数组既不是排序数组，也不符合XXOO特性的时候，如果我们可以找到一种<strong>每次二分数组后判断出必定有解的那一半</strong>，我们依旧可以<strong>使用二分法继续对必定有解的那一半进行二分直到找到解或不可再分为止</strong>。</p>
-
-<p><strong>经典习题</strong></p>
-
-<p><a href="https://www.lintcode.com/problem/find-peak-element/description?_from=ladder&amp;&amp;fromId=161">Find Peak Element</a>(Lintcode 75)</p>
+<p>a. <a href="https://www.lintcode.com/problem/number-of-islands/description?_from=ladder&amp;&amp;fromId=161">Number of Islands</a>(Lintcode 433)</p>
 
 <p><strong>Description</strong></p>
 
 <p><strong>English</strong></p>
 
-<p>There is an integer array which has the following features:</p>
+<p>Given a boolean 2D matrix, <code>0</code> is represented as the sea, <code>1</code> is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.</p>
 
-<ul>
-<li>The numbers in adjacent positions are different.</li>
-<li>A[0] &lt; A[1] &amp;&amp; A[A.length - 2] &gt; A[A.length - 1].</li>
-</ul>
-
-<p>We define a position P is a peak if:</p>
-
-<pre><code>A[P] &gt; A[P-1] &amp;&amp; A[P] &gt; A[P+1]
-</code></pre>
-
-<p>Find a peak element in this array. Return the index of the peak.</p>
-
-<blockquote>
-<ul>
-<li>It&rsquo;s guaranteed the array has at least one peak.</li>
-<li>The array may contain multiple peeks, find any of them.</li>
-<li>The array has at least 3 numbers in it.</li>
-</ul>
-</blockquote>
+<p>Find the number of islands.</p>
 
 <p><strong>Chinese</strong></p>
 
-<p>你给出一个整数数组(size为n)，其具有以下特点：</p>
+<p>给一个 01 矩阵，求不同的岛屿的个数。</p>
 
-<ul>
-<li>相邻位置的数字是不同的</li>
-<li>A[0] &lt; A[1] 并且 A[n - 2] &gt; A[n - 1]</li>
-</ul>
+<p>0 代表海，1 代表岛，如果两个 1 相邻，那么这两个 1 属于同一个岛。我们只考虑上下左右为相邻。</p>
 
-<p>假定*P*是峰值的位置则满足<code>A[P] &gt; A[P-1]</code>且<code>A[P] &gt; A[P+1]</code>，返回数组中任意一个峰值的位置。</p>
+<p><img src="/images/Algorithms/Lintcode433_2.png" width = "800" height = "280" alt="图片名称" align=center /></p>
 
-<blockquote>
-<ul>
-<li>数组保证至少存在一个峰</li>
-<li>如果数组存在多个峰，返回其中任意一个就行</li>
-<li>数组至少包含 3 个数</li>
-</ul>
-</blockquote>
+<p><img src="/images/Algorithms/Lintcode433.png" width = "800" height = "700" alt="图片名称" align=center /></p>
 
-<p><img src="/images/Algorithms/Lintcode75.png" width = "800" height = "500" alt="图片名称" align=center /></p>
-
-<p>这道题给定的数组并不是排序的，但是我们可以找到一定的规律。数组的开始端是上升的，结束端是下降的，而山峰必定是在上升和下降之间。那么<strong>如果我们二分出来的中位数在下降的位置，在它的左侧必然有峰；当中位数在上升的位置，那么右侧必然有峰。</strong>找到这样的规律后，我们就可以在每次二分时判断左右两侧子数组那一侧必定有解，然后对这一侧继续二分直到找到解为止。</p>
-
-<p><strong>Java代码</strong></p>
-
-<pre><code class="language-java">public class Solution {
-    /**
-     * @param A: An integers array.
-     * @return: return any of peek positions.
-     */
-    public int findPeak(int[] A) {
-        // write your code here
-        if (A == null || A.length == 0) {
-            return -1;
-        }
-        
-        int start = 1, end = A.length - 2;
-        while (start + 1 &lt; end) {
-            int mid = start + (end - start) / 2;
-            if (A[mid] &lt; A[mid - 1]) {
-                end = mid;
-            } else if (A[mid] &lt; A[mid + 1]) {
-                start = mid;
-            } else {
-                return mid;
-            }
-        }
-        
-        if (A[start] &lt; A[end]) {
-            return end;
-        } else {
-            return start;
-        }
-    }
-    
-
-}
-</code></pre>
-
-<p><strong>代码解析</strong></p>
-
-<p>1.异常检测：</p>
-
-<pre><code class="language-java">if (A == null || A.length == 0) {
-  return -1;
-}
-</code></pre>
-
-<p>2.设置二分法最初的范围，数组左右两端必然不是峰，为了避免溢出，范围如下：</p>
-
-<pre><code class="language-java">int start = 1, end = A.length - 2;
-</code></pre>
-
-<p>3.开始二分法，如果中位数在下降段，对左侧数组进行二分；反之对右侧数组进行二分：</p>
-
-<pre><code class="language-java">while (start + 1 &lt; end) {
-  int mid = start + (end - start) / 2;
-  if (A[mid] &lt; A[mid - 1]) {	//中位数在上升段
-    end = mid;
-  } else if (A[mid] &lt; A[mid + 1]) {		//中位数在下降段
-    start = mid;
-  } else {	//中位数是峰
-    return mid;
-  }
-}
-</code></pre>
-
-<p>4.对<code>start</code>和<code>end</code>再做一次判断,因为题目给定的数组必定有峰，那么我们比较它们之间的大小即可：</p>
-
-<pre><code class="language-java">if (A[start] &lt; A[end]) {
-  return end;
-} else {
-  return start;
-}
-</code></pre>
-
-<h3 id="第四境界-自己找到答案区间并二分">第四境界——自己找到答案区间并二分</h3>
-
-<p>有时题目并没有给定我们一个数组，我们依旧可以使用二分法。<strong>当我们不知道解，但是可以确定解的范围的时候，我们可以用二分法对答案的范围进行缩小直到找到解为止。</strong></p>
-
-<p><strong>经典习题</strong></p>
-
-<p><a href="https://www.lintcode.com/problem/wood-cut/description?_from=ladder&amp;&amp;fromId=161">Wood Cut</a>(Lintcode 183)</p>
-
-<p><strong>Description</strong></p>
-
-<p><strong>English</strong></p>
-
-<p>Given n pieces of wood with length <code>L[i]</code> (integer array). Cut them into small pieces to guarantee you could have equal or more than k pieces with the same length. What is the longest length you can get from the n pieces of wood? Given L &amp; k, return the maximum length of the small pieces.</p>
+<p>这道题是一道典型的连通块问题。我们可以用两个for循环遍历整个矩阵，如果遇到岛屿就用bfs对其进行标记并且统计岛屿的数量。</p>
 
 <blockquote>
-<p>You couldn&rsquo;t cut wood into float length.</p>
-
-<p>If you couldn&rsquo;t get &gt;= <em>k</em> pieces, return <code>0</code>.</p>
+<p>Note: 在矩阵的计算中，我们常常使用is_valid()函数来检测是否越界</p>
 </blockquote>
-
-<p><strong>Chinese</strong></p>
-
-<p>有一些原木，现在想把这些木头切割成一些长度相同的小段木头，需要得到的小段的数目至少为 <code>k</code>。当然，我们希望得到的小段越长越好，你需要计算能够得到的小段木头的最大长度。</p>
-
-<blockquote>
-<p>木头长度的单位是厘米。原木的长度都是正整数，我们要求切割得到的小段木头的长度也要求是整数。无法切出要求至少 <em>k</em> 段的,则返回 <code>0</code> 即可。</p>
-</blockquote>
-
-<p>虽然这道题目并没有给我们一个数组并在上面找到解，但是我们可以锁定解的范围，并用二分法找到解。我们知道切出来的木头的长度至少为单位1，最多不能超过总原木的长度/要且出来的数量。这样我们就锁定了解的范围，接下来我们只需要找到最大满足条件的解即可。</p>
-
-<p><img src="/images/Algorithms/Lintcode159.png" width = "800" height = "500" alt="图片名称" align=center /></p>
 
 <p><strong>Python代码</strong></p>
 
-<pre><code class="language-python">class Solution:
-    &quot;&quot;&quot;
-    @param L: Given n pieces of wood with length L[i]
-    @param k: An integer
-    @return: The maximum length of the small pieces
-    &quot;&quot;&quot;
-    def woodCut(self, L, k):
-        # write your code here
-        if not L or sum(L) &lt; k:
-            return 0
-        
-        maxLen = sum(L) // k
-        return self.binarySearch(L, 1, maxLen, k)
-        
-    def binarySearch(self, L, start, end, k):
-        while start + 1 &lt; end:
-            mid = (start + end) // 2
-            if self.isWoodEnough(L, mid, k):
-                start = mid
-            else:
-                end = mid
-        
-        if self.isWoodEnough(L, end, k):
-            return end
-        else:
-            return start
-            
-    def isWoodEnough(self, L, woodLength, k):
-        count = 0
-        for i in L:
-            count += (i // woodLength)
-        if count &gt;= k:
-            return True
-        else:
-            return False
+<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
 
+class Solution:
+    
+    &quot;&quot;&quot;
+    @param grid: a boolean 2D matrix
+    @return: an integer
+    &quot;&quot;&quot;
+    def numIslands(self, grid):
+        # write your code here
+        if not grid or not grid[0]:
+            return 0
+            
+        visited = set()
+        result = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] and (i, j) not in visited:
+                    self.bfs(grid, i, j, visited)
+                    result += 1
+                    
+        return result
+        
+    def bfs(self, grid, x, y, visited):
+        queue = collections.deque([(x, y)])
+        visited.add((x, y))
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in DIRECTIONS:
+                new_x = x + dx
+                new_y = y + dy
+                if not self.is_valid(grid, new_x, new_y, visited):
+                    continue
+                queue.append((new_x, new_y))
+                visited.add((new_x, new_y))
+    
+    def is_valid(self, grid, x, y, visited):
+        n, m = len(grid), len(grid[0])
+        if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):
+            return False
+        if (x, y) in visited:
+            return False
+        return grid[x][y]
 </code></pre>
 
 <p><strong>代码解析</strong></p>
 
-<p>1.异常检测：</p>
+<p>a. 定义常量DIRECTIONS，其定义了每个点可以向上下左右四个方向移动：</p>
 
-<pre><code class="language-python">if not L or sum(L) &lt; k:
+<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+</code></pre>
+
+<p>b. 异常检测：</p>
+
+<pre><code class="language-python">if not grid or not grid[0]:
   return 0
 </code></pre>
 
-<p>2.锁定解的范围，并调用binarySearch找到解：</p>
+<p>c. 申明<code>visited</code>set用来出存已经访问过的点，申明result变量用来储存岛屿的数量：</p>
 
-<pre><code class="language-python">maxLen = sum(L) // k
-return self.binarySearch(L, 1, maxLen, k)
+<pre><code class="language-python">visited = set()
+result = 0
 </code></pre>
 
-<p>3.使用binarySearch找解，我们用isWoodEnough函数来判断中位数的解是否满足解的条件。如果不满足，我们则在左侧子数组中找满足条件的解；如果满足，我们就在右侧数组继续找满足条件的更大的解。</p>
+<p>d. for循环遍历整个矩阵，如果遍历到一个没有访问过的岛屿就对其进行bfs且将result+1：</p>
 
-<pre><code class="language-python">def binarySearch(self, L, start, end, k):
-  while start + 1 &lt; end:
-    mid = (start + end) // 2
-    if self.isWoodEnough(L, mid, k):	#解满足条件
-      start = mid		#在右侧子数组找更大的解
-    else:	#在左侧子数组中找解
-      end = mid
-
-    #对start和end进行判断  
-      if self.isWoodEnough(L, end, k):
-        return end
-      else:
-        return start
+<pre><code class="language-python">for i in range(len(grid)):
+  for j in range(len(grid[0])):
+    if grid[i][j] and (i, j) not in visited:
+      self.bfs(grid, i, j, visited)
+      result += 1
 </code></pre>
 
-<p>4.isWoodEnough函数计算出当木头长度为<code>woodLength</code>时，切出来的木头的数量是否能够 大于等于<code>k</code>：</p>
+<p>e. <code>bfs</code>函数找到这个岛屿所有的点并标记：</p>
 
-<pre><code class="language-python">def isWoodEnough(self, L, woodLength, k):
-  count = 0
-  for i in L:
-    count += (i // woodLength)
-    if count &gt;= k:
-      return True
-    else:
-      return False
+<pre><code class="language-python">def bfs(self, grid, x, y, visited):
+  queue = collections.deque([(x, y)])	#申明一个Queue
+  visited.add((x, y))	#标记
+  while queue:
+    x, y = queue.popleft()	#取出第一个节点
+    for dx, dy in DIRECTIONS:	#计算出这个节点向不同方向移动后的新节点
+      new_x = x + dx
+      new_y = y + dy
+      if not self.is_valid(grid, new_x, new_y, visited):	#如果节点合法就将其标记且加入到Queue中
+        continue
+        queue.append((new_x, new_y))
+        visited.add((new_x, new_y))
 </code></pre>
 
-<h2 id="iv-总结">IV. 总结</h2>
+<p>e. <code>is_valid</code>函数用来判断点是否合法：</p>
 
-<p>二分法是一种非常实用且流行的查找算法。我们可以使用它在排序数组、XXOO数组上求解。如果我们可以在二分后判断出解在那一半子数组中也可以使用二分法。当我们给可以锁定解的范围的时候，依旧可以用二分法在范围中找到解。</p>
+<pre><code class="language-python">def is_valid(self, grid, x, y, visited):
+  n, m = len(grid), len(grid[0])	
+  if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):	#判断是否越界
+    return False
+  if (x, y) in visited:	#判断是否被访问过
+    return False
+  return grid[x][y]
+</code></pre>
 
-<h2 id="v-参考">V. 参考</h2>
+<p>2.分层遍历（Level Order Traversal）</p>
+
+<p><a href="https://www.lintcode.com/problem/knight-shortest-path/description?_from=ladder&amp;&amp;fromId=161">Knight Shortest Path</a>(Lintcode 611)</p>
+
+<p><strong>Description</strong></p>
+
+<p><strong>English</strong></p>
+
+<p>Given a knight in a chessboard (a binary matrix with <code>0</code> as empty and <code>1</code> as barrier) with a <code>source</code> position, find the shortest path to a <code>destination</code> position, return the length of the route.
+Return <code>-1</code> if destination cannot be reached.</p>
+
+<blockquote>
+<p>source and destination must be empty.
+Knight can not enter the barrier.
+Path length refers to the number of steps the knight takes.</p>
+</blockquote>
+
+<p><strong>Chinese</strong></p>
+
+<p>给定骑士在棋盘上的 <code>初始</code> 位置(一个2进制矩阵 <code>0</code> 表示空 <code>1</code> 表示有障碍物)，找到到达 <code>终点</code> 的最短路线，返回路线的长度。如果骑士不能到达则返回 <code>-1</code> 。</p>
+
+<blockquote>
+<p>起点跟终点必定为空.
+骑士不能碰到障碍物.
+路径长度指骑士走的步数.</p>
+</blockquote>
+
+<p><img src="/images/Algorithms/Lintcode611.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+
+<p>这道题是一道典型的求最短路径的题。在求解这类问题的时候，我们只需要把求解连通块问题的BFS算法中的Hashset改为Hashmap即可。Hashmap用来标记访问过的点且记录到达每个点的最短路径。</p>
+
+<p>在这道题目中，我们需要首先定义棋子的走法，然后用一个BFS分层遍历直到找到终点为止（或者所有点都越界），最后返回终点在Hashmap中所对应的步数即可。</p>
+
+<p><strong>Python代码</strong></p>
+
+<pre><code class="language-python">&quot;&quot;&quot;
+Definition for a point.
+class Point:
+    def __init__(self, a=0, b=0):
+        self.x = a
+        self.y = b
+&quot;&quot;&quot;
+DIRECTIONS = [
+    (-2, -1), (-2, 1), (-1, 2), (1, 2),
+    (2, 1), (2, -1), (1, -2), (-1, -2)
+]
+class Solution:
+    &quot;&quot;&quot;
+    @param grid: a chessboard included 0 (false) and 1 (true)
+    @param source: a point
+    @param destination: a point
+    @return: the shortest path 
+    &quot;&quot;&quot;
+    def shortestPath(self, grid, source, destination):
+        # write your code here
+        if not grid:
+            return -1
+        
+
+        queue = collections.deque([(source.x, source.y)])
+        distance = {(source.x, source.y): 0}
+        while queue:
+            x, y = queue.popleft()
+            if x == destination.x and y == destination.y:
+                return distance[(x, y)]
+            for dx, dy in DIRECTIONS:
+                next_x, next_y = x + dx, y + dy
+                if self.is_valid(next_x, next_y, grid):
+                    if (next_x, next_y) not in distance:
+                        distance[(next_x, next_y)] = distance[(x, y)] + 1
+                        queue.append((next_x, next_y))
+
+        return -1
+    
+    def is_valid(self, x, y, grid):
+        m, n = len(grid), len(grid[0])
+        if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
+            return True
+        else:
+            return False
+</code></pre>
+
+<p><strong>代码解析</strong></p>
+
+<p>a. 定义走法：</p>
+
+<pre><code class="language-python">DIRECTIONS = [(-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2)]
+</code></pre>
+
+<p>b. 异常检测：</p>
+
+<pre><code class="language-python">if not grid:
+  return -1
+</code></pre>
+
+<p>c. 定义一个Queue，将起点放进去；定义一个Hashmap <code>distance</code>，其key为坐标，其value为最短路径。将起点放入Hashmap：</p>
+
+<pre><code class="language-python">queue = collections.deque([(source.x, source.y)])
+distance = {(source.x, source.y): 0}
+</code></pre>
+
+<p>d. 开始bfs，每次循环从queue中取出一个点，如果这个点和终点相等就返回它在Hashmap中的最短路径。如果不等，找到下一步所有的走法，如果他们合法且不在Hashmap中，那么将他们加入到Hashmap中，且加入到Queue中：</p>
+
+<pre><code class="language-python">while queue:	#如果queue不为空，循环继续
+  x, y = queue.popleft()	#取出第一个点
+  if x == destination.x and y == destination.y:	#如果此点等于终点，返回它在Hashmap中记录的最短路径
+    return distance[(x, y)]
+  for dx, dy in DIRECTIONS:	#遍历所有可以走的新点
+    next_x, next_y = x + dx, y + dy
+    if self.is_valid(next_x, next_y, grid):	
+      if (next_x, next_y) not in distance:	#如果这个点合法且不在Hashmap中
+        distance[(next_x, next_y)] = distance[(x, y)] + 1	#将新的点加入Hashmap
+        queue.append((next_x, next_y))	#将新的点加入queue中
+</code></pre>
+
+<p>e. <code>is_valid</code>函数用来判断点是否越界：</p>
+
+<pre><code class="language-python">def is_valid(self, x, y, grid):
+  m, n = len(grid), len(grid[0])
+  if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
+    return True
+  else:
+    return False
+</code></pre>
+
+<p>3.拓扑排序（Topological Sorting）</p>
+
+<p><strong>Description</strong></p>
+
+<p><strong>English</strong></p>
+
+<p>Given an directed graph, a topological order of the graph nodes is defined as follow:</p>
+
+<ul>
+<li>For each directed edge <code>A -&gt; B</code> in graph, A must before B in the order list.</li>
+<li>The first node in the order can be any node in the graph with no nodes direct to it.</li>
+</ul>
+
+<p>Find any topological order for the given graph.</p>
+
+<blockquote>
+<p>You can assume that there is at least one topological order in the graph.</p>
+</blockquote>
+
+<p><strong>Chinese</strong></p>
+
+<p>给定一个有向图，图节点的拓扑排序定义如下:</p>
+
+<ul>
+<li>对于图中的每一条有向边 <code>A -&gt; B</code> , 在拓扑排序中A一定在B之前.</li>
+<li>拓扑排序中的第一个节点可以是图中的任何一个没有其他节点指向它的节点.</li>
+</ul>
+
+<p>针对给定的有向图找到任意一种拓扑排序的顺序.</p>
+
+<blockquote>
+<p>你可以假设图中至少存在一种拓扑排序</p>
+</blockquote>
+
+<p><img src="/images/Algorithms/Lintcode127.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+
+<p>这道题要我们返回图的任意拓扑序。解题思路是这样的：</p>
+
+<p>a. 计算出每个点的入度并记录在Hashmap中</p>
+
+<p>b. 申明一个Queue，将入度为0的点放进去</p>
+
+<p>c. 用BFS遍历Queue，将Queue中取出来的所有点加入结果数组，其所有neighbor的入度-1</p>
+
+<p>d. 如果neighbor点的入度为0了，将其加入Queue中。</p>
+
+<p><strong>Python代码</strong></p>
+
+<pre><code class="language-python">&quot;&quot;&quot;
+Definition for a Directed graph node
+class DirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
+&quot;&quot;&quot;
+
+
+class Solution:
+    &quot;&quot;&quot;
+    @param: graph: A list of Directed graph node
+    @return: Any topological order for the given graph.
+    &quot;&quot;&quot;
+    def topSort(self, graph):
+        # write your code here
+        if not graph:
+            return []
+            
+        #add in-degree
+        node_to_indegree = self.get_indegree(graph)
+        
+        #bfs
+        order = []
+        start_node = [n for n in graph if node_to_indegree[n] == 0]
+        queue = collections.deque(start_node)
+        while queue:
+            node = queue.popleft()
+            order.append(node)
+            for neighbor in node.neighbors:
+                node_to_indegree[neighbor] -= 1
+                if node_to_indegree[neighbor] == 0:
+                    queue.append(neighbor)
+                    
+        return order
+                
+    def get_indegree(self, graph):
+        node_to_indegree = {x: 0 for x in graph}
+
+        for node in graph:
+            for neighbor in node.neighbors:
+                node_to_indegree[neighbor] += 1
+                
+        return node_to_indegree    
+</code></pre>
+
+<p><strong>代码解析</strong></p>
+
+<p>a. 异常检测：</p>
+
+<pre><code class="language-python">if not graph:
+  return []
+</code></pre>
+
+<p>b. 计算出所有点的入度：</p>
+
+<pre><code class="language-python">node_to_indegree = self.get_indegree(graph)
+
+def get_indegree(self, graph):
+  node_to_indegree = {x: 0 for x in graph}	#初始化所有点的入度为0
+
+  for node in graph:	#遍历图中的每个点的所有neighbor,将其neighbor的入度+1
+    for neighbor in node.neighbors:	
+      node_to_indegree[neighbor] += 1
+
+      return node_to_indegree    
+</code></pre>
+
+<p>c. 定义结果数组和Queue，并将入度为0的点加入其中：</p>
+
+<pre><code class="language-python">order = []
+start_node = [n for n in graph if node_to_indegree[n] == 0]
+queue = collections.deque(start_node)
+</code></pre>
+
+<p>d. 开始bfs算法，将queue中取出的点加入结果数组中，并将其所有neighbor的入度-1，如果neighbor点的入度为0了，将其加入Queue：</p>
+
+<pre><code class="language-python">while queue:	#当queue非空时，继续循环
+  node = queue.popleft()	#取出第一个点
+  order.append(node)	#将点加入结果数组中
+  for neighbor in node.neighbors:	#遍历点的所有neighbor
+    node_to_indegree[neighbor] -= 1	#将neighor的入度-1
+    if node_to_indegree[neighbor] == 0:	#如果入度为0，将其加入queue
+      queue.append(neighbor)
+</code></pre>
+
+<p>4.附加题目</p>
+
+<p>a. Minimum Depth of Binary Tree(Leetcode 111)</p>
+
+<p>Given a binary tree, find its minimum depth.</p>
+
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+
+<p><strong>Note:</strong> A leaf is a node with no children.</p>
+
+<p><img src="/images/Algorithms/Leetcode111.png" alt="avatar" /></p>
+
+<p>这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。</p>
+
+<p><strong>需要的变量</strong>:</p>
+
+<pre><code class="language-java">Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+int depth = 0;
+</code></pre>
+
+<p>Queue queue, int depth。</p>
+
+<p><strong>步骤</strong></p>
+
+<ol>
+<li>我们首先将根节点加入到queue中，将depth初始化为0。</li>
+<li>开始while循环，当queue为空时停止循环。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
+<li>每次循环depth++。</li>
+<li>将queue中的所有值用for循环依次poll出来，如果其没有子节点，就返回depth；如果只有一个子节点为null，那么就将另一个offer进queue里。如果两个子节点都不为null，将它们依次offer到queue中。</li>
+</ol>
+
+<p><strong>代码</strong></p>
+
+<pre><code class="language-java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int minDepth(TreeNode root) {
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        int depth = 0;
+        if (root == null) return depth;
+        queue.add(root);
+        while (!queue.isEmpty()){
+            depth++;
+            int size = queue.size();
+            for (int i=0; i&lt;size; i++) {
+                TreeNode q = queue.poll();
+                if (q.left == null &amp;&amp; q.right == null) return depth;
+                if (q.left != null) queue.offer(q.left);
+                if(q.right != null) queue.offer(q.right);
+            }
+        }
+        return depth;
+    }
+}
+</code></pre>
+
+<p>b. Binary Tree Level Order Traversal</p>
+
+<p>Given a binary tree, return the <em>level order</em> traversal of its nodes&rsquo; values. (ie, from left to right, level by level).</p>
+
+<p><img src="/images/Algorithms/Leetcode102.png" alt="avatar" /></p>
+
+<p>这道题要求我们写一个函数：输入一个Binary Tree，返回一个List<List<Integer>&gt;,其中包含每一层的所有值。</p>
+
+<p><strong>需要的变量</strong></p>
+
+<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();	//储存结果
+Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();				//用于进行BFS
+</code></pre>
+
+<p><strong>思路</strong></p>
+
+<ol>
+<li>将根节点加入到queue中。</li>
+<li>开始while循环，当queue为空时停止。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
+<li>创建一个list用于储存每一层节点的值，当一层变量结束时，将其add到result中。</li>
+<li>用for循环依次poll出queue中的所有节点，把节点的值加入到list中。</li>
+<li>如果poll出来的节点的子节点不为空就将其offer到queue中。</li>
+<li>如果list不为空，就将其add到result里面去。</li>
+<li>返回result</li>
+</ol>
+
+<p><strong>代码</strong></p>
+
+<pre><code class="language-java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+   public  List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
+        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
+        if (root == null) return result;
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+            int size = queue.size();
+            for (int i=0; i&lt;size; i++) {
+                TreeNode q = queue.poll();
+                list.add(q.val);
+                if (q.left != null) queue.offer(q.left);
+                if (q.right != null)   queue.offer(q.right);
+                }
+            if (!list.isEmpty()) result.add(new ArrayList&lt;&gt;(list));
+        }
+        return result;
+   }
+}
+</code></pre>
+
+<h2 id="v-总结">V. 总结</h2>
+
+<p>BFS是一种在图、搜索树和遍历中非常经典且常用的算法。其思路为先找到节点的每一个岔路并标记起来，再依次往前更进一步，直到找到结果或遍历完为止。做法通常为将起始点加入到queue中，然后将queue中的节点取出，搜索结果。如果结果不在，就将节点的子节点继续放到queue中重复以上过程直到找到结果或遍历完所有节点为止。</p>
+
+<h2 id="vi-参考">VI. 参考</h2>
 
 <p><a href="https://www.jiuzhang.com/">https://www.jiuzhang.com/</a></p>
+
+<p><a href="https://leetcode.com/">https://leetcode.com/</a></p>
 
 <p><a href="https://www.lintcode.com/">https://www.lintcode.com/</a></p>
 
@@ -885,8 +1091,8 @@ return self.binarySearch(L, 1, maxLen, k)
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/regular-expression/"
-                class="button big previous">正则表达式</a></li>
+        <li><a href="/blog/cs/algorithms_binary-search/"
+                class="button big previous">二分查找</a></li>
     
 
     
@@ -905,7 +1111,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_binary-search%2f&amp;text=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;text=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -915,7 +1121,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_binary-search%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -926,7 +1132,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_binary-search%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -936,7 +1142,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_binary-search%2f&amp;title=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -946,7 +1152,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_binary-search%2f&amp;title=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -956,7 +1162,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_binary-search%2f&amp;title=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -966,7 +1172,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_binary-search%2f&amp;description=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;description=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -976,7 +1182,7 @@ return self.binarySearch(L, 1, maxLen, k)
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_binary-search%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -1123,6 +1329,47 @@ return self.binarySearch(L, 1, maxLen, k)
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-09-01'>
+                September 1, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/09/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/blog/cs/algorithms_binary-search/">二分查找</a>
               </h3>
               
@@ -1170,20 +1417,6 @@ return self.binarySearch(L, 1, maxLen, k)
               
               <time class="published" datetime='2020-08-03'>
                 August 3, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/point/">Java中的&#34;指针&#34;——引用变量</a>
-              </h3>
-              
-              <time class="published" datetime='2020-08-02'>
-                August 2, 2020
               </time>
             </header>
             
