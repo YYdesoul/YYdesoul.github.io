@@ -580,15 +580,11 @@
 
 <p><strong>常见的使用场景</strong></p>
 
-<ol>
-<li>连通块问题（Connected Component）</li>
-</ol>
+<p>1.连通块问题（Connected Component）</p>
 
 <p>连通块问题是指通过一个点找到图中所联通的所有点的问题。这类问题我们可以用经典的BFS加上HashSet来解决。</p>
 
-<ol>
-<li>分层遍历（Level Order Traversal）</li>
-</ol>
+<p>2.分层遍历（Level Order Traversal）</p>
 
 <p>分层遍历问题要求我们在图中按层次进行遍历，常见的分层遍历问题有简单图的最短路径问题(Simple Graph Shortest Path)</p>
 
@@ -596,9 +592,7 @@
 <p>Note: 简单图指的是每条边的距离相等，或者都视作长度为单位1的图。</p>
 </blockquote>
 
-<ol>
-<li>拓扑排序（Topological Sorting）</li>
-</ol>
+<p>3.拓扑排序（Topological Sorting）</p>
 
 <p>拓扑排序是一种对图中节点的排序。在这种排序中，假若A点指向B点，则A点的序在B点前。同一种图可能有不同的拓扑序。BFS可以用来求任意拓扑序、求一张图是否有拓扑序（如果是图中存在循环则没有拓扑序）、求字典序最小的拓扑序和求图中是否有唯一拓扑序。</p>
 
@@ -614,7 +608,7 @@
 
 <h2 id="iv-经典习题">IV. 经典习题</h2>
 
-<p>1.连通块问题（Connected Component）</p>
+<p><strong>1.连通块问题（Connected Component）</strong></p>
 
 <p>a. <a href="https://www.lintcode.com/problem/number-of-islands/description?_from=ladder&amp;&amp;fromId=161">Number of Islands</a>(Lintcode 433)</p>
 
@@ -744,7 +738,7 @@ result = 0
   return grid[x][y]
 </code></pre>
 
-<p>2.分层遍历（Level Order Traversal）</p>
+<p><strong>2.分层遍历（Level Order Traversal）</strong></p>
 
 <p><a href="https://www.lintcode.com/problem/knight-shortest-path/description?_from=ladder&amp;&amp;fromId=161">Knight Shortest Path</a>(Lintcode 611)</p>
 
@@ -869,7 +863,7 @@ distance = {(source.x, source.y): 0}
     return False
 </code></pre>
 
-<p>3.拓扑排序（Topological Sorting）</p>
+<p><strong>3.拓扑排序（Topological Sorting）</strong></p>
 
 <p><strong>Description</strong></p>
 
@@ -1003,7 +997,7 @@ queue = collections.deque(start_node)
       queue.append(neighbor)
 </code></pre>
 
-<p>4.附加题目</p>
+<p><strong>4.附加题目</strong></p>
 
 <p>a. Minimum Depth of Binary Tree(Leetcode 111)</p>
 
@@ -1357,9 +1351,6 @@ class Solution {
 
 
 
-  
-  
-    
   
 
 
