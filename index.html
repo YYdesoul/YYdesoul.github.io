@@ -425,7 +425,7 @@
 
 <p><strong>定义：Java Web，使用Java技术来解决相关web互联网领域，尤其是动态web资源开发的技术栈。</strong>web由<strong>web服务器</strong>和<strong>web客户端</strong>两个部分组成。Java在客户端的应用有Java Applet,不过使用的很少。但是在服务器端，Java的应用十分丰富，比如Servlet, JSP, 第三方框架等。</p>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/javaweb_原理.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/javaweb_原理.png" alt="javaweb_原理" /></p>
 
 <p>动态web的运作过程往往如下：</p>
 
@@ -510,7 +510,7 @@
 <li>给出响应的信息</li>
 </ul>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/servlet_原理.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/servlet_原理.png" alt="javaweb_原理" /></p>
 
 <h4 id="b-传输对象">b. 传输对象</h4>
 
@@ -568,7 +568,7 @@ resp.sendRedirect(&quot;path&quot;);
 
 <p>重定向和请求转发都会实现页面转跳。不同的是，<strong>请求转发时url不会产生变化(状态码307)，重定向时，url会发生变化(状态码302)。</strong></p>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/重定向vs转发.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/重定向vs转发.png" alt="javaweb_原理" /></p>
 
 <h4 id="c-数据共享">c. 数据共享</h4>
 
@@ -576,7 +576,7 @@ resp.sendRedirect(&quot;path&quot;);
 
 <p><strong>web容器在启动的时候，它会为每个web程序都创建一个对应的ServletContext对象，它代表了当前的web应用，实现了数据共享。</strong></p>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/servletcontext.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/servletcontext.png" alt="javaweb_原理" /></p>
 
 <p>ServletContext的使用：</p>
 
@@ -612,7 +612,7 @@ resp.sendRedirect(&quot;path&quot;);
 <li>不设置有效期，关闭浏览器，Cookie自动失效;</li>
 </ul>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/cookie.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/cookie.png" alt="javaweb_原理" /></p>
 
 <p>Cookie使用：</p>
 
@@ -638,7 +638,7 @@ resp.addCookie(cookie);
 <li>在整个网站中经常会使用的数据，我们将它保存在Session中;</li>
 </ul>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/session.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/session.png" alt="javaweb_原理" /></p>
 
 <p>Session和Cookie的区别：</p>
 
@@ -787,7 +787,7 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>当JSP页面被访问时，Tomcat服务器会在其work目录下生成一个与之对应的.java和.class文件，里面的代码是等价于此JSP文件的Servlet实现类，而服务器执行的其实就是这个Servlet实现类。因此，<strong>JSP本质上就是一个Servlet,其目的是为了简化开发，写JSP和写Servlet等价</strong>。</p>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/jsp_原理.png" alt="javaweb_原理" /></p>
+<p><img src="/images/CS/jsp_原理.png" alt="javaweb_原理" /></p>
 
 <h4 id="c-jsp基础语法">c.JSP基础语法</h4>
 
@@ -951,7 +951,7 @@ application.setAttribute(&quot;name4&quot;,&quot;小明4号&quot;); //保存的�
 <li>控制视图的跳转</li>
 </ul>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/mvc框架.png" alt="mvc框架" /></p>
+<p><img src="/images/CS/mvc框架.png" alt="mvc框架" /></p>
 
 <p>MVC架构项目的工作流程如下(用户登录案例)：</p>
 
@@ -1362,7 +1362,7 @@ public class UserServiceImpl implements UserService{
 
 <p>由于每一种数据库都有自己的驱动方式，如果我们每连接一个数据库就自己写一个数据库连接实现，那么工程过于繁琐。JDBC就是在Java应用和数据库之间用于解决此问题的中间层接口。这使得我们只需要使用JDBC就可以连接Java应用和各种数据库。</p>
 
-<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/jdbc_原理.png" alt="jdbc_原理" /></p>
+<p><img src="/images/CS/jdbc_原理.png" alt="jdbc_原理" /></p>
 
 <p><strong>JDBC固定步骤</strong>：</p>
 
