@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>人工智能 on YY的主页</title>
+    <link>/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+    <description>Recent content in 人工智能 on YY的主页</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>朴素贝叶斯</title>
+      <link>/blog/ai/naive_bayes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ai/naive_bayes/</guid>
+      <description>朴素贝叶斯 朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间相互独立（朴素）为条件，并运用贝叶斯定理为数学基础的概率分类器。主要用于解决分类问题。
+本文将从数学理论、工程技巧以及代码实现这三个方面来讲述朴素贝叶斯算法，并以kaggle项目垃圾邮件分类为例子进行分析与解释。
+I. 数学理论 1.基础数学理论 理解朴素贝叶斯我们需要首先掌握以下数学理论：
+a. 概率
+概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。
+b. 条件概率
+条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。
+c. 基础概率公式
+1). $$ P(A \cap B) = P(B \cap A) $$
+2). $$ P(A|B) * P(B) = P(A \cap B) $$
+3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$
+d. 贝叶斯公式
+贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$
+其推导过程如下：
+$$ P (A \cap B) = P (B \cap A) $$</description>
+    </item>
+    
+  </channel>
+</rss>

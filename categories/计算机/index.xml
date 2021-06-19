@@ -6,10 +6,32 @@
     <description>Recent content in 计算机 on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java Web</title>
+      <link>/blog/cs/javaweb/</link>
+      <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/javaweb/</guid>
+      <description>I. 简介 互联网在我们的日常生活中已经无处不在，例如我们时常在电商网站上买东西，每个人有自己的购物车，有自己的收藏夹；我们使用社交网络网站时，每个人有自己的关注、订阅已经收藏内容等。这一切都的应用都是基于动态web的技术上。不同于仅仅用html, css和js开发的静态web网站，动态web网站提供给不同用户浏览的是不同的数据。而Java Web正是Java技术中用于动态web资源开发的的技术。
+定义：Java Web，使用Java技术来解决相关web互联网领域，尤其是动态web资源开发的技术栈。web由web服务器和web客户端两个部分组成。Java在客户端的应用有Java Applet,不过使用的很少。但是在服务器端，Java的应用十分丰富，比如Servlet, JSP, 第三方框架等。
+动态web的运作过程往往如下：
+ 用户在客户端向服务器端发送一个请求(Request)（比如请求查看一个网页） 服务器的WebServer Plugin部分接收到客户端的请求后，如果是静态资源请求，那么直接由WebServer从服务器中将静态资源提取出来；如果是动态资源请求，由Servlet/JSP将动态资源从数据库中提取并处理好并交给WebServer(比如数据库中某个用户的详细信息) 由WebServer将得到的静态/动态资源作为响应(Response)发送给客户端的用户  所以说，整个流程我们需要有一个客户端、一个服务器端。而服务器端又分为Web Server Plugin, WebServer, Servlet/JSP, 静态资源和数据库这些部分。其中Web Server Plugin部分不需要考虑；而静态资源就是html、css、js、图片、音频、视频等文件；数据库各式各样，比如MySQL, Oracle, Postgresql等，由JDBC将Java项目和这些数据库连接起来，不是本文讨论的主要内容；至于WebServer，市面上有非常成熟的产品，如ASP和Tomcat。另外，在客户端与服务器端传输中我们会用到Http协议，而Web开发中，由于要导入大量的jar包文件（Servlet包、jsp包、数据库驱动包等等），而Maven技术正是方便我们导包的实用工具，本文第II部分会详细介绍它们。所以，Web开发主要是针对Servlet/JSP，以及后台Servlet和数据库之间交互的一些算法逻辑，本文的第III部分会详细介绍他们。而文章的IV部分会详细介绍目前非常成熟且实用的MVC开发架构。第V部分会介绍一些实用的用于数据传输的小工具Ajax和Json。第VI部分中，我会详细介绍一些在Java Web开发中容易踩的一些坑和一些小技巧。
+II. 相关开发工具 1. Tomcat Tomcat是Apache软件基金会的Jakarta项目中的一个核心项目，最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，因为Tomcat 技术先进、性能稳定，而且免费，因 而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。
+Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和 并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个Java初学web的人 来说，它是最佳的选择。
+Tomcat 实际上运行JSP 页面和Servlet。其端口默认为8080。
+Tomcat使用起来非常简单。我们只需要在其官网下载它并安装/解压。接着在项目中配置好，就可以启动了。
+2. HTTP HTTP（超文本传输协议）是一个简单的通常运行在TCP之上的请求-响应协议。超文本主要指的是图片、音乐、视频、定位、地图等等。其端口默认为80。而更加安全的HTTPs的默认端口号为443。
+Http主要有两个时代。HTTP1.0（HTTP/1.0）时代时，客户端与web服务器连接后只能获得一个web资源，之后便断开连接；HTTP2.0时代（HTTP/1.1），客户端可以与web服务器连接后，可以获得多个web资源。
+HTTP分为请求和响应。
+HTTP请求由客户端发起，服务器端接收。请求的方式有GET, POST, DELETE, PUT, TRACT&amp;hellip; 其中最重要的为GET和POST请求：
+ get:请求能够携带的参数比较少，大小有限制，会在浏览器的URL地址栏显示数据内容，不安全，但高效 post:请求能够携带的参数没有限制，大小没有限制，不会在浏览器的URL地址栏显示数据内容，安全，但不高效。  HTTP响应由服务器端发起，客户端接收。HTTP响应携带响应状态码，其中重要的有：
+ 200:请求响应成功 200 3xx:请求重定向 （重定向:你重新到我给你新位置去;）</description>
+    </item>
     
     <item>
       <title>广度优先搜索算法（Breadth-First-Search）</title>

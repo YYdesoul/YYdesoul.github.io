@@ -1,0 +1,1173 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "/"
+        },
+        "articleSection" : "blog",
+        "name" : "朴素贝叶斯",
+        "headline" : "朴素贝叶斯",
+        "description" : "朴素贝叶斯 朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间相互独立（朴素）为条件，并运用贝叶斯定理为数学基础的概率分类器。主要用于解决分类问题。
+本文将从数学理论、工程技巧以及代码实现这三个方面来讲述朴素贝叶斯算法，并以kaggle项目垃圾邮件分类为例子进行分析与解释。
+I. 数学理论 1.基础数学理论 理解朴素贝叶斯我们需要首先掌握以下数学理论：
+a. 概率
+概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。
+b. 条件概率
+条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。
+c. 基础概率公式
+1). $$ P(A \cap B) = P(B \cap A) $$
+2). $$ P(A|B) * P(B) = P(A \cap B) $$
+3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$
+d. 贝叶斯公式
+贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$
+其推导过程如下：
+$$ P (A \cap B) = P (B \cap A) $$",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "0001",
+        "datePublished": "0001-01-01 00:00:00 &#43;0000 UTC",
+        "dateModified" : "0001-01-01 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/ai/naive_bayes/",
+        "wordCount" : "165",
+        "keywords" : [ "Blog" ]
+    }
+    </script>
+        
+            
+                <title>朴素贝叶斯</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.52" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="YY的主页">
+  <meta name="msapplication-tooltip" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="小羽">
+        
+        
+            
+                <meta name="description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="朴素贝叶斯"/>
+<meta name="twitter:description" content="朴素贝叶斯 朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间相互独立（朴素）为条件，并运用贝叶斯定理为数学基础的概率分类器。主要用于解决分类问题。
+本文将从数学理论、工程技巧以及代码实现这三个方面来讲述朴素贝叶斯算法，并以kaggle项目垃圾邮件分类为例子进行分析与解释。
+I. 数学理论 1.基础数学理论 理解朴素贝叶斯我们需要首先掌握以下数学理论：
+a. 概率
+概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。
+b. 条件概率
+条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。
+c. 基础概率公式
+1). $$ P(A \cap B) = P(B \cap A) $$
+2). $$ P(A|B) * P(B) = P(A \cap B) $$
+3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$
+d. 贝叶斯公式
+贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$
+其推导过程如下：
+$$ P (A \cap B) = P (B \cap A) $$"/>
+
+        <meta property="og:title" content="朴素贝叶斯" />
+<meta property="og:description" content="朴素贝叶斯 朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间相互独立（朴素）为条件，并运用贝叶斯定理为数学基础的概率分类器。主要用于解决分类问题。
+本文将从数学理论、工程技巧以及代码实现这三个方面来讲述朴素贝叶斯算法，并以kaggle项目垃圾邮件分类为例子进行分析与解释。
+I. 数学理论 1.基础数学理论 理解朴素贝叶斯我们需要首先掌握以下数学理论：
+a. 概率
+概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。
+b. 条件概率
+条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。
+c. 基础概率公式
+1). $$ P(A \cap B) = P(B \cap A) $$
+2). $$ P(A|B) * P(B) = P(A \cap B) $$
+3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$
+d. 贝叶斯公式
+贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$
+其推导过程如下：
+$$ P (A \cap B) = P (B \cap A) $$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ai/naive_bayes/" />
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="朴素贝叶斯">
+<meta itemprop="description" content="朴素贝叶斯 朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间相互独立（朴素）为条件，并运用贝叶斯定理为数学基础的概率分类器。主要用于解决分类问题。
+本文将从数学理论、工程技巧以及代码实现这三个方面来讲述朴素贝叶斯算法，并以kaggle项目垃圾邮件分类为例子进行分析与解释。
+I. 数学理论 1.基础数学理论 理解朴素贝叶斯我们需要首先掌握以下数学理论：
+a. 概率
+概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。
+b. 条件概率
+条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。
+c. 基础概率公式
+1). $$ P(A \cap B) = P(B \cap A) $$
+2). $$ P(A|B) * P(B) = P(A \cap B) $$
+3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$
+d. 贝叶斯公式
+贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$
+其推导过程如下：
+$$ P (A \cap B) = P (B \cap A) $$">
+
+
+
+<meta itemprop="wordCount" content="165">
+
+
+
+<meta itemprop="keywords" content="" />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>首页
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>关于
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/itemized/">
+                            <i class="fa fa-list">&nbsp;</i>归档
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="fa fa-sitemap">&nbsp;</i>分类
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-tags">&nbsp;</i>标签
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/contact/">
+                            <i class="fa fa-envelope-o">&nbsp;</i>联系
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type=hidden name=domains value="yanyusoul.com">
+                    <input type=hidden name=sitesearch value="yanyusoul.com">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>首页
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>关于
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>博客
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/itemized/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>归档
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="fa fa-sitemap">&nbsp;</i>分类
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-tags">&nbsp;</i>标签
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/contact/">
+                            <h3>
+                                <i class="fa fa-envelope-o">&nbsp;</i>联系
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>近期博文</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/javaweb/">Java Web</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2021-06-19'>
+                                    June 19, 2021</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/09/" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-28'>
+                                    August 28, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/regular-expression/">正则表达式</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-15'>
+                                    August 15, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-05'>
+                                    August 5, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fai%2fnaive_bayes%2f&amp;text=%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2fblog%2fai%2fnaive_bayes%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fai%2fnaive_bayes%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2fblog%2fai%2fnaive_bayes%2f&amp;title=%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fai%2fnaive_bayes%2f&amp;title=%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fai%2fnaive_bayes%2f&amp;title=%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fai%2fnaive_bayes%2f&amp;description=%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fai%2fnaive_bayes%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ai/naive_bayes/">朴素贝叶斯</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='0001-01-01'>
+            January 1, 0001</time>
+        <span class="author">小羽</span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+
+  
+
+  <div id="content">
+    
+
+<h1 id="朴素贝叶斯">朴素贝叶斯</h1>
+
+<p>朴素贝叶斯是一种统计类机器学习算法。此算法是以假设特征之间<strong>相互独立（朴素）</strong>为条件，并运用<strong>贝叶斯定理</strong>为数学基础的概率分类器。主要用于解决分类问题。</p>
+
+<p>本文将从<strong>数学理论</strong>、<strong>工程技巧</strong>以及<strong>代码实现</strong>这三个方面来讲述朴素贝叶斯算法，并以kaggle项目<a href="https://www.kaggle.com/uciml/sms-spam-collection-dataset">垃圾邮件分类</a>为例子进行分析与解释。</p>
+
+<h2 id="i-数学理论">I. 数学理论</h2>
+
+<h3 id="1-基础数学理论">1.基础数学理论</h3>
+
+<p>理解朴素贝叶斯我们需要首先掌握以下数学理论：</p>
+
+<p><strong>a. 概率</strong></p>
+
+<p>概率是0到1之间的实数，是对事件放生可能性的度量。其数学符号为P(x)。x表示事件，P(x)表示x事件发生的概率。举例而言，x表示明天是晴天，那么P(x) = 0.9就表示明天是晴天的概率为90%。</p>
+
+<p><strong>b. 条件概率</strong></p>
+
+<p>条件概率表示的是某事件在另一个事件已经发生了的条件下发生的概率。其数学符号为P(A|B)。A和B是两个事件，P(A|B)表示事件A在事件B已经发生下发生的概率。比如说A事件为小明去操场踢足球，B事件为下雨，那么P(A|B) = 0.01就表示小明在天已经开始下雨的条件下还去踢足球的概率为1%。</p>
+
+<p><strong>c. 基础概率公式</strong></p>
+
+<p>1). $$ P(A \cap B) = P(B \cap A) $$</p>
+
+<p>2). $$ P(A|B) * P(B) = P(A \cap B) $$</p>
+
+<p>3) 如何A和B两个事件彼此独立，那么：$$ P(A \cap B) = P(A) \ast P(B) $$</p>
+
+<p><strong>d. 贝叶斯公式</strong></p>
+
+<p>贝叶斯公式为：$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$</p>
+
+<p>其推导过程如下：</p>
+
+<p>$$ P (A \cap B) = P (B \cap A) $$</p>
+
+<p>$$ P (A|B) \ast P(B) = P(B|A) \ast P(A) $$</p>
+
+<p>$$ P(A|B) = \frac{P(B|A) \ast P(A)}{P(B)}$$</p>
+
+<p><strong>e. 概率计算方法</strong></p>
+
+<p>统计学上有不同的概率计算方法，例如<strong>二项分布(Binomial Distribution)，多项式分布(Multinomial Distribution)和高斯分布(Normal Distribution or Gaussian Distribution)</strong>。在使用贝叶斯公式时，根据实际情况我们选择不同的概率分布来计算概率。</p>
+
+<h3 id="2-将贝叶斯公式用于实际问题">2. 将贝叶斯公式用于实际问题</h3>
+
+<p>我们本次选用的案例为判断一封邮件&rdquo;A Great Deal&rdquo;为垃圾邮件(Spam)还是非垃圾邮件(Ham)。选用贝叶斯公式来进行求解，那么我们会产生如下两种思路：</p>
+
+<p><strong>a. 基于概念对比的角度：比较P(&ldquo;SPAM&rdquo;| &ldquo;A Great Deal&rdquo;) 与P(&ldquo;HAM&rdquo;|A Great Problem) 之间的大小</strong></p>
+
+<p><strong>b. 查看&rdquo;A Great Deal&rdquo;在垃圾邮件里面出现得多还是在非垃圾邮件里面出现的多，并以此判断此邮件是否为垃圾邮件，即：比较P(&ldquo;A Great Deal&rdquo;|&ldquo;SPAM&rdquo;) 与 P(&ldquo;A Great Deal&rdquo;|&ldquo;HAM&rdquo;)之间的大小</strong></p>
+
+<p>前者更接近问题本质但是很难求解概率，后者完全基于经验主义，但是它相对容易统计。我们将后者称之为<strong>似然函数</strong>。</p>
+
+<p>我们还知道P(A|B)和P(B|A)之间可以通过公式相互转化。那么我们自然会选择后者作为我们的思路。所以，我们在此问题下需要求解的概率为：$$ \frac{P(A Great Deal| SPAM) \ast P(SPAM)}{P(A Great Deal)}$$</p>
+
+<p>其中，有三种概率需要求解：</p>
+
+<p>1）P(A)：即P(SPAM)，叫作先验概率(Prior Probability)。&rdquo;先验&rdquo;指的是不考虑B的因素。</p>
+
+<p>2）P(A|B)：即P(SPAM|A Great Deal)，叫作后验概率(Posterior Probability),因为它是已知B后求A的概率。</p>
+
+<p>3)  P(B|A)：即P(A Great Deal|SPAM)，叫作似然函数(Likelihood function),是基于经验主义来做判断的概率。</p>
+
+<h3 id="3-朴素贝叶斯">3. 朴素贝叶斯</h3>
+
+<p>我们继续使用上述例子就会发现，如果我们直接计算P(&ldquo;A Great Deal|SPAM&rdquo;)出现过的次数显然条件过于苛刻了。我们要通过P(&ldquo;A|SPAM&rdquo;)、P(&ldquo;Great|SPAM&rdquo;)和P(&ldquo;Deal|SPAM&rdquo;)以及其之间的关联性来计算出P(&ldquo;A Great Deal&rdquo;)。但是这样一来问题就会过度复杂化，于是乎我们在这里引入朴素贝叶斯的概念。</p>
+
+<p><strong>朴素贝叶斯</strong>假设所有事件之间没有关联性。这样一来，我们就能得到如下公式:$$ P(AGreatDeal|SPAM) = P(A|SPAM) \ast P(Great|SPAM) \ast P(Deal|SPAM)$$</p>
+
+<h3 id="4-朴素贝叶斯算法流程">4. 朴素贝叶斯算法流程</h3>
+
+<h2 id="ii-工程技巧">II. 工程技巧</h2>
+
+<h2 id="iii-代码实现">III. 代码实现</h2>
+
+<h2 id="iv-总结">IV. 总结</h2>
+
+<h2 id="v-参考">V. 参考</h2>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">人工智能</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+
+<ul class="actions pagination">
+    
+
+    
+        <li><a href="/blog/culture/wenmingzhiguang/"
+                class="button big next">读《文明之光》有感</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/' class="logo"><img src="/img/main/logo.jpeg" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>YY的主页</h2>
+        <p>YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/YYdesoul" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/in/example" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/oEn.de.soul" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/example" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="mailto:example" title="Email" class="fa fa-envelope"></a></li>
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>近期博文</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/javaweb/">Java Web</a>
+              </h3>
+              
+              <time class="published" datetime='2021-06-19'>
+                June 19, 2021
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
+              </h3>
+              
+              <time class="published" datetime='2020-09-01'>
+                September 1, 2020
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
+            <img src="/img/2020/09/" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_binary-search/">二分查找</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-28'>
+                August 28, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/regular-expression/">正则表达式</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-15'>
+                August 15, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/algorithms_fast-slow-points/">双指针算法之快慢指针</a>
+              </h3>
+              
+              <time class="published" datetime='2020-08-05'>
+                August 5, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">更多博文</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+  
+  
+    <section id="categories">
+      <header>
+        <h3>
+          <a href="/categories/">分类</a>
+        </h3>
+      </header>
+        
+          
+        
+
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                <span style="float:right;">10</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">读书分享</a>
+                <span style="float:right;">5</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E5%BD%92%E6%A1%A3/">归档</a>
+                <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+                <span style="float:right;">1</span>
+              
+            </header>
+          </article>
+        </p>
+        
+    </section>
+  
+  
+
+  
+  
+    <section id="mini-bio">
+      <h3>关于</h3>
+      <p>关于博主的一些信息。</p>
+      <a href="/about/" class="button">更多</a>
+    </section>
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/YYdesoul" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/in/example" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/oEn.de.soul" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/example" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="mailto:example" title="Email" class="fa fa-envelope"></a></li>
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2021
+        
+          YY的主页
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

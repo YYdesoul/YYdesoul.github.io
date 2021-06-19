@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/cs/javaweb/</loc>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/cs/algorithms_breadth-first-search/</loc>
     <lastmod>2020-09-01T00:00:00+00:00</lastmod>
   </url>
@@ -100,7 +105,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -116,6 +121,12 @@
   </url>
   
   <url>
+    <loc>/tags/java/</loc>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2020-07-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -123,7 +134,12 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <priority>0</priority>
   </url>
   
@@ -152,6 +168,10 @@
   </url>
   
   <url>
+    <loc>/blog/ai/naive_bayes/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/%E7%A7%91%E6%8A%80/</loc>
     <lastmod>2016-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -169,13 +189,13 @@
   
   <url>
     <loc>/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

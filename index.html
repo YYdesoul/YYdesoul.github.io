@@ -20,9 +20,9 @@
         "publisher": "",
         "accountablePerson" : "",
         "copyrightHolder" : "",
-        "copyrightYear" : "2020",
-        "datePublished": "2020-09-01 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-09-01 00:00:00 &#43;0000 UTC",
+        "copyrightYear" : "2021",
+        "datePublished": "2021-06-19 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2021-06-19 00:00:00 &#43;0000 UTC",
         "url" : "/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -70,7 +70,7 @@
 <meta property="og:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-09-01T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2021-06-19T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -284,6 +284,18 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/cs/javaweb/">Java Web</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2021-06-19'>
+                                    June 19, 2021</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h3>
                                 
                                 <time class="published" datetime=
@@ -357,18 +369,6 @@
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-08-03'>
-                                    August 3, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
 
                 
                     <a href=
@@ -391,21 +391,21 @@
   <header>
     <div class="title">
         
-            <h2><a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a></h2>
+            <h2><a href="/blog/cs/javaweb/">Java Web</a></h2>
         
         
-            <p>算法专栏</p>
+            <p>Java Web</p>
         
     </div>
     <div class="meta">
         
 
         <time class="published"
-            datetime='2020-09-01'>
-            September 1, 2020</time>
+            datetime='2021-06-19'>
+            June 19, 2021</time>
         <span class="author">小羽</span>
         
-            <p>7 minute read</p>
+            <p>8 minute read</p>
         
         
     </div>
@@ -415,631 +415,679 @@
   
 
   
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/cs/algorithms_breadth-first-search/" class="image featured">
-            <img src="/img/2020/09/" alt="">
-        </a>
-    
-
 
   <div id="content">
     
 
-<p>上次在介绍完功能强大的深度优先搜索算法(DFS)后，这次我来给大家介绍一下另一个功能类似且同样强大的经典算法——广度优先搜索算法 Breadth-First-Search（BFS）。</p>
+<h2 id="i-简介">I. 简介</h2>
 
-<h2 id="i-算法定义">I. 算法定义</h2>
+<p>互联网在我们的日常生活中已经无处不在，例如我们时常在电商网站上买东西，每个人有自己的购物车，有自己的收藏夹；我们使用社交网络网站时，每个人有自己的关注、订阅已经收藏内容等。这一切都的应用都是基于动态web的技术上。不同于仅仅用html, css和js开发的静态web网站，<strong>动态web网站提供给不同用户浏览的是不同的数据</strong>。而Java Web正是Java技术中用于动态web资源开发的的技术。</p>
 
-<p>BFS同DFS一样，是一种用于遍历、搜索树或图的一种搜索算法。与DFS会先一路走到黑不同，BFS会从根节点开始搜索，在每一个路口面临分叉的时候，先把每个岔路记录下来，然后再去一个一个的往前走一步。</p>
+<p><strong>定义：Java Web，使用Java技术来解决相关web互联网领域，尤其是动态web资源开发的技术栈。</strong>web由<strong>web服务器</strong>和<strong>web客户端</strong>两个部分组成。Java在客户端的应用有Java Applet,不过使用的很少。但是在服务器端，Java的应用十分丰富，比如Servlet, JSP, 第三方框架等。</p>
 
-<p>左下图是BFS搜索路线的一个例子。加入我们要找的是节点5。BFS首先搜索根节点0，然后会依次搜索它的两个子节点(节点1,节点2)，路线为：0-&gt;1-&gt;2。接着会去搜索节点1和节点2的子节点（节点3，4，5，6），所以最终路线为：0-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5。</p>
+<p><img src="/images/CS/javaweb_原理.png" alt="javaweb_原理" /></p>
 
-<p>BFS的时间复杂度为O(N + M)，N为节点的数量，M为边的数量。</p>
-
-<p><img src="/images/Algorithms/dfs.png" alt="avatar" /></p>
-
-<h2 id="ii-实现方法">II. 实现方法</h2>
-
-<p>由于BFS会在每个岔路口首先储存所有岔道的特性，通常BFS会和Queue（先进先出）一同使用。步骤如下：</p>
+<p>动态web的运作过程往往如下：</p>
 
 <ol>
-<li>将根节点加入到Queue中</li>
-<li>使用while循环，当Queue为空时，结束循环。</li>
-<li>将Queue中的节点依次poll出来检查。</li>
-<li>如果没有找到要找的值，就将poll出来的节点的子节点再加入到Queue中（如果没有子节点就不加）。</li>
+<li>用户在客户端向服务器端发送一个<strong>请求(Request)</strong>（比如请求查看一个网页）</li>
+<li>服务器的<strong>WebServer Plugin</strong>部分接收到客户端的请求后，如果是静态资源请求，那么直接由<strong>WebServer</strong>从服务器中将静态资源提取出来；如果是<strong>动态资源</strong>请求，由<strong>Servlet/JSP</strong>将动态资源从<strong>数据库</strong>中提取并处理好并交给<strong>WebServer</strong>(比如数据库中某个用户的详细信息)</li>
+<li>由<strong>WebServer</strong>将得到的静态/动态资源作为<strong>响应(Response)</strong>发送给客户端的用户</li>
 </ol>
 
-<h2 id="iii-使用场景">III. 使用场景</h2>
+<p>所以说，整个流程我们需要有一个客户端、一个服务器端。而服务器端又分为<strong>Web Server Plugin, WebServer, Servlet/JSP, 静态资源和数据库</strong>这些部分。其中Web Server Plugin部分不需要考虑；而静态资源就是html、css、js、图片、音频、视频等文件；数据库各式各样，比如MySQL, Oracle, Postgresql等，由JDBC将Java项目和这些数据库连接起来，不是本文讨论的主要内容；至于<strong>WebServer</strong>，市面上有非常成熟的产品，如ASP和<strong>Tomcat</strong>。另外，在客户端与服务器端传输中我们会用到Http协议，而Web开发中，由于要导入大量的jar包文件（Servlet包、jsp包、数据库驱动包等等），而Maven技术正是方便我们导包的实用工具，本文第II部分会详细介绍它们。所以，<strong>Web开发主要是针对Servlet/JSP，以及后台Servlet和数据库之间交互的一些算法逻辑</strong>，本文的第III部分会详细介绍他们。而文章的IV部分会详细介绍目前非常成熟且实用的MVC开发架构。第V部分会介绍一些实用的用于数据传输的小工具Ajax和Json。第VI部分中，我会详细介绍一些在Java Web开发中容易踩的一些坑和一些小技巧。</p>
 
-<p><strong>常见的数据结构</strong></p>
+<h2 id="ii-相关开发工具">II. 相关开发工具</h2>
 
-<p>BFS通常在<strong>图(graph)</strong>或者<strong>二叉树(BST)</strong>(实际上BST是一种特殊的图)上使用。在图上使用时，我们往往使用<strong>HashSet</strong>或者<strong>HashMap</strong>来避免指针向回走。</p>
+<h3 id="1-tomcat">1. Tomcat</h3>
 
-<p><strong>常见的使用场景</strong></p>
+<p>Tomcat是Apache软件基金会的Jakarta项目中的一个核心项目，最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，因为Tomcat 技术先进、性能稳定，而且<strong>免费</strong>，因 而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。</p>
 
-<p>1.连通块问题（Connected Component）</p>
+<p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和 并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个Java初学web的人 来说，它是最佳的选择。</p>
 
-<p>连通块问题是指通过一个点找到图中所联通的所有点的问题。这类问题我们可以用经典的BFS加上HashSet来解决。</p>
+<p>Tomcat 实际上运行JSP 页面和Servlet。其端口默认为8080。</p>
 
-<p>2.分层遍历（Level Order Traversal）</p>
+<p>Tomcat使用起来非常简单。我们只需要在其官网下载它并安装/解压。接着在项目中配置好，就可以启动了。</p>
 
-<p>分层遍历问题要求我们在图中按层次进行遍历，常见的分层遍历问题有简单图的最短路径问题(Simple Graph Shortest Path)</p>
+<h3 id="2-http">2. HTTP</h3>
 
-<blockquote>
-<p>Note: 简单图指的是每条边的距离相等，或者都视作长度为单位1的图。</p>
-</blockquote>
+<p>HTTP（超文本传输协议）是一个简单的通常<strong>运行在TCP之上</strong>的<strong>请求-响应协议</strong>。超文本主要指的是图片、音乐、视频、定位、地图等等。其端口默认为80。而更加安全的HTTPs的默认端口号为443。</p>
 
-<p>3.拓扑排序（Topological Sorting）</p>
+<p>Http主要有两个时代。HTTP1.0（HTTP/1.0）时代时，客户端与web服务器连接后只能获得<strong>一个</strong>web资源，之后便断开连接；HTTP2.0时代（HTTP/1.1），客户端可以与web服务器连接后，可以获得<strong>多个</strong>web资源。</p>
 
-<p>拓扑排序是一种对图中节点的排序。在这种排序中，假若A点指向B点，则A点的序在B点前。同一种图可能有不同的拓扑序。BFS可以用来求任意拓扑序、求一张图是否有拓扑序（如果是图中存在循环则没有拓扑序）、求字典序最小的拓扑序和求图中是否有唯一拓扑序。</p>
+<p>HTTP分为<strong>请求和响应</strong>。</p>
 
-<p>在拓扑排序中，我们首先要计算出每个点的<strong>入度(In-degree)</strong>。入度指的是一共有多少条边指向这个点。用BFS解决拓扑排序问题的算法步骤如下：</p>
-
-<p>a). 统计每个点的入度</p>
-
-<p>b). 将入度为0的所有点放入Queue中作为起始节点</p>
-
-<p>c). 依次从Queue中取出一个节点，并将它指向的点的入度-1。</p>
-
-<p>d). 如果它指向的点的入度为0了，就将其添加进Queue中。</p>
-
-<h2 id="iv-经典习题">IV. 经典习题</h2>
-
-<p><strong>1.连通块问题（Connected Component）</strong></p>
-
-<p>a. <a href="https://www.lintcode.com/problem/number-of-islands/description?_from=ladder&amp;&amp;fromId=161">Number of Islands</a>(Lintcode 433)</p>
-
-<p><strong>Description</strong></p>
-
-<p><strong>English</strong></p>
-
-<p>Given a boolean 2D matrix, <code>0</code> is represented as the sea, <code>1</code> is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.</p>
-
-<p>Find the number of islands.</p>
-
-<p><strong>Chinese</strong></p>
-
-<p>给一个 01 矩阵，求不同的岛屿的个数。</p>
-
-<p>0 代表海，1 代表岛，如果两个 1 相邻，那么这两个 1 属于同一个岛。我们只考虑上下左右为相邻。</p>
-
-<p><img src="/images/Algorithms/Lintcode433_2.png" width = "800" height = "280" alt="图片名称" align=center /></p>
-
-<p><img src="/images/Algorithms/Lintcode433.png" width = "800" height = "700" alt="图片名称" align=center /></p>
-
-<p>这道题是一道典型的连通块问题。我们可以用两个for循环遍历整个矩阵，如果遇到岛屿就用bfs对其进行标记并且统计岛屿的数量。</p>
-
-<blockquote>
-<p>Note: 在矩阵的计算中，我们常常使用is_valid()函数来检测是否越界</p>
-</blockquote>
-
-<p><strong>Python代码</strong></p>
-
-<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
-
-class Solution:
-    
-    &quot;&quot;&quot;
-    @param grid: a boolean 2D matrix
-    @return: an integer
-    &quot;&quot;&quot;
-    def numIslands(self, grid):
-        # write your code here
-        if not grid or not grid[0]:
-            return 0
-            
-        visited = set()
-        result = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j] and (i, j) not in visited:
-                    self.bfs(grid, i, j, visited)
-                    result += 1
-                    
-        return result
-        
-    def bfs(self, grid, x, y, visited):
-        queue = collections.deque([(x, y)])
-        visited.add((x, y))
-        while queue:
-            x, y = queue.popleft()
-            for dx, dy in DIRECTIONS:
-                new_x = x + dx
-                new_y = y + dy
-                if not self.is_valid(grid, new_x, new_y, visited):
-                    continue
-                queue.append((new_x, new_y))
-                visited.add((new_x, new_y))
-    
-    def is_valid(self, grid, x, y, visited):
-        n, m = len(grid), len(grid[0])
-        if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):
-            return False
-        if (x, y) in visited:
-            return False
-        return grid[x][y]
-</code></pre>
-
-<p><strong>代码解析</strong></p>
-
-<p>a. 定义常量DIRECTIONS，其定义了每个点可以向上下左右四个方向移动：</p>
-
-<pre><code class="language-python">DIRECTIONS = [(1, 0), (0, -1), (-1, 0), (0, 1)]
-</code></pre>
-
-<p>b. 异常检测：</p>
-
-<pre><code class="language-python">if not grid or not grid[0]:
-  return 0
-</code></pre>
-
-<p>c. 申明<code>visited</code>set用来出存已经访问过的点，申明result变量用来储存岛屿的数量：</p>
-
-<pre><code class="language-python">visited = set()
-result = 0
-</code></pre>
-
-<p>d. for循环遍历整个矩阵，如果遍历到一个没有访问过的岛屿就对其进行bfs且将result+1：</p>
-
-<pre><code class="language-python">for i in range(len(grid)):
-  for j in range(len(grid[0])):
-    if grid[i][j] and (i, j) not in visited:
-      self.bfs(grid, i, j, visited)
-      result += 1
-</code></pre>
-
-<p>e. <code>bfs</code>函数找到这个岛屿所有的点并标记：</p>
-
-<pre><code class="language-python">def bfs(self, grid, x, y, visited):
-  queue = collections.deque([(x, y)])	#申明一个Queue
-  visited.add((x, y))	#标记
-  while queue:
-    x, y = queue.popleft()	#取出第一个节点
-    for dx, dy in DIRECTIONS:	#计算出这个节点向不同方向移动后的新节点
-      new_x = x + dx
-      new_y = y + dy
-      if not self.is_valid(grid, new_x, new_y, visited):	#如果节点合法就将其标记且加入到Queue中
-        continue
-        queue.append((new_x, new_y))
-        visited.add((new_x, new_y))
-</code></pre>
-
-<p>e. <code>is_valid</code>函数用来判断点是否合法：</p>
-
-<pre><code class="language-python">def is_valid(self, grid, x, y, visited):
-  n, m = len(grid), len(grid[0])	
-  if not (0 &lt;= x &lt; n and 0 &lt;= y &lt; m):	#判断是否越界
-    return False
-  if (x, y) in visited:	#判断是否被访问过
-    return False
-  return grid[x][y]
-</code></pre>
-
-<p><strong>2.分层遍历（Level Order Traversal）</strong></p>
-
-<p><a href="https://www.lintcode.com/problem/knight-shortest-path/description?_from=ladder&amp;&amp;fromId=161">Knight Shortest Path</a>(Lintcode 611)</p>
-
-<p><strong>Description</strong></p>
-
-<p><strong>English</strong></p>
-
-<p>Given a knight in a chessboard (a binary matrix with <code>0</code> as empty and <code>1</code> as barrier) with a <code>source</code> position, find the shortest path to a <code>destination</code> position, return the length of the route.
-Return <code>-1</code> if destination cannot be reached.</p>
-
-<blockquote>
-<p>source and destination must be empty.
-Knight can not enter the barrier.
-Path length refers to the number of steps the knight takes.</p>
-</blockquote>
-
-<p><strong>Chinese</strong></p>
-
-<p>给定骑士在棋盘上的 <code>初始</code> 位置(一个2进制矩阵 <code>0</code> 表示空 <code>1</code> 表示有障碍物)，找到到达 <code>终点</code> 的最短路线，返回路线的长度。如果骑士不能到达则返回 <code>-1</code> 。</p>
-
-<blockquote>
-<p>起点跟终点必定为空.
-骑士不能碰到障碍物.
-路径长度指骑士走的步数.</p>
-</blockquote>
-
-<p><img src="/images/Algorithms/Lintcode611.png" width = "800" height = "700" alt="图片名称" align=center /></p>
-
-<p>这道题是一道典型的求最短路径的题。在求解这类问题的时候，我们只需要把求解连通块问题的BFS算法中的Hashset改为Hashmap即可。Hashmap用来标记访问过的点且记录到达每个点的最短路径。</p>
-
-<p>在这道题目中，我们需要首先定义棋子的走法，然后用一个BFS分层遍历直到找到终点为止（或者所有点都越界），最后返回终点在Hashmap中所对应的步数即可。</p>
-
-<p><strong>Python代码</strong></p>
-
-<pre><code class="language-python">&quot;&quot;&quot;
-Definition for a point.
-class Point:
-    def __init__(self, a=0, b=0):
-        self.x = a
-        self.y = b
-&quot;&quot;&quot;
-DIRECTIONS = [
-    (-2, -1), (-2, 1), (-1, 2), (1, 2),
-    (2, 1), (2, -1), (1, -2), (-1, -2)
-]
-class Solution:
-    &quot;&quot;&quot;
-    @param grid: a chessboard included 0 (false) and 1 (true)
-    @param source: a point
-    @param destination: a point
-    @return: the shortest path 
-    &quot;&quot;&quot;
-    def shortestPath(self, grid, source, destination):
-        # write your code here
-        if not grid:
-            return -1
-        
-
-        queue = collections.deque([(source.x, source.y)])
-        distance = {(source.x, source.y): 0}
-        while queue:
-            x, y = queue.popleft()
-            if x == destination.x and y == destination.y:
-                return distance[(x, y)]
-            for dx, dy in DIRECTIONS:
-                next_x, next_y = x + dx, y + dy
-                if self.is_valid(next_x, next_y, grid):
-                    if (next_x, next_y) not in distance:
-                        distance[(next_x, next_y)] = distance[(x, y)] + 1
-                        queue.append((next_x, next_y))
-
-        return -1
-    
-    def is_valid(self, x, y, grid):
-        m, n = len(grid), len(grid[0])
-        if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
-            return True
-        else:
-            return False
-</code></pre>
-
-<p><strong>代码解析</strong></p>
-
-<p>a. 定义走法：</p>
-
-<pre><code class="language-python">DIRECTIONS = [(-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2)]
-</code></pre>
-
-<p>b. 异常检测：</p>
-
-<pre><code class="language-python">if not grid:
-  return -1
-</code></pre>
-
-<p>c. 定义一个Queue，将起点放进去；定义一个Hashmap <code>distance</code>，其key为坐标，其value为最短路径。将起点放入Hashmap：</p>
-
-<pre><code class="language-python">queue = collections.deque([(source.x, source.y)])
-distance = {(source.x, source.y): 0}
-</code></pre>
-
-<p>d. 开始bfs，每次循环从queue中取出一个点，如果这个点和终点相等就返回它在Hashmap中的最短路径。如果不等，找到下一步所有的走法，如果他们合法且不在Hashmap中，那么将他们加入到Hashmap中，且加入到Queue中：</p>
-
-<pre><code class="language-python">while queue:	#如果queue不为空，循环继续
-  x, y = queue.popleft()	#取出第一个点
-  if x == destination.x and y == destination.y:	#如果此点等于终点，返回它在Hashmap中记录的最短路径
-    return distance[(x, y)]
-  for dx, dy in DIRECTIONS:	#遍历所有可以走的新点
-    next_x, next_y = x + dx, y + dy
-    if self.is_valid(next_x, next_y, grid):	
-      if (next_x, next_y) not in distance:	#如果这个点合法且不在Hashmap中
-        distance[(next_x, next_y)] = distance[(x, y)] + 1	#将新的点加入Hashmap
-        queue.append((next_x, next_y))	#将新的点加入queue中
-</code></pre>
-
-<p>e. <code>is_valid</code>函数用来判断点是否越界：</p>
-
-<pre><code class="language-python">def is_valid(self, x, y, grid):
-  m, n = len(grid), len(grid[0])
-  if 0 &lt;= x &lt; m and 0 &lt;= y &lt; n and grid[x][y] == 0:
-    return True
-  else:
-    return False
-</code></pre>
-
-<p><strong>3.拓扑排序（Topological Sorting）</strong></p>
-
-<p><strong>Description</strong></p>
-
-<p><strong>English</strong></p>
-
-<p>Given an directed graph, a topological order of the graph nodes is defined as follow:</p>
+<p><strong>HTTP请求</strong>由客户端发起，服务器端接收。请求的方式有GET, POST, DELETE, PUT, TRACT&hellip; 其中最重要的为GET和POST请求：</p>
 
 <ul>
-<li>For each directed edge <code>A -&gt; B</code> in graph, A must before B in the order list.</li>
-<li>The first node in the order can be any node in the graph with no nodes direct to it.</li>
+<li>get:请求能够携带的参数比较少，大小有限制，会在浏览器的URL地址栏显示数据内容，不安全，但高效</li>
+<li>post:请求能够携带的参数没有限制，大小没有限制，不会在浏览器的URL地址栏显示数据内容，安全，但不高效。</li>
 </ul>
 
-<p>Find any topological order for the given graph.</p>
-
-<blockquote>
-<p>You can assume that there is at least one topological order in the graph.</p>
-</blockquote>
-
-<p><strong>Chinese</strong></p>
-
-<p>给定一个有向图，图节点的拓扑排序定义如下:</p>
+<p><strong>HTTP响应</strong>由服务器端发起，客户端接收。HTTP响应携带响应状态码，其中重要的有：</p>
 
 <ul>
-<li>对于图中的每一条有向边 <code>A -&gt; B</code> , 在拓扑排序中A一定在B之前.</li>
-<li>拓扑排序中的第一个节点可以是图中的任何一个没有其他节点指向它的节点.</li>
+<li>200:请求响应成功 200</li>
+
+<li><p>3xx:请求重定向 （重定向:你重新到我给你新位置去;）</p></li>
+
+<li><p>4xx:找不到资源（404：资源不存在）</p></li>
+
+<li><p>5xx:服务器代码错误 500 （502:网关错误）</p></li>
 </ul>
 
-<p>针对给定的有向图找到任意一种拓扑排序的顺序.</p>
+<p>此外，HTTP请求和响应还携带请求消息头和响应体。内容主要包括所支持的数据类型、编码格式、语言、连接状态、主机等等信息。</p>
 
-<blockquote>
-<p>你可以假设图中至少存在一种拓扑排序</p>
-</blockquote>
+<p>在浏览器中地址栏输入地址并回车的一瞬间，浏览器首先会去寻找本地有无此域名，如果没有，就在网络上寻找。</p>
 
-<p><img src="/images/Algorithms/Lintcode127.png" width = "800" height = "700" alt="图片名称" align=center /></p>
+<h3 id="3-maven">3. Maven</h3>
 
-<p>这道题要我们返回图的任意拓扑序。解题思路是这样的：</p>
+<p>在Java开发中，我们时长要导入各种各样的工具包（jar包），其手动导入的过程非常繁琐，而Maven技术帮我们简化了这项任务。<strong>Maven是一个项目管理工具，它能够很方便的帮你管理项目报告、生成站点、管理Jar文件等等</strong>。Maven的核心思想是<strong>约定大于配置</strong>。也就是说，Maven会规定好你该如何去编写我们的Java代码，必须要按照这个规范来。</p>
 
-<p>a. 计算出每个点的入度并记录在Hashmap中</p>
+<p><strong>pom.xml</strong>是Maven的核心配置文件，我们一切主要的Maven配置都可以在pom.xml中完成。</p>
 
-<p>b. 申明一个Queue，将入度为0的点放进去</p>
+<h2 id="iii-javaweb原理">III. JavaWeb原理</h2>
 
-<p>c. 用BFS遍历Queue，将Queue中取出来的所有点加入结果数组，其所有neighbor的入度-1</p>
+<h3 id="1-servlet">1. Servlet</h3>
 
-<p>d. 如果neighbor点的入度为0了，将其加入Queue中。</p>
+<p>如上述所说，真正在Java Web开发中，我们主要需要做的事情就是<strong>针对客户端的动态资源请求(Request)在服务器端编写程序提取在数据库中对应的数据，并编写相关算法生成与之对应的响应(Response)并将其返回到客户端。</strong>而Servlet程序就是<strong>用于处理服务器端的动态资源请求(Request)并返回生成的响应(Response)给WebServer</strong>，进而返回给客户端。</p>
 
-<p><strong>Python代码</strong></p>
+<p>开发一个Servlet程序需要完成两个步骤：</p>
 
-<pre><code class="language-python">&quot;&quot;&quot;
-Definition for a Directed graph node
-class DirectedGraphNode:
-    def __init__(self, x):
-        self.label = x
-        self.neighbors = []
-&quot;&quot;&quot;
+<ul>
+<li>编写一个类，实现Servlet接口（我们往往在类中继承HttpServlet，并实现方法[doGet, doPost&hellip;]即可）</li>
+<li>把开发好的实现了Servlet接口的类部署到Web服务器中（在Web-INF文件夹下的web.xml中配置即可）</li>
+</ul>
 
+<h4 id="a-servlet原理">a. Servlet原理</h4>
 
-class Solution:
-    &quot;&quot;&quot;
-    @param: graph: A list of Directed graph node
-    @return: Any topological order for the given graph.
-    &quot;&quot;&quot;
-    def topSort(self, graph):
-        # write your code here
-        if not graph:
-            return []
-            
-        #add in-degree
-        node_to_indegree = self.get_indegree(graph)
-        
-        #bfs
-        order = []
-        start_node = [n for n in graph if node_to_indegree[n] == 0]
-        queue = collections.deque(start_node)
-        while queue:
-            node = queue.popleft()
-            order.append(node)
-            for neighbor in node.neighbors:
-                node_to_indegree[neighbor] -= 1
-                if node_to_indegree[neighbor] == 0:
-                    queue.append(neighbor)
-                    
-        return order
-                
-    def get_indegree(self, graph):
-        node_to_indegree = {x: 0 for x in graph}
+<p>Servlet的整个工程流程如下：</p>
 
-        for node in graph:
-            for neighbor in node.neighbors:
-                node_to_indegree[neighbor] += 1
-                
-        return node_to_indegree    
+<p>首先，客户端（浏览器）发送一个Http请求到服务器的web容器，web容器生成request和response并作为参数转交给Servlet的Service方法，接着Servlet来处理动态请求，生成与之对应的响应，在方法走完后，web容器会将响应传回给客户端。所以说，我们的工作主要是编写Servlet实现类用于：</p>
+
+<ul>
+<li>接受并处理各种Http请求（Get, Post&hellip;）</li>
+<li>给出响应的信息</li>
+</ul>
+
+<p><img src="/images/CS/servlet_原理.png" alt="javaweb_原理" /></p>
+
+<h4 id="b-传输对象">b. 传输对象</h4>
+
+<p>web服务器在接收到客户端的http请求后，会针对这个请求分别创建一个<strong>代表请求的HttpServletRequest对象</strong>和<strong>代表响应的一个HttpServletResponse</strong>对象，并请它们传递到我们编写的Servlet实现类中。其分工如下：</p>
+
+<ul>
+<li>如果要<strong>获取客户端请求过来的参数</strong>: 找HttpServletRequest</li>
+<li>如果要<strong>给客户端响应一些信息</strong>:找HttpServletResponse</li>
+</ul>
+
+<h5 id="1-httpservletrequest">1) HttpServletRequest</h5>
+
+<p>HttpServletRequest代表客户端的请求，用户通过Http协议访问服务器，<strong>HTTP请求中的所有信息会被封装到HttpServletRequest</strong>，通过这个HttpServletRequest的方法，获得客户端的所有信息;</p>
+
+<p>常用方法：</p>
+
+<pre><code class="language-java">// req.getParameter(String name) : 用于获取request传递过来的参数，参数名为String类型，传来的参数也是String类型
+// req.getParameterValues(String name):用于获取request传递过来的String数组类型的多个参数
+String username = req.getParameter(&quot;username&quot;); 
+String password = req.getParameter(&quot;password&quot;); 
+String[] hobbys = req.getParameterValues(&quot;hobbys&quot;);
+
+// req.setAttribute(String &quot;AttributeName&quot;, String attribute): 用于将生成的参数传递回去
+req.setAttribute(&quot;AttributeName&quot;, String attribute);
+
+// req.getContextPath()用户获取当前请求页面的路径
+String path = req.getContextPath();
+
+// 通过请求转发，请求会转发到另一个页面，但是url地址不变
+req.getRequestDispatcher(&quot;/success.jsp&quot;).forward(req,resp);
 </code></pre>
 
-<p><strong>代码解析</strong></p>
+<h5 id="2-response">2) Response</h5>
 
-<p>a. 异常检测：</p>
+<p>常用方法：</p>
 
-<pre><code class="language-python">if not graph:
-  return []
+<pre><code class="language-java">// 负责向浏览器发送数据的方法
+// ServletOutputStream getOutputStream() throws IOException;
+
+// PrintWriter getWriter() throws IOException;
+PrintWriter writer = resp.getWriter();  // 获取response PrintWriter对象
+writer.write(&quot;Hello World&quot;);    // 写出到响应中
+
+// 负责向浏览器发送响应头的方法
+void setCharacterEncoding(String var1);
+void setContentLength(int var1);
+void setContentLengthLong(long var1);
+// ...
+
+// 重定向，将页面重定向到另一个页面
+resp.sendRedirect(&quot;path&quot;);
 </code></pre>
 
-<p>b. 计算出所有点的入度：</p>
+<p><em>Note</em>: <strong>重定向</strong> vs <strong>请求转发</strong></p>
 
-<pre><code class="language-python">node_to_indegree = self.get_indegree(graph)
+<p>重定向和请求转发都会实现页面转跳。不同的是，<strong>请求转发时url不会产生变化(状态码307)，重定向时，url会发生变化(状态码302)。</strong></p>
 
-def get_indegree(self, graph):
-  node_to_indegree = {x: 0 for x in graph}	#初始化所有点的入度为0
+<p><img src="/images/CS/重定向vs转发.png" alt="javaweb_原理" /></p>
 
-  for node in graph:	#遍历图中的每个点的所有neighbor,将其neighbor的入度+1
-    for neighbor in node.neighbors:	
-      node_to_indegree[neighbor] += 1
+<h4 id="c-数据共享">c. 数据共享</h4>
 
-      return node_to_indegree    
+<h5 id="1-servletcontext">1) ServletContext</h5>
+
+<p><strong>web容器在启动的时候，它会为每个web程序都创建一个对应的ServletContext对象，它代表了当前的web应用，实现了数据共享。</strong></p>
+
+<p><img src="/images/CS/servletcontext.png" alt="javaweb_原理" /></p>
+
+<p>ServletContext的使用：</p>
+
+<pre><code class="language-java">public class HelloServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  //this.getInitParameter() 初始化参数 
+  //this.getServletConfig() Servlet配置 
+  //this.getServletContext() Servlet上下文
+  ServletContext context = this.getServletContext();
+
+  String username = &quot;小明&quot;; //数据
+  context.setAttribute(&quot;username&quot;,username); //将一个数据保存在了 ServletContext中，名字为:username，值:username(小明)
+    } 
+}
 </code></pre>
 
-<p>c. 定义结果数组和Queue，并将入度为0的点加入其中：</p>
+<h5 id="2-会话-cookie-session">2) 会话(Cookie, Session)</h5>
 
-<pre><code class="language-python">order = []
-start_node = [n for n in graph if node_to_indegree[n] == 0]
-queue = collections.deque(start_node)
+<p><strong>一个会话(Session)是一个用户在Web访问中一整套动作的过程</strong>。比如一个用户打开浏览器，打开了很多网站，将商品加入到了购物车等等，这整个过程称之为一个会话。而<strong>有状态会话</strong>指的是一个用户来过这个网站，当它再来的时候，我们知道他曾经来过。</p>
+
+<p>保存会话有两种技术：<strong>Cookie</strong>和<strong>Session</strong>。</p>
+
+<p><strong>Cookie</strong></p>
+
+<p>Cookie是一种客户端技术，其被<strong>保存在客户端</strong>。<strong>用户访问服务器时会携带Cookie，这样服务器就知道是谁来访问了</strong>。Cookie有一些性质：</p>
+
+<ul>
+<li>一个Cookie只能保存一个信息</li>
+<li>一个web站点可以给浏览器发送多个cookie，最多存放20个cookie</li>
+<li>Cookie大小有限制4kb;</li>
+<li>300个cookie浏览器上限</li>
+<li>不设置有效期，关闭浏览器，Cookie自动失效;</li>
+</ul>
+
+<p><img src="/images/CS/cookie.png" alt="javaweb_原理" /></p>
+
+<p>Cookie使用：</p>
+
+<pre><code class="language-java">Cookie cookie = new Cookie(&quot;JSESSIONID&quot;,sessionId); 
+resp.addCookie(cookie);
 </code></pre>
 
-<p>d. 开始bfs算法，将queue中取出的点加入结果数组中，并将其所有neighbor的入度-1，如果neighbor点的入度为0了，将其加入Queue：</p>
+<p><strong>Session</strong>(重点)</p>
 
-<pre><code class="language-python">while queue:	#当queue非空时，继续循环
-  node = queue.popleft()	#取出第一个点
-  order.append(node)	#将点加入结果数组中
-  for neighbor in node.neighbors:	#遍历点的所有neighbor
-    node_to_indegree[neighbor] -= 1	#将neighor的入度-1
-    if node_to_indegree[neighbor] == 0:	#如果入度为0，将其加入queue
-      queue.append(neighbor)
+<p>Session是一种持久网络协议。Session有以下性质：</p>
+
+<ul>
+<li>服务器会给每一个用户（浏览器）创建一个Session对象</li>
+<li>每一个Session独占一个浏览器，只要浏览器没有关闭，这个Session就存在</li>
+<li>用户登录之后，整个网站它都可以访问! (保存用户的信息;保存购物车的信息&hellip;..)</li>
+</ul>
+
+<p>Session的使用场景：</p>
+
+<ul>
+<li>保存一个登录用户的信息</li>
+<li>购物车信息</li>
+<li>在整个网站中经常会使用的数据，我们将它保存在Session中;</li>
+</ul>
+
+<p><img src="/images/CS/session.png" alt="javaweb_原理" /></p>
+
+<p>Session和Cookie的区别：</p>
+
+<ul>
+<li>Cookie是把用户的数据写给用户的浏览器，浏览器保存 (可以保存多个)</li>
+<li>Session把用户的数据写到用户独占Session中，服务器端保存 (保存重要的信息，减少服务器资 源的浪费)</li>
+<li>Session对象由服务创建;</li>
+</ul>
+
+<p>Session的使用：</p>
+
+<pre><code class="language-java">//得到Session
+HttpSession session = req.getSession(); 
+
+//往Session中存东西
+session.setAttribute(&quot;name&quot;,new User(&quot;小明&quot;,18));
+
+//get Session中的数据
+Person person = (Person) session.getAttribute(&quot;person&quot;);
+
+// 删除Session数据
+session.removeAttribute(&quot;person&quot;);
+
+// 手动注销Session
+session.invalidate();
+
+//获取Session的ID
+String sessionId = session.getId();
+
+//判断Session是不是新创建 
+if (session.isNew()){
+    resp.getWriter().write(&quot;session创建成功,ID:&quot;+sessionId); 
+}else {
+    resp.getWriter().write(&quot;session已经在服务器中存在了,ID:&quot;+sessionId);
+}
 </code></pre>
 
-<p><strong>4.附加题目</strong></p>
+<p>web.xml配置Session自动过期</p>
 
-<p>a. Minimum Depth of Binary Tree(Leetcode 111)</p>
-
-<p>Given a binary tree, find its minimum depth.</p>
-
-<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
-
-<p><strong>Note:</strong> A leaf is a node with no children.</p>
-
-<p><img src="/images/Algorithms/Leetcode111.png" alt="avatar" /></p>
-
-<p>这道题非常简单，找到一个最浅的节点，其没有子节点并返回它的深度。</p>
-
-<p><strong>需要的变量</strong>:</p>
-
-<pre><code class="language-java">Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-int depth = 0;
+<pre><code class="language-xml">&lt;!--设置Session默认的失效时间--&gt; 
+&lt;session-config&gt;
+&lt;!--15分钟后Session自动失效，以分钟为单位--&gt;
+    &lt;session-timeout&gt;15&lt;/session-timeout&gt;
+&lt;/session-config&gt;
 </code></pre>
 
-<p>Queue queue, int depth。</p>
+<h4 id="d-过滤器和监听器">d. 过滤器和监听器</h4>
 
-<p><strong>步骤</strong></p>
+<h5 id="1-过滤器-filter">1) 过滤器(Filter)</h5>
 
-<ol>
-<li>我们首先将根节点加入到queue中，将depth初始化为0。</li>
-<li>开始while循环，当queue为空时停止循环。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
-<li>每次循环depth++。</li>
-<li>将queue中的所有值用for循环依次poll出来，如果其没有子节点，就返回depth；如果只有一个子节点为null，那么就将另一个offer进queue里。如果两个子节点都不为null，将它们依次offer到queue中。</li>
-</ol>
+<p>过滤器是在Web Server和Servleit中间的一层，用来过滤网站的数据。（如处理中文乱码，登录验证）</p>
 
-<p><strong>代码</strong></p>
+<p>编写过滤器也需要两步：</p>
 
-<pre><code class="language-java">/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public int minDepth(TreeNode root) {
-        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-        int depth = 0;
-        if (root == null) return depth;
-        queue.add(root);
-        while (!queue.isEmpty()){
-            depth++;
-            int size = queue.size();
-            for (int i=0; i&lt;size; i++) {
-                TreeNode q = queue.poll();
-                if (q.left == null &amp;&amp; q.right == null) return depth;
-                if (q.left != null) queue.offer(q.left);
-                if(q.right != null) queue.offer(q.right);
-            }
-        }
-        return depth;
+<ul>
+<li>编写继承了javax.servlet.Filter接口的实现类（注意包不要导错了）。</li>
+<li>在web.xml中配置过滤器</li>
+</ul>
+
+<p>过滤器实现类编写步骤及案例：</p>
+
+<pre><code class="language-java">public class CharacterEncodingFilter implements Filter {
+    //初始化:web服务器启动，就以及初始化了，随时等待过滤对象出现!
+  public void init(FilterConfig filterConfig) throws
+ServletException {
+    System.out.println(&quot;CharacterEncodingFilter初始化&quot;); 
+    }
+  
+    //Chain : 链
+    /*
+    1. 过滤中的所有代码，在过滤特定请求的时候都会执行 2. 必须要让过滤器继续同行
+        chain.doFilter(request,response);
+     */
+    public void doFilter(ServletRequest request, ServletResponse
+response, FilterChain chain) throws IOException, ServletException {
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    response.setCharacterEncoding(&quot;utf-8&quot;);
+    response.setContentType(&quot;text/html;charset=UTF-8&quot;);
+        System.out.println(&quot;CharacterEncodingFilter执行前....&quot;);
+    chain.doFilter(request,response); //让我们的请求继续走，如果不写，程序到这里就被拦截停止!
+        System.out.println(&quot;CharacterEncodingFilter执行后....&quot;); }
+  
+  //销毁:web服务器关闭的时候，过滤会销毁 
+  public void destroy() {
+        System.out.println(&quot;CharacterEncodingFilter销毁&quot;); 
     }
 }
 </code></pre>
 
-<p>b. Binary Tree Level Order Traversal</p>
+<p><em>Note</em>: 一定要执行<code>chain.doFilter(request, response);</code>，如果不写程序就被拦截停止了。</p>
 
-<p>Given a binary tree, return the <em>level order</em> traversal of its nodes&rsquo; values. (ie, from left to right, level by level).</p>
+<h5 id="2-监听器">2) 监听器</h5>
 
-<p><img src="/images/Algorithms/Leetcode102.png" alt="avatar" /></p>
+<p>用于监听，比如用于统计在线Session个数。实现步骤和Filter类似（编写Listener实现类并在web.xml中配置）。</p>
 
-<p>这道题要求我们写一个函数：输入一个Binary Tree，返回一个List<List<Integer>&gt;,其中包含每一层的所有值。</p>
+<h4 id="e-servlet配置文件web-xml">e. Servlet配置文件web.xml</h4>
 
-<p><strong>需要的变量</strong></p>
+<p>Java Web项目中所有Servlet, Filter, Listener, Session属性的配置均在web.xml中完成。其主要配置类的位置以及映射的路径，常用的配置代码如下：</p>
 
-<pre><code class="language-java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();	//储存结果
-Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();				//用于进行BFS
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!--web.xml头文件--&gt;
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;
+         version=&quot;4.0&quot;&gt;
+
+&lt;!--    配置过滤器--&gt;
+    &lt;filter&gt;
+        &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;com.soul.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+    
+&lt;!--    设置首页--&gt;
+    &lt;welcome-file-list&gt;
+        &lt;welcome-file&gt;login.jsp&lt;/welcome-file&gt;
+    &lt;/welcome-file-list&gt;
+
+&lt;!--    配置Servlet--&gt;
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt; &lt;!--配置Servlet名字，与下面mapping的名字对应，一个servlet可以有              多个&lt;servlet-mapping&gt;--&gt;
+        &lt;servlet-class&gt;com.soul.servlet.user.LoginServlet&lt;/servlet-class&gt; &lt;!--配置Servlet 实现类的位置--&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt; &lt;!--配置Servlet名字，与上面servlet的名字对应--&gt;
+        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;    &lt;!--配置Servlet实现类映射的url--&gt;
+    &lt;/servlet-mapping&gt;
+
+&lt;!--    默认Session过期时间(真实业务需求)--&gt;
+    &lt;session-config&gt;
+        &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+    &lt;/session-config&gt;
+&lt;/web-app&gt;
 </code></pre>
 
-<p><strong>思路</strong></p>
+<h3 id="2-jsp">2. JSP</h3>
+
+<h4 id="a-jsp定义">a. JSP定义</h4>
+
+<p>JSP(Java Server Pages)是由SUn公司主导创建的一种动态网页技术标准。写JSP就像是在HTML中嵌入java代码，从而为用户提供动态数据。</p>
+
+<h4 id="b-jsp原理">b. JSP原理</h4>
+
+<p>当JSP页面被访问时，Tomcat服务器会在其work目录下生成一个与之对应的.java和.class文件，里面的代码是等价于此JSP文件的Servlet实现类，而服务器执行的其实就是这个Servlet实现类。因此，<strong>JSP本质上就是一个Servlet,其目的是为了简化开发，写JSP和写Servlet等价</strong>。</p>
+
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/jsp_原理.png" alt="javaweb_原理" /></p>
+
+<h4 id="c-jsp基础语法">c.JSP基础语法</h4>
+
+<p>任何语言都有自己的语法，java中有。JSP作为java技术的一种应用，它拥有一些自己扩充的语法(了解，知道即可!)，并被java支持。</p>
+
+<pre><code class="language-java">// JSP表达式&lt;%--JSP表达式 作用:用来将程序的输出，输出到客户端 &lt;%= 变量或者表达式%&gt;--%&gt;&lt;%= new java.util.Date()%&gt;  // JSP脚本片段&lt;%--jsp脚本片段--%&gt; &lt;%  int sum = 0;  for (int i = 1; i &lt;=100 ; i++) {sum+=i; }  out.println(&quot;&lt;h1&gt;Sum=&quot;+sum+&quot;&lt;/h1&gt;&quot;);%&gt;  &lt;%  int x = 10;  out.println(x);%&gt; &lt;p&gt;这是一个JSP文档&lt;/p&gt;&lt;%int y = 2;  out.println(y);%&gt;&lt;hr&gt;&lt;%--在代码嵌入HTML元素--%&gt;&lt;%  for (int i = 0; i &lt; 5; i++) {%&gt;  &lt;h1&gt;Hello,World  &lt;%=i%&gt; &lt;/h1&gt;&lt;% }%&gt;  // JSP声明// JSP声明:会被编译到JSP生成Java的类中!其他的，就会被生成到_jspService方法中!&lt;%! static {    System.out.println(&quot;Loading Servlet!&quot;);  }  private int globalVar = 0;public void kuang(){ System.out.println(&quot;进入了方法Kuang!&quot;);} %&gt;  // JSP的注释，不会在客户端显示，HTML就会!  // JSP指令&lt;%@page args.... %&gt;&lt;%@include file=&quot;&quot;%&gt;&lt;%--@include会将两个页面合二为一--%&gt; &lt;%@include file=&quot;common/header.jsp&quot;%&gt;&lt;h1&gt;网页主体&lt;/h1&gt;&lt;%@include file=&quot;common/footer.jsp&quot;%&gt; &lt;hr&gt;&lt;%--jSP标签 jsp:include:拼接页面，本质还是三个 --%&gt;&lt;jsp:include page=&quot;/common/header.jsp&quot;/&gt; &lt;h1&gt;网页主体&lt;/h1&gt;&lt;jsp:include page=&quot;/common/footer.jsp&quot;/&gt;
+</code></pre>
+
+<h4 id="d-jsp九大内置对象">d. JSP九大内置对象</h4>
+
+<ul>
+<li>PageContext 存东西</li>
+<li>Request 存东西</li>
+<li>Response</li>
+<li>Session 存东西</li>
+<li>Application 【SerlvetContext】 存东西</li>
+<li>config 【SerlvetConfig】</li>
+<li>out</li>
+<li>page ，不用了解</li>
+<li>exception</li>
+</ul>
+
+<pre><code class="language-java">pageContext.setAttribute(&quot;name1&quot;,&quot;秦疆1号&quot;);//保存的数据只在一个页面中有效request.setAttribute(&quot;name2&quot;,&quot;秦疆2号&quot;);//保存的数据只在一次请求中有效，请求转发会携带这个数据session.setAttribute(&quot;name3&quot;,&quot;秦疆3号&quot;);//保存的数据只在一次会话中有效，从打开浏览器到关闭浏览器application.setAttribute(&quot;name4&quot;,&quot;秦疆4号&quot;); //保存的数据只在服务器中有效，从打开服务器到关闭服务器
+</code></pre>
+
+<ul>
+<li>request:客户端向服务器发送请求，产生的数据，用户看完就没用了，比如:新闻，用户看完没用的!</li>
+<li>session:客户端向服务器发送请求，产生的数据，用户用完一会还有用，比如:购物车;</li>
+<li>application:客户端向服务器发送请求，产生的数据，一个用户用完了，其他用户还可能使用，比如: 聊天数据;</li>
+</ul>
+
+<h4 id="e-jsp标签-jstl标签-el表达式">e. JSP标签、JSTL标签、EL表达式</h4>
+
+<p><strong>配置pom.xml</strong>:</p>
+
+<pre><code class="language-xml">&lt;!-- JSTL表达式的依赖 --&gt; &lt;dependency&gt;    &lt;groupId&gt;javax.servlet.jsp.jstl&lt;/groupId&gt;    &lt;artifactId&gt;jstl-api&lt;/artifactId&gt;    &lt;version&gt;1.2&lt;/version&gt;&lt;/dependency&gt;&lt;!-- standard标签库 --&gt; &lt;dependency&gt;    &lt;groupId&gt;taglibs&lt;/groupId&gt;    &lt;artifactId&gt;standard&lt;/artifactId&gt;    &lt;version&gt;1.1.2&lt;/version&gt;&lt;/dependency&gt;
+</code></pre>
+
+<p><strong>EL表达式<code>${ }</code></strong>用来：</p>
+
+<ul>
+<li>获取数据</li>
+<li>执行运算</li>
+<li>获取web开发的常用对象</li>
+</ul>
+
+<p><strong>JSP标签</strong>用来获取或传输动态数据：</p>
+
+<pre><code class="language-java">&lt;%--jsp:include--%&gt;&lt;jsp:forward page=&quot;/jsptag2.jsp&quot;&gt;    &lt;jsp:param name=&quot;name&quot; value=&quot;xiaoming&quot;&gt;&lt;/jsp:param&gt;    &lt;jsp:param name=&quot;age&quot; value=&quot;12&quot;&gt;&lt;/jsp:param&gt;&lt;/jsp:forward&gt;
+</code></pre>
+
+<p><strong>JSTL表达式</strong></p>
+
+<p>JSTL标签库的使用就是为了弥补HTML标签的不足;它自定义许多标签，可以供我们使用，标签的功能和Java代码一样!</p>
+
+<p>JSTL标签库使用步骤：</p>
+
+<ul>
+<li>引入对应的 taglib</li>
+<li>使用其中的方法</li>
+<li>在Tomcat也需要引入jstl的包，否则会报错:JSTL解析错误</li>
+</ul>
+
+<h2 id="iv-mvc架构">IV. MVC架构</h2>
+
+<h3 id="1-mvc定义">1. MVC定义</h3>
+
+<p><strong>MVC(Model: 业务模型, View: 视图, Controller: 控制器)是一种三层架构的软件设计模式。</strong>其分工如下：</p>
+
+<p><strong>Model</strong></p>
+
+<ul>
+<li><p>一般分为业务层(Service)和Dao层(Dao)以及JavaBean实体类(Entity)</p></li>
+
+<li><p>业务处理 :业务逻辑(Service层)</p></li>
+
+<li><p>数据持久层:CRUD (Dao层)</p></li>
+</ul>
+
+<p><strong>View</strong>（JSP, HTML, JS, CSS&hellip;）</p>
+
+<ul>
+<li>展示数据</li>
+<li>提供链接发起Servlet请求 (a，form，img&hellip;)</li>
+</ul>
+
+<p><strong>Controller</strong> (Servlet)</p>
+
+<ul>
+<li>接收用户的请求 :(req:请求参数、Session信息&hellip;.)</li>
+<li>交给业务层处理对应的代码</li>
+<li>控制视图的跳转</li>
+</ul>
+
+<p><img src="/images/CS/mvc框架.png" alt="mvc框架" /></p>
+
+<p>MVC架构项目的工作流程如下(用户登录案例)：</p>
 
 <ol>
-<li>将根节点加入到queue中。</li>
-<li>开始while循环，当queue为空时停止。每一次循环就是BFS中把每一个岔路都遍历的过程。</li>
-<li>创建一个list用于储存每一层节点的值，当一层变量结束时，将其add到result中。</li>
-<li>用for循环依次poll出queue中的所有节点，把节点的值加入到list中。</li>
-<li>如果poll出来的节点的子节点不为空就将其offer到queue中。</li>
-<li>如果list不为空，就将其add到result里面去。</li>
-<li>返回result</li>
+<li>客户端用户向服务器（View层）端发起登录请求</li>
+<li>View层接收请求并转交给Controller(Servlet)</li>
+<li>Controller将请求发送给Model(Service层)处理登录请求</li>
+<li>Service层调用Dao层对象方法调用数据</li>
+<li>Dao层使用JDBC从数据库中提取出对应数据并返回给Service层</li>
+<li>Service层判断用户名，密码是否正确，并将结果返回给Controller层</li>
+<li>Controller将对应的Response发送给View并转交给客户端的用户</li>
 </ol>
 
-<p><strong>代码</strong></p>
+<h3 id="2-mvc开发流程">2. MVC开发流程</h3>
 
-<pre><code class="language-java">/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+<h4 id="a-项目搭建准备工作">a. 项目搭建准备工作</h4>
 
-   public  List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
-        List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
-        if (root == null) return result;
-        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-            int size = queue.size();
-            for (int i=0; i&lt;size; i++) {
-                TreeNode q = queue.poll();
-                list.add(q.val);
-                if (q.left != null) queue.offer(q.left);
-                if (q.right != null)   queue.offer(q.right);
-                }
-            if (!list.isEmpty()) result.add(new ArrayList&lt;&gt;(list));
-        }
-        return result;
-   }
-}
+<ol>
+<li><p>搭建一个maven web项目</p></li>
+
+<li><p>配置Tomcat</p></li>
+
+<li><p>测试项目是否能在Tomcat上成功跑起来</p></li>
+
+<li><p>导入必要的dependencies（jar包：jsp,     Servlet, mysql驱动，jstl, standard&hellip;）[note: 同样要导入jar包到Tomcat中]</p></li>
+
+<li><p>创建项目包结构</p>
+
+<ul>
+<li>dao (接口，实现类)</li>
+</ul></li>
+
+<li><ul>
+<li>filter</li>
+</ul></li>
+
+<li><ul>
+<li>pojo</li>
+</ul></li>
+
+<li><ul>
+<li>service(接口，实现类)</li>
+</ul></li>
+
+<li><ul>
+<li>servlet</li>
+</ul></li>
+
+<li><ul>
+<li>util (静态固定参数)</li>
+</ul></li>
+
+<li><p>编写实体类(pojo)</p></li>
+
+<li><p>编写基础公共类(dao)</p></li>
+
+<li><ol>
+<li>数据库配置文件</li>
+</ol>
+
+<ol>
+<li>编写数据库的公共类</li>
+</ol></li>
+
+<li><p>编写必要的Filter(e.g.     字符编码过滤器)</p></li>
+
+<li><p>导入静态资源(html, js, css,  jsp, image&hellip;)</p></li>
+</ol>
+
+<p><strong>基础公共类(dao)模板</strong>：</p>
+
+<pre><code class="language-java">package com.soul.dao;import java.io.IOException;import java.io.InputStream;import java.sql.*;import java.util.Properties;// 操作数据库公共类public class BaseDao {    private static String driver;    private static String url;    private static String username;    private static String password;    // 静态代码块，类加载的时候就初始化了    static {        Properties properties = new Properties();        // 通过类加载器读取对应的资源        InputStream is = BaseDao.class.getClassLoader().getResourceAsStream(&quot;db.properties&quot;);        try {            properties.load(is);        } catch (IOException e) {            e.printStackTrace();        }        driver = properties.getProperty(&quot;driver&quot;);        url = properties.getProperty(&quot;url&quot;);        username = properties.getProperty(&quot;username&quot;);        password = properties.getProperty(&quot;password&quot;);    }    // 获取数据库的链接    public static Connection getConnection() {        Connection connection = null;        try {            Class.forName(driver);            connection = DriverManager.getConnection(url, username, password);        } catch (Exception e) {            e.printStackTrace();        }        return connection;    }    // 编写查询公共方法    public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object [] params) throws SQLException {        // 预编译的sql,在后面直接执行不用传参就可以了        preparedStatement = connection.prepareStatement(sql);        for (int i = 0; i &lt; params.length; i++) {            // setObject, 占位符从1开始，但是我们的数组是从0开始的            preparedStatement.setObject(i+1, params[i]);        }        resultSet = preparedStatement.executeQuery();        return resultSet;    }    // 编写增删改公共方法    public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object [] params) throws SQLException {        preparedStatement = connection.prepareStatement(sql);        for (int i = 0; i &lt; params.length; i++) {            // setObject, 占位符从1开始，但是我们的数组是从0开始的            preparedStatement.setObject(i+1, params[i]);        }        int updateRows = preparedStatement.executeUpdate();        return updateRows;    }    // 释放资源    public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {        boolean flag = true;        if (resultSet != null) {            try {                resultSet.close();                // GC回收                resultSet = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        if (preparedStatement != null) {            try {                preparedStatement.close();                // GC回收                preparedStatement = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        if (connection != null) {            try {                connection.close();                // GC回收                connection = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        return true;    }}
 </code></pre>
 
-<h2 id="v-总结">V. 总结</h2>
+<p><strong>数据库(MySQL)配置文件db.properties模板</strong>：</p>
 
-<p>BFS是一种在图、搜索树和遍历中非常经典且常用的算法。其思路为先找到节点的每一个岔路并标记起来，再依次往前更进一步，直到找到结果或遍历完为止。做法通常为将起始点加入到queue中，然后将queue中的节点取出，搜索结果。如果结果不在，就将节点的子节点继续放到queue中重复以上过程直到找到结果或遍历完所有节点为止。</p>
+<pre><code class="language-properties">driver=com.mysql.jdbc.Driverurl=jdbc:mysql://localhost:3306/smbms?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf-8username=rootpassword=123456
+</code></pre>
 
-<h2 id="vi-参考">VI. 参考</h2>
+<h4 id="b-实现一个功能步骤">b. 实现一个功能步骤</h4>
 
-<p><a href="https://www.jiuzhang.com/">https://www.jiuzhang.com/</a></p>
+<ol>
+<li>写dao层</li>
+<li>写service层</li>
+<li>写servlet层</li>
+<li>在web.xml中配置servlet</li>
+<li>写junit进行单元测试</li>
+</ol>
 
-<p><a href="https://leetcode.com/">https://leetcode.com/</a></p>
+<p><strong>案例(登录)代码</strong></p>
 
-<p><a href="https://www.lintcode.com/">https://www.lintcode.com/</a></p>
+<p>1) dao层</p>
+
+<pre><code class="language-java">// 编写UserDao接口public interface UserDao {    // 得到要登录的用户    public User getLoginUser(Connection connection, String userCode) throws SQLException;}// 编写UserDao接口的实现类public class UserDaoImpl implements UserDao{    @Override    public User getLoginUser(Connection connection, String userCode) throws SQLException {        PreparedStatement pstm = null;        ResultSet rs = null;        User user = null;        if (connection != null) {            String sql = &quot;select * from smbms_user where userCode=?&quot;; // 编写sql语句            Object[] params = {userCode}; // 设置sql语句中?值            rs = BaseDao.execute(connection, pstm, rs, sql, params);   // 执行sql语句并将结果存放到rs对象中            if (rs.next()) {  // 从rs对象中取出user对象                user = new User();                user.setId(rs.getInt(&quot;id&quot;));                user.setUserCode(rs.getString(&quot;userCode&quot;));                user.setUserName(rs.getString(&quot;userName&quot;));                user.setUserPassword(rs.getString(&quot;userPassword&quot;));                user.setGender(rs.getInt(&quot;gender&quot;));                user.setBirthday(rs.getDate(&quot;birthday&quot;));                user.setPhone(rs.getString(&quot;phone&quot;));                user.setAddress(rs.getString(&quot;address&quot;));                user.setUserRole(rs.getInt(&quot;userRole&quot;));                user.setCreatedBy(rs.getInt(&quot;createdBy&quot;));                user.setCreationDate(rs.getTimestamp(&quot;creationDate&quot;));                user.setModifyBy(rs.getInt(&quot;modifyBy&quot;));                user.setModifyDate(rs.getTimestamp(&quot;modifyDate&quot;));            }            BaseDao.closeResource(null, pstm, rs);    // 关闭资源        }        return user;    // 返回user对象    }}
+</code></pre>
+
+<p>2) service层</p>
+
+<pre><code class="language-java">// 编写UserService接口public interface UserService {    // 用户登录    public User login(String userCode, String password);}// 编写UserService接口的实现类public class UserServiceImpl implements UserService{    // 业务层都会调用dao层，所以我们要引入Dao层    private UserDao userDao;    // 构造函数    public UserServiceImpl() {        userDao = new UserDaoImpl();    }    @Override    public User login(String userCode, String password) {        Connection connection = null;        User user = null;        try {            connection = BaseDao.getConnection();    // 连接数据库            // 通过业务层调用对应的具体的数据库操作            user = userDao.getLoginUser(connection, userCode); // 调用userDao对象的方法获取user对象        } catch (SQLException throwables) {            throwables.printStackTrace();        } finally {            BaseDao.closeResource(connection, null, null);  // 关闭资源        }              // 判断密码是否正确，并将user返回数据到Servlet层        if (user != null) {            if (user.getUserPassword().equals(password)) {                return user;            } else {                return null;            }        } else {            return null;        }    }}
+</code></pre>
+
+<p>3) servlet层</p>
+
+<pre><code class="language-java">public class LoginServlet extends HttpServlet {    // Servlet:控制层， 调用业务层代码    @Override    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        // 获取用户名和密码        String userCode = req.getParameter(&quot;userCode&quot;);        String userPassword = req.getParameter(&quot;userPassword&quot;);        // 和数据库中的密码进行对比，调用业务层        UserService userService = new UserServiceImpl();        User user = userService.login(userCode, userPassword);  // 这里已经把登录的人给查出来了        if (user != null) { // 查有此人，可以登录            // 将用户的信息放到Session中；            req.getSession().setAttribute(Constants.USER_SESSION, user);            // 跳转到主页            resp.sendRedirect(&quot;/jsp/frame.jsp&quot;);        } else {    // 查无此人，无法登录            // 转发回登录页面，顺带提示它，用户名或者密码从无            req.setAttribute(&quot;error&quot;, &quot;用户名或密码错误&quot;);            req.getRequestDispatcher(&quot;login.jsp&quot;).forward(req, resp);        }    }    @Override    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        this.doGet(req, resp);    }}
+</code></pre>
+
+<p>4) 在web.xml中配置servlet</p>
+
+<pre><code class="language-xml">    &lt;servlet&gt;        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;        &lt;servlet-class&gt;com.soul.servlet.user.LoginServlet&lt;/servlet-class&gt;    &lt;/servlet&gt;    &lt;servlet-mapping&gt;        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;    &lt;/servlet-mapping&gt;
+</code></pre>
+
+<p>5) 写junit进行单元测试</p>
+
+<pre><code class="language-java">    @Test    public void testLogin() {        UserService userService = new UserServiceImpl();        User admin = userService.login(&quot;admin&quot;, &quot;1234567&quot;);        System.out.println(admin.getUserPassword());    }
+</code></pre>
+
+<h2 id="v-常用工具及概念">V. 常用工具及概念</h2>
+
+<h3 id="1-ajax">1. Ajax</h3>
+
+<p>Ajax即Asynchronous Javascript And XML（异步JavaScript和XML）是一项用于网页应用快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面的技术。比如微博刷新不需要刷新整个页面，而只用重新载入部分更新内容即可，这便是应用到了Ajax技术。</p>
+
+<p>代码案例：</p>
+
+<pre><code class="language-javascript">$.ajax({  type:&quot;GET&quot;,//请求类型  url:path+&quot;/jsp/user.do&quot;,//请求的url  data:{method:&quot;getrolelist&quot;},//请求参数  dataType:&quot;json&quot;,//ajax接口（请求url）返回的数据类型  success:function(data){//data：返回数据（json对象）    if(data != null){      userRole.html(&quot;&quot;);      var options = &quot;&lt;option value=\&quot;0\&quot;&gt;请选择&lt;/option&gt;&quot;;      for(var i = 0; i &lt; data.length; i++){        options += &quot;&lt;option value=\&quot;&quot;+data[i].id+&quot;\&quot;&gt;&quot;+data[i].roleName+&quot;&lt;/option&gt;&quot;;      }      userRole.html(options);    }  },  error:function(data){//当访问时候，404，500 等非200的错误状态码    validateTip(userRole.next(),{&quot;color&quot;:&quot;red&quot;},imgNo+&quot; 获取用户角色列表error&quot;,false);  }});
+</code></pre>
+
+<h3 id="2-json">2. json</h3>
+
+<p><strong>JSON</strong>(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。</p>
+
+<p>例子：</p>
+
+<pre><code class="language-json">// 表示变量 {&quot;name&quot;: &quot;John Doe&quot;, &quot;age&quot;: 18, &quot;address&quot;: {&quot;country&quot; : &quot;china&quot;, &quot;zip-code&quot;: &quot;10000&quot;}}// 表示基础变量数组[3, 1, 4, 1, 5, 9, 2, 6]// 表示对象{&quot;firstName&quot;: &quot;Brett&quot;, &quot;lastName&quot;: &quot;McLaughlin&quot;}                                        // 表示数组{ &quot;people&quot;:[     {      &quot;firstName&quot;: &quot;Brett&quot;,                  &quot;lastName&quot;:&quot;McLaughlin&quot;            },          {              &quot;firstName&quot;:&quot;Jason&quot;,      &quot;lastName&quot;:&quot;Hunter&quot;    }  ]}
+</code></pre>
+
+<h3 id="3-jdbc">3. JDBC</h3>
+
+<p>Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来<strong>规范客户端程序如何来访问数据库的应用程序接口</strong>，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的。</p>
+
+<p>由于每一种数据库都有自己的驱动方式，如果我们每连接一个数据库就自己写一个数据库连接实现，那么工程过于繁琐。JDBC就是在Java应用和数据库之间用于解决此问题的中间层接口。这使得我们只需要使用JDBC就可以连接Java应用和各种数据库。</p>
+
+<p><img src="/images/CS/jdbc_原理.png" alt="jdbc_原理" /></p>
+
+<p><strong>JDBC固定步骤</strong>：</p>
+
+<ol>
+<li>加载驱动</li>
+<li>连接数据库,代表数据库3. 向数据库发送SQL的对象S</li>
+<li>tatement : CRUD</li>
+<li>编写SQL (根据业务，不同的SQL)</li>
+<li>执行SQL</li>
+<li>关闭连接</li>
+</ol>
+
+<p>代码演示：</p>
+
+<pre><code class="language-java">public class TestJdbc {  public static void main(String[] args) throws ClassNotFoundException,SQLException { //配置信息     //useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码    String url=&quot;jdbc:mysql://localhost:3306/jdbc?       useUnicode=true&amp;characterEncoding=utf-8&quot;;    String username = &quot;root&quot;;    String password = &quot;123456&quot;;       //1.加载驱动    Class.forName(&quot;com.mysql.jdbc.Driver&quot;);     //2.连接数据库,代表数据库     Connection connection = DriverManager.getConnection(url, username, password);       //3.向数据库发送SQL的对象 Statement,PreparedStatement : CRUD     Statement statement = connection.createStatement();     //4.编写SQL       String sql = &quot;select * from users&quot;;     //5.执行查询SQL，返回一个 ResultSet : 结果集 ResultSet rs = statement.executeQuery(sql);    while (rs.next()){      System.out.println(&quot;id=&quot;+rs.getObject(&quot;id&quot;));      System.out.println(&quot;name=&quot;+rs.getObject(&quot;name&quot;));      System.out.println(&quot;password=&quot;+rs.getObject(&quot;password&quot;));      System.out.println(&quot;email=&quot;+rs.getObject(&quot;email&quot;));      System.out.println(&quot;birthday=&quot;+rs.getObject(&quot;birthday&quot;));     }       //6.关闭连接，释放资源(一定要做) 先开后关 rs.close();        statement.close(); connection.close();      } }
+</code></pre>
+
+<p>JDBC预编译SQL:</p>
+
+<pre><code class="language-java">public class TestJDBC2 {    public static void main(String[] args) throws Exception {    //配置信息    //useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码 String url=&quot;jdbc:mysql://localhost:3306/jdbc?    useUnicode=true&amp;characterEncoding=utf-8&quot;;    String username = &quot;root&quot;;    String password = &quot;123456&quot;;    //1.加载驱动    Class.forName(&quot;com.mysql.jdbc.Driver&quot;);    //2.连接数据库,代表数据库    Connection connection = DriverManager.getConnection(url, username, password);    //3.编写SQL    String sql = &quot;insert into  users(id, name, password, email, birthday) values (?,?,?,?,?);&quot;;    //4.预编译    PreparedStatement preparedStatement =    connection.prepareStatement(sql);    preparedStatement.setInt(1,2);//给第一个占位符? 的值赋值为1;    preparedStatement.setString(2,&quot;狂神说Java&quot;);//给第二个占位符? 的值赋值为 狂神说Java;    preparedStatement.setString(3,&quot;123456&quot;);//给第三个占位符? 的值赋值为 123456;    preparedStatement.setString(4,&quot;24736743@qq.com&quot;);//给第四个占位符? 的 值赋值为1;    preparedStatement.setDate(5,new Date(new java.util.Date().getTime()));//给第五个占位符? 的值赋值为new                   Date(new     java.util.Date().getTime());    //5.执行SQL      int i = preparedStatement.executeUpdate();    if (i&gt;0){       System.out.println(&quot;插入成功@&quot;);    }     //6.关闭连接，释放资源(一定要做) 先开后关 preparedStatement.close(); connection.close(); }}
+</code></pre>
+
+<h3 id="4-junit">4. JUnit</h3>
+
+<p>JUnit是一个Java语言的单元测试框架。在导入JUnit包后，只需要在方法或者类上方加入<code>@Test</code>标签即可使用。</p>
+
+<h3 id="5-javabean">5. JavaBean</h3>
+
+<p>JavaBean是一种可重用的Java组件。实际上，JavaBean是一种有特定规范的类，一般用于映射数据库中数据表的数据。因此JavaBean往往被用作实体类来使用。成为JavaBean的类的特定规范如下：</p>
+
+<ul>
+<li>类必须是public</li>
+<li>必须有一个public的无参构造方法（可以有附加的其它构造方法）</li>
+<li>变量必须为private</li>
+<li>每一个变量必须有public的getter和setter</li>
+<li>JavaBean一定要放在包内，使用package进行自定义</li>
+<li>对于部署好的JavaBean修改是，一定要重新编译节码文件，同时启动Tomcat服务器，之后便能够生效</li>
+</ul>
+
+<h2 id="vi-java-web开发常见坑">VI. Java Web开发常见坑</h2>
+
+<ol>
+<li>如果junit成果但是tomcat失败，一般就是tomcat没有添加依赖造成的</li>
+<li>jsp路径和tomcat配置的项目url路径要对应     (用 req.getContextPath() + path可以解决)</li>
+<li>关闭资源的时候，这个方法开了什么就关什么，没开的就不要关。</li>
+<li>要熟悉request和response各自的功能</li>
+<li>要熟悉request提取数据的各个作用域(Session, Request 以及 ContentText)</li>
+<li>有些前端代码可以用layui来自动实现</li>
+</ol>
+
+<h2 id="vii-总结">VII. 总结</h2>
+
+<p>JavaWeb是Java中用于动态Web开发的核心技术，我们使用它可以完全实现所有Web应用。</p>
+
+<p>JavaWeb是Java工程师从初级到高级必须走的第一步。在学习完JavaSE的全部知识后，JavaWeb便是在其之上很好的实战。虽然今天在大部分应用中JavaWeb的代码已经被各种成熟的框架如SSM, Spring Boot, Spring Cloud等所取代了，但是这些框架的核心思想和代码还是基于JavaWeb之上的。他们的底层代码还是使用JavaWeb来实现的。因此，想要理解和优化一个SSM或Spring Boot项目就必须要完全掌握JavaWeb的知识。一个优秀的工程师和调参员（码农）之间的差别就在于此。因此，JavaWeb之间依旧是Java工程师必须掌握的内容且必须要迈出的一步。</p>
+
+<h2 id="viii-参考">VIII. 参考</h2>
+
+<ul>
+<li><a href="https://baike.baidu.com/">百度百科</a></li>
+<li><a href="https://space.bilibili.com/95256449/channel/detail?cid=146244">狂神说Java</a></li>
+</ul>
 
   </div>
 
@@ -1070,7 +1118,7 @@ class Solution {
                 <li><a class="article-category-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/%E7%AE%97%E6%B3%95">算法</a></li>
+                <li><a class="article-category-link" href="/tags/java">Java</a></li>
                 
             
         
@@ -1085,8 +1133,8 @@ class Solution {
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/algorithms_binary-search/"
-                class="button big previous">二分查找</a></li>
+        <li><a href="/blog/cs/algorithms_breadth-first-search/"
+                class="button big previous">广度优先搜索算法（Breadth-First-Search）</a></li>
     
 
     
@@ -1105,7 +1153,7 @@ class Solution {
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;text=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2fjavaweb%2f&amp;text=Java%20Web&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -1115,7 +1163,7 @@ class Solution {
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fjavaweb%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -1126,7 +1174,7 @@ class Solution {
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fjavaweb%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -1136,7 +1184,7 @@ class Solution {
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fjavaweb%2f&amp;title=Java%20Web" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -1146,7 +1194,7 @@ class Solution {
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fjavaweb%2f&amp;title=Java%20Web" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -1156,7 +1204,7 @@ class Solution {
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;title=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fjavaweb%2f&amp;title=Java%20Web" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -1166,7 +1214,7 @@ class Solution {
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2falgorithms_breadth-first-search%2f&amp;description=%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95%ef%bc%88Breadth-First-Search%ef%bc%89" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fjavaweb%2f&amp;description=Java%20Web" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -1176,7 +1224,7 @@ class Solution {
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2falgorithms_breadth-first-search%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fjavaweb%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -1323,6 +1371,20 @@ class Solution {
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/blog/cs/javaweb/">Java Web</a>
+              </h3>
+              
+              <time class="published" datetime='2021-06-19'>
+                June 19, 2021
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/blog/cs/algorithms_breadth-first-search/">广度优先搜索算法（Breadth-First-Search）</a>
               </h3>
               
@@ -1403,20 +1465,6 @@ class Solution {
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/algorithms_two-points/">双指针算法之左右对撞指针</a>
-              </h3>
-              
-              <time class="published" datetime='2020-08-03'>
-                August 3, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
       </div>
 
       
@@ -1450,7 +1498,7 @@ class Solution {
             <header>
               
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                <span style="float:right;">9</span>
+                <span style="float:right;">10</span>
               
             </header>
           </article>
@@ -1473,6 +1521,17 @@ class Solution {
               
                 <a href="/categories/%E5%BD%92%E6%A1%A3/">归档</a>
                 <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+                <span style="float:right;">1</span>
               
             </header>
           </article>
@@ -1593,7 +1652,7 @@ class Solution {
     
     <p class="copyright">
       
-        &copy; 2020
+        &copy; 2021
         
           YY的主页
         
