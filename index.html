@@ -425,7 +425,7 @@
 
 <p><strong>定义：Java Web，使用Java技术来解决相关web互联网领域，尤其是动态web资源开发的技术栈。</strong>web由<strong>web服务器</strong>和<strong>web客户端</strong>两个部分组成。Java在客户端的应用有Java Applet,不过使用的很少。但是在服务器端，Java的应用十分丰富，比如Servlet, JSP, 第三方框架等。</p>
 
-<p><img src="/images/CS/javaweb_原理.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/javaweb_原理.png" alt="javaweb_原理" /></p>
 
 <p>动态web的运作过程往往如下：</p>
 
@@ -510,7 +510,7 @@
 <li>给出响应的信息</li>
 </ul>
 
-<p><img src="/images/CS/servlet_原理.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/servlet_原理.png" alt="javaweb_原理" /></p>
 
 <h4 id="b-传输对象">b. 传输对象</h4>
 
@@ -551,8 +551,8 @@ req.getRequestDispatcher(&quot;/success.jsp&quot;).forward(req,resp);
 // ServletOutputStream getOutputStream() throws IOException;
 
 // PrintWriter getWriter() throws IOException;
-PrintWriter writer = resp.getWriter();  // 获取response PrintWriter对象
-writer.write(&quot;Hello World&quot;);    // 写出到响应中
+PrintWriter writer = resp.getWriter();	// 获取response PrintWriter对象
+writer.write(&quot;Hello World&quot;);	// 写出到响应中
 
 // 负责向浏览器发送响应头的方法
 void setCharacterEncoding(String var1);
@@ -568,7 +568,7 @@ resp.sendRedirect(&quot;path&quot;);
 
 <p>重定向和请求转发都会实现页面转跳。不同的是，<strong>请求转发时url不会产生变化(状态码307)，重定向时，url会发生变化(状态码302)。</strong></p>
 
-<p><img src="/images/CS/重定向vs转发.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/重定向vs转发.png" alt="javaweb_原理" /></p>
 
 <h4 id="c-数据共享">c. 数据共享</h4>
 
@@ -576,7 +576,7 @@ resp.sendRedirect(&quot;path&quot;);
 
 <p><strong>web容器在启动的时候，它会为每个web程序都创建一个对应的ServletContext对象，它代表了当前的web应用，实现了数据共享。</strong></p>
 
-<p><img src="/images/CS/servletcontext.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/servletcontext.png" alt="javaweb_原理" /></p>
 
 <p>ServletContext的使用：</p>
 
@@ -590,7 +590,7 @@ resp.sendRedirect(&quot;path&quot;);
 
   String username = &quot;小明&quot;; //数据
   context.setAttribute(&quot;username&quot;,username); //将一个数据保存在了 ServletContext中，名字为:username，值:username(小明)
-    } 
+	} 
 }
 </code></pre>
 
@@ -612,7 +612,7 @@ resp.sendRedirect(&quot;path&quot;);
 <li>不设置有效期，关闭浏览器，Cookie自动失效;</li>
 </ul>
 
-<p><img src="/images/CS/cookie.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/cookie.png" alt="javaweb_原理" /></p>
 
 <p>Cookie使用：</p>
 
@@ -638,7 +638,7 @@ resp.addCookie(cookie);
 <li>在整个网站中经常会使用的数据，我们将它保存在Session中;</li>
 </ul>
 
-<p><img src="/images/CS/session.png" alt="javaweb_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/session.png" alt="javaweb_原理" /></p>
 
 <p>Session和Cookie的区别：</p>
 
@@ -670,9 +670,9 @@ String sessionId = session.getId();
 
 //判断Session是不是新创建 
 if (session.isNew()){
-    resp.getWriter().write(&quot;session创建成功,ID:&quot;+sessionId); 
+	resp.getWriter().write(&quot;session创建成功,ID:&quot;+sessionId); 
 }else {
-    resp.getWriter().write(&quot;session已经在服务器中存在了,ID:&quot;+sessionId);
+	resp.getWriter().write(&quot;session已经在服务器中存在了,ID:&quot;+sessionId);
 }
 </code></pre>
 
@@ -701,30 +701,30 @@ if (session.isNew()){
 <p>过滤器实现类编写步骤及案例：</p>
 
 <pre><code class="language-java">public class CharacterEncodingFilter implements Filter {
-    //初始化:web服务器启动，就以及初始化了，随时等待过滤对象出现!
+	//初始化:web服务器启动，就以及初始化了，随时等待过滤对象出现!
   public void init(FilterConfig filterConfig) throws
 ServletException {
-    System.out.println(&quot;CharacterEncodingFilter初始化&quot;); 
+	System.out.println(&quot;CharacterEncodingFilter初始化&quot;); 
     }
   
-    //Chain : 链
-    /*
-    1. 过滤中的所有代码，在过滤特定请求的时候都会执行 2. 必须要让过滤器继续同行
+	//Chain : 链
+	/*
+	1. 过滤中的所有代码，在过滤特定请求的时候都会执行 2. 必须要让过滤器继续同行
         chain.doFilter(request,response);
      */
-    public void doFilter(ServletRequest request, ServletResponse
+	public void doFilter(ServletRequest request, ServletResponse
 response, FilterChain chain) throws IOException, ServletException {
     request.setCharacterEncoding(&quot;utf-8&quot;);
     response.setCharacterEncoding(&quot;utf-8&quot;);
     response.setContentType(&quot;text/html;charset=UTF-8&quot;);
-        System.out.println(&quot;CharacterEncodingFilter执行前....&quot;);
+		System.out.println(&quot;CharacterEncodingFilter执行前....&quot;);
     chain.doFilter(request,response); //让我们的请求继续走，如果不写，程序到这里就被拦截停止!
-        System.out.println(&quot;CharacterEncodingFilter执行后....&quot;); }
+		System.out.println(&quot;CharacterEncodingFilter执行后....&quot;); }
   
   //销毁:web服务器关闭的时候，过滤会销毁 
   public void destroy() {
-        System.out.println(&quot;CharacterEncodingFilter销毁&quot;); 
-    }
+		System.out.println(&quot;CharacterEncodingFilter销毁&quot;); 
+	}
 }
 </code></pre>
 
@@ -762,12 +762,12 @@ response, FilterChain chain) throws IOException, ServletException {
 
 &lt;!--    配置Servlet--&gt;
     &lt;servlet&gt;
-        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt; &lt;!--配置Servlet名字，与下面mapping的名字对应，一个servlet可以有              多个&lt;servlet-mapping&gt;--&gt;
+        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt; &lt;!--配置Servlet名字，与下面mapping的名字对应，一个servlet可以有				多个&lt;servlet-mapping&gt;--&gt;
         &lt;servlet-class&gt;com.soul.servlet.user.LoginServlet&lt;/servlet-class&gt; &lt;!--配置Servlet 实现类的位置--&gt;
     &lt;/servlet&gt;
     &lt;servlet-mapping&gt;
         &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt; &lt;!--配置Servlet名字，与上面servlet的名字对应--&gt;
-        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;    &lt;!--配置Servlet实现类映射的url--&gt;
+        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;	&lt;!--配置Servlet实现类映射的url--&gt;
     &lt;/servlet-mapping&gt;
 
 &lt;!--    默认Session过期时间(真实业务需求)--&gt;
@@ -793,7 +793,59 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>任何语言都有自己的语法，java中有。JSP作为java技术的一种应用，它拥有一些自己扩充的语法(了解，知道即可!)，并被java支持。</p>
 
-<pre><code class="language-java">// JSP表达式&lt;%--JSP表达式 作用:用来将程序的输出，输出到客户端 &lt;%= 变量或者表达式%&gt;--%&gt;&lt;%= new java.util.Date()%&gt;  // JSP脚本片段&lt;%--jsp脚本片段--%&gt; &lt;%  int sum = 0;  for (int i = 1; i &lt;=100 ; i++) {sum+=i; }  out.println(&quot;&lt;h1&gt;Sum=&quot;+sum+&quot;&lt;/h1&gt;&quot;);%&gt;  &lt;%  int x = 10;  out.println(x);%&gt; &lt;p&gt;这是一个JSP文档&lt;/p&gt;&lt;%int y = 2;  out.println(y);%&gt;&lt;hr&gt;&lt;%--在代码嵌入HTML元素--%&gt;&lt;%  for (int i = 0; i &lt; 5; i++) {%&gt;  &lt;h1&gt;Hello,World  &lt;%=i%&gt; &lt;/h1&gt;&lt;% }%&gt;  // JSP声明// JSP声明:会被编译到JSP生成Java的类中!其他的，就会被生成到_jspService方法中!&lt;%! static {    System.out.println(&quot;Loading Servlet!&quot;);  }  private int globalVar = 0;public void kuang(){ System.out.println(&quot;进入了方法Kuang!&quot;);} %&gt;  // JSP的注释，不会在客户端显示，HTML就会!  // JSP指令&lt;%@page args.... %&gt;&lt;%@include file=&quot;&quot;%&gt;&lt;%--@include会将两个页面合二为一--%&gt; &lt;%@include file=&quot;common/header.jsp&quot;%&gt;&lt;h1&gt;网页主体&lt;/h1&gt;&lt;%@include file=&quot;common/footer.jsp&quot;%&gt; &lt;hr&gt;&lt;%--jSP标签 jsp:include:拼接页面，本质还是三个 --%&gt;&lt;jsp:include page=&quot;/common/header.jsp&quot;/&gt; &lt;h1&gt;网页主体&lt;/h1&gt;&lt;jsp:include page=&quot;/common/footer.jsp&quot;/&gt;
+<pre><code class="language-java">// JSP表达式
+
+&lt;%--JSP表达式 作用:用来将程序的输出，输出到客户端 &lt;%= 变量或者表达式%&gt;
+--%&gt;
+&lt;%= new java.util.Date()%&gt;
+  
+// JSP脚本片段
+&lt;%--jsp脚本片段--%&gt; &lt;%
+  int sum = 0;
+  for (int i = 1; i &lt;=100 ; i++) {
+sum+=i; }
+  out.println(&quot;&lt;h1&gt;Sum=&quot;+sum+&quot;&lt;/h1&gt;&quot;);
+%&gt;
+  
+&lt;%
+  int x = 10;
+  out.println(x);
+%&gt; 
+&lt;p&gt;这是一个JSP文档&lt;/p&gt;
+&lt;%
+int y = 2;
+  out.println(y);
+%&gt;
+&lt;hr&gt;
+&lt;%--在代码嵌入HTML元素--%&gt;
+&lt;%
+  for (int i = 0; i &lt; 5; i++) {
+%&gt;
+  &lt;h1&gt;Hello,World  &lt;%=i%&gt; &lt;/h1&gt;
+&lt;% }
+%&gt;
+  
+// JSP声明
+// JSP声明:会被编译到JSP生成Java的类中!其他的，就会被生成到_jspService方法中!
+&lt;%! static {
+    System.out.println(&quot;Loading Servlet!&quot;);
+  }
+  private int globalVar = 0;
+public void kuang(){ System.out.println(&quot;进入了方法Kuang!&quot;);
+} %&gt;
+  
+// JSP的注释，不会在客户端显示，HTML就会!
+  
+// JSP指令
+&lt;%@page args.... %&gt;
+&lt;%@include file=&quot;&quot;%&gt;
+&lt;%--@include会将两个页面合二为一--%&gt; &lt;%@include file=&quot;common/header.jsp&quot;%&gt;
+&lt;h1&gt;网页主体&lt;/h1&gt;
+&lt;%@include file=&quot;common/footer.jsp&quot;%&gt; &lt;hr&gt;
+&lt;%--jSP标签 jsp:include:拼接页面，本质还是三个 --%&gt;
+&lt;jsp:include page=&quot;/common/header.jsp&quot;/&gt; 
+&lt;h1&gt;网页主体&lt;/h1&gt;
+&lt;jsp:include page=&quot;/common/footer.jsp&quot;/&gt;
 </code></pre>
 
 <h4 id="d-jsp九大内置对象">d. JSP九大内置对象</h4>
@@ -810,7 +862,10 @@ response, FilterChain chain) throws IOException, ServletException {
 <li>exception</li>
 </ul>
 
-<pre><code class="language-java">pageContext.setAttribute(&quot;name1&quot;,&quot;秦疆1号&quot;);//保存的数据只在一个页面中有效request.setAttribute(&quot;name2&quot;,&quot;秦疆2号&quot;);//保存的数据只在一次请求中有效，请求转发会携带这个数据session.setAttribute(&quot;name3&quot;,&quot;秦疆3号&quot;);//保存的数据只在一次会话中有效，从打开浏览器到关闭浏览器application.setAttribute(&quot;name4&quot;,&quot;秦疆4号&quot;); //保存的数据只在服务器中有效，从打开服务器到关闭服务器
+<pre><code class="language-java">pageContext.setAttribute(&quot;name1&quot;,&quot;小明1号&quot;);//保存的数据只在一个页面中有效
+request.setAttribute(&quot;name2&quot;,&quot;小明2号&quot;);//保存的数据只在一次请求中有效，请求转发会携带这个数据
+session.setAttribute(&quot;name3&quot;,&quot;小明3号&quot;);//保存的数据只在一次会话中有效，从打开浏览器到关闭浏览器
+application.setAttribute(&quot;name4&quot;,&quot;小明4号&quot;); //保存的数据只在服务器中有效，从打开服务器到关闭服务器
 </code></pre>
 
 <ul>
@@ -823,7 +878,16 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p><strong>配置pom.xml</strong>:</p>
 
-<pre><code class="language-xml">&lt;!-- JSTL表达式的依赖 --&gt; &lt;dependency&gt;    &lt;groupId&gt;javax.servlet.jsp.jstl&lt;/groupId&gt;    &lt;artifactId&gt;jstl-api&lt;/artifactId&gt;    &lt;version&gt;1.2&lt;/version&gt;&lt;/dependency&gt;&lt;!-- standard标签库 --&gt; &lt;dependency&gt;    &lt;groupId&gt;taglibs&lt;/groupId&gt;    &lt;artifactId&gt;standard&lt;/artifactId&gt;    &lt;version&gt;1.1.2&lt;/version&gt;&lt;/dependency&gt;
+<pre><code class="language-xml">&lt;!-- JSTL表达式的依赖 --&gt; &lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet.jsp.jstl&lt;/groupId&gt;
+    &lt;artifactId&gt;jstl-api&lt;/artifactId&gt;
+    &lt;version&gt;1.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- standard标签库 --&gt; &lt;dependency&gt;
+    &lt;groupId&gt;taglibs&lt;/groupId&gt;
+    &lt;artifactId&gt;standard&lt;/artifactId&gt;
+    &lt;version&gt;1.1.2&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
 
 <p><strong>EL表达式<code>${ }</code></strong>用来：</p>
@@ -836,7 +900,12 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p><strong>JSP标签</strong>用来获取或传输动态数据：</p>
 
-<pre><code class="language-java">&lt;%--jsp:include--%&gt;&lt;jsp:forward page=&quot;/jsptag2.jsp&quot;&gt;    &lt;jsp:param name=&quot;name&quot; value=&quot;xiaoming&quot;&gt;&lt;/jsp:param&gt;    &lt;jsp:param name=&quot;age&quot; value=&quot;12&quot;&gt;&lt;/jsp:param&gt;&lt;/jsp:forward&gt;
+<pre><code class="language-java">&lt;%--jsp:include--%&gt;
+
+&lt;jsp:forward page=&quot;/jsptag2.jsp&quot;&gt;
+    &lt;jsp:param name=&quot;name&quot; value=&quot;xiaoming&quot;&gt;&lt;/jsp:param&gt;
+    &lt;jsp:param name=&quot;age&quot; value=&quot;12&quot;&gt;&lt;/jsp:param&gt;
+&lt;/jsp:forward&gt;
 </code></pre>
 
 <p><strong>JSTL表达式</strong></p>
@@ -882,7 +951,7 @@ response, FilterChain chain) throws IOException, ServletException {
 <li>控制视图的跳转</li>
 </ul>
 
-<p><img src="/images/CS/mvc框架.png" alt="mvc框架" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/mvc框架.png" alt="mvc框架" /></p>
 
 <p>MVC架构项目的工作流程如下(用户登录案例)：</p>
 
@@ -954,12 +1023,118 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p><strong>基础公共类(dao)模板</strong>：</p>
 
-<pre><code class="language-java">package com.soul.dao;import java.io.IOException;import java.io.InputStream;import java.sql.*;import java.util.Properties;// 操作数据库公共类public class BaseDao {    private static String driver;    private static String url;    private static String username;    private static String password;    // 静态代码块，类加载的时候就初始化了    static {        Properties properties = new Properties();        // 通过类加载器读取对应的资源        InputStream is = BaseDao.class.getClassLoader().getResourceAsStream(&quot;db.properties&quot;);        try {            properties.load(is);        } catch (IOException e) {            e.printStackTrace();        }        driver = properties.getProperty(&quot;driver&quot;);        url = properties.getProperty(&quot;url&quot;);        username = properties.getProperty(&quot;username&quot;);        password = properties.getProperty(&quot;password&quot;);    }    // 获取数据库的链接    public static Connection getConnection() {        Connection connection = null;        try {            Class.forName(driver);            connection = DriverManager.getConnection(url, username, password);        } catch (Exception e) {            e.printStackTrace();        }        return connection;    }    // 编写查询公共方法    public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object [] params) throws SQLException {        // 预编译的sql,在后面直接执行不用传参就可以了        preparedStatement = connection.prepareStatement(sql);        for (int i = 0; i &lt; params.length; i++) {            // setObject, 占位符从1开始，但是我们的数组是从0开始的            preparedStatement.setObject(i+1, params[i]);        }        resultSet = preparedStatement.executeQuery();        return resultSet;    }    // 编写增删改公共方法    public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object [] params) throws SQLException {        preparedStatement = connection.prepareStatement(sql);        for (int i = 0; i &lt; params.length; i++) {            // setObject, 占位符从1开始，但是我们的数组是从0开始的            preparedStatement.setObject(i+1, params[i]);        }        int updateRows = preparedStatement.executeUpdate();        return updateRows;    }    // 释放资源    public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {        boolean flag = true;        if (resultSet != null) {            try {                resultSet.close();                // GC回收                resultSet = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        if (preparedStatement != null) {            try {                preparedStatement.close();                // GC回收                preparedStatement = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        if (connection != null) {            try {                connection.close();                // GC回收                connection = null;            } catch (SQLException throwables) {                throwables.printStackTrace();                flag = false;            }        }        return true;    }}
+<pre><code class="language-java">package com.soul.dao;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.Properties;
+
+// 操作数据库公共类
+public class BaseDao {
+    private static String driver;
+    private static String url;
+    private static String username;
+    private static String password;
+
+    // 静态代码块，类加载的时候就初始化了
+    static {
+        Properties properties = new Properties();
+        // 通过类加载器读取对应的资源
+        InputStream is = BaseDao.class.getClassLoader().getResourceAsStream(&quot;db.properties&quot;);
+        try {
+            properties.load(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        driver = properties.getProperty(&quot;driver&quot;);
+        url = properties.getProperty(&quot;url&quot;);
+        username = properties.getProperty(&quot;username&quot;);
+        password = properties.getProperty(&quot;password&quot;);
+    }
+
+    // 获取数据库的链接
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    // 编写查询公共方法
+    public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object [] params) throws SQLException {
+        // 预编译的sql,在后面直接执行不用传参就可以了
+        preparedStatement = connection.prepareStatement(sql);
+        for (int i = 0; i &lt; params.length; i++) {
+            // setObject, 占位符从1开始，但是我们的数组是从0开始的
+            preparedStatement.setObject(i+1, params[i]);
+        }
+        resultSet = preparedStatement.executeQuery();
+        return resultSet;
+    }
+
+    // 编写增删改公共方法
+    public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object [] params) throws SQLException {
+        preparedStatement = connection.prepareStatement(sql);
+        for (int i = 0; i &lt; params.length; i++) {
+            // setObject, 占位符从1开始，但是我们的数组是从0开始的
+            preparedStatement.setObject(i+1, params[i]);
+        }
+        int updateRows = preparedStatement.executeUpdate();
+        return updateRows;
+    }
+
+    // 释放资源
+    public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
+        boolean flag = true;
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+                // GC回收
+                resultSet = null;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                flag = false;
+            }
+        }
+
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
+                // GC回收
+                preparedStatement = null;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                flag = false;
+            }
+        }
+
+        if (connection != null) {
+            try {
+                connection.close();
+                // GC回收
+                connection = null;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                flag = false;
+            }
+        }
+        return true;
+    }
+}
 </code></pre>
 
 <p><strong>数据库(MySQL)配置文件db.properties模板</strong>：</p>
 
-<pre><code class="language-properties">driver=com.mysql.jdbc.Driverurl=jdbc:mysql://localhost:3306/smbms?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf-8username=rootpassword=123456
+<pre><code class="language-properties">driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/smbms?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf-8
+username=root
+password=123456
 </code></pre>
 
 <h4 id="b-实现一个功能步骤">b. 实现一个功能步骤</h4>
@@ -976,27 +1151,150 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>1) dao层</p>
 
-<pre><code class="language-java">// 编写UserDao接口public interface UserDao {    // 得到要登录的用户    public User getLoginUser(Connection connection, String userCode) throws SQLException;}// 编写UserDao接口的实现类public class UserDaoImpl implements UserDao{    @Override    public User getLoginUser(Connection connection, String userCode) throws SQLException {        PreparedStatement pstm = null;        ResultSet rs = null;        User user = null;        if (connection != null) {            String sql = &quot;select * from smbms_user where userCode=?&quot;; // 编写sql语句            Object[] params = {userCode}; // 设置sql语句中?值            rs = BaseDao.execute(connection, pstm, rs, sql, params);   // 执行sql语句并将结果存放到rs对象中            if (rs.next()) {  // 从rs对象中取出user对象                user = new User();                user.setId(rs.getInt(&quot;id&quot;));                user.setUserCode(rs.getString(&quot;userCode&quot;));                user.setUserName(rs.getString(&quot;userName&quot;));                user.setUserPassword(rs.getString(&quot;userPassword&quot;));                user.setGender(rs.getInt(&quot;gender&quot;));                user.setBirthday(rs.getDate(&quot;birthday&quot;));                user.setPhone(rs.getString(&quot;phone&quot;));                user.setAddress(rs.getString(&quot;address&quot;));                user.setUserRole(rs.getInt(&quot;userRole&quot;));                user.setCreatedBy(rs.getInt(&quot;createdBy&quot;));                user.setCreationDate(rs.getTimestamp(&quot;creationDate&quot;));                user.setModifyBy(rs.getInt(&quot;modifyBy&quot;));                user.setModifyDate(rs.getTimestamp(&quot;modifyDate&quot;));            }            BaseDao.closeResource(null, pstm, rs);    // 关闭资源        }        return user;    // 返回user对象    }}
+<pre><code class="language-java">// 编写UserDao接口
+public interface UserDao {
+    // 得到要登录的用户
+    public User getLoginUser(Connection connection, String userCode) throws SQLException;
+}
+
+// 编写UserDao接口的实现类
+public class UserDaoImpl implements UserDao{
+    @Override
+    public User getLoginUser(Connection connection, String userCode) throws SQLException {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        User user = null;
+
+        if (connection != null) {
+            String sql = &quot;select * from smbms_user where userCode=?&quot;;	// 编写sql语句
+            Object[] params = {userCode};	// 设置sql语句中?值
+
+            rs = BaseDao.execute(connection, pstm, rs, sql, params);	// 执行sql语句并将结果存放到rs对象中
+            if (rs.next()) {	// 从rs对象中取出user对象
+                user = new User();
+                user.setId(rs.getInt(&quot;id&quot;));
+                user.setUserCode(rs.getString(&quot;userCode&quot;));
+                user.setUserName(rs.getString(&quot;userName&quot;));
+                user.setUserPassword(rs.getString(&quot;userPassword&quot;));
+                user.setGender(rs.getInt(&quot;gender&quot;));
+                user.setBirthday(rs.getDate(&quot;birthday&quot;));
+                user.setPhone(rs.getString(&quot;phone&quot;));
+                user.setAddress(rs.getString(&quot;address&quot;));
+                user.setUserRole(rs.getInt(&quot;userRole&quot;));
+                user.setCreatedBy(rs.getInt(&quot;createdBy&quot;));
+                user.setCreationDate(rs.getTimestamp(&quot;creationDate&quot;));
+                user.setModifyBy(rs.getInt(&quot;modifyBy&quot;));
+                user.setModifyDate(rs.getTimestamp(&quot;modifyDate&quot;));
+            }
+            BaseDao.closeResource(null, pstm, rs);	// 关闭资源
+        }
+        return user;	// 返回user对象
+    }
+}
 </code></pre>
 
 <p>2) service层</p>
 
-<pre><code class="language-java">// 编写UserService接口public interface UserService {    // 用户登录    public User login(String userCode, String password);}// 编写UserService接口的实现类public class UserServiceImpl implements UserService{    // 业务层都会调用dao层，所以我们要引入Dao层    private UserDao userDao;    // 构造函数    public UserServiceImpl() {        userDao = new UserDaoImpl();    }    @Override    public User login(String userCode, String password) {        Connection connection = null;        User user = null;        try {            connection = BaseDao.getConnection();    // 连接数据库            // 通过业务层调用对应的具体的数据库操作            user = userDao.getLoginUser(connection, userCode); // 调用userDao对象的方法获取user对象        } catch (SQLException throwables) {            throwables.printStackTrace();        } finally {            BaseDao.closeResource(connection, null, null);  // 关闭资源        }              // 判断密码是否正确，并将user返回数据到Servlet层        if (user != null) {            if (user.getUserPassword().equals(password)) {                return user;            } else {                return null;            }        } else {            return null;        }    }}
+<pre><code class="language-java">// 编写UserService接口
+public interface UserService {
+    // 用户登录
+    public User login(String userCode, String password);
+}
+
+// 编写UserService接口的实现类
+public class UserServiceImpl implements UserService{
+    // 业务层都会调用dao层，所以我们要引入Dao层
+    private UserDao userDao;
+
+  	// 构造函数
+    public UserServiceImpl() {
+        userDao = new UserDaoImpl();
+    }
+
+    @Override
+    public User login(String userCode, String password) {
+        Connection connection = null;
+        User user = null;
+
+        try {
+            connection = BaseDao.getConnection();	// 连接数据库
+            // 通过业务层调用对应的具体的数据库操作
+            user = userDao.getLoginUser(connection, userCode);	// 调用userDao对象的方法获取user对象
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            BaseDao.closeResource(connection, null, null);	// 关闭资源
+        }
+      
+        // 判断密码是否正确，并将user返回数据到Servlet层
+        if (user != null) {
+            if (user.getUserPassword().equals(password)) {
+                return user;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+}
 </code></pre>
 
 <p>3) servlet层</p>
 
-<pre><code class="language-java">public class LoginServlet extends HttpServlet {    // Servlet:控制层， 调用业务层代码    @Override    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        // 获取用户名和密码        String userCode = req.getParameter(&quot;userCode&quot;);        String userPassword = req.getParameter(&quot;userPassword&quot;);        // 和数据库中的密码进行对比，调用业务层        UserService userService = new UserServiceImpl();        User user = userService.login(userCode, userPassword);  // 这里已经把登录的人给查出来了        if (user != null) { // 查有此人，可以登录            // 将用户的信息放到Session中；            req.getSession().setAttribute(Constants.USER_SESSION, user);            // 跳转到主页            resp.sendRedirect(&quot;/jsp/frame.jsp&quot;);        } else {    // 查无此人，无法登录            // 转发回登录页面，顺带提示它，用户名或者密码从无            req.setAttribute(&quot;error&quot;, &quot;用户名或密码错误&quot;);            req.getRequestDispatcher(&quot;login.jsp&quot;).forward(req, resp);        }    }    @Override    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        this.doGet(req, resp);    }}
+<pre><code class="language-java">public class LoginServlet extends HttpServlet {
+    // Servlet:控制层， 调用业务层代码
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 获取用户名和密码
+        String userCode = req.getParameter(&quot;userCode&quot;);
+        String userPassword = req.getParameter(&quot;userPassword&quot;);
+
+        // 和数据库中的密码进行对比，调用业务层
+        UserService userService = new UserServiceImpl();
+        User user = userService.login(userCode, userPassword);  // 这里已经把登录的人给查出来了
+
+        if (user != null) { // 查有此人，可以登录
+            // 将用户的信息放到Session中；
+            req.getSession().setAttribute(Constants.USER_SESSION, user);
+            // 跳转到主页
+            resp.sendRedirect(&quot;/jsp/frame.jsp&quot;);
+        } else {    // 查无此人，无法登录
+            // 转发回登录页面，顺带提示它，用户名或者密码从无
+            req.setAttribute(&quot;error&quot;, &quot;用户名或密码错误&quot;);
+            req.getRequestDispatcher(&quot;login.jsp&quot;).forward(req, resp);
+        }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req, resp);
+    }
+}
 </code></pre>
 
 <p>4) 在web.xml中配置servlet</p>
 
-<pre><code class="language-xml">    &lt;servlet&gt;        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;        &lt;servlet-class&gt;com.soul.servlet.user.LoginServlet&lt;/servlet-class&gt;    &lt;/servlet&gt;    &lt;servlet-mapping&gt;        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;    &lt;/servlet-mapping&gt;
+<pre><code class="language-xml">    &lt;servlet&gt;
+        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;com.soul.servlet.user.LoginServlet&lt;/servlet-class&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/login.do&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
 </code></pre>
 
 <p>5) 写junit进行单元测试</p>
 
-<pre><code class="language-java">    @Test    public void testLogin() {        UserService userService = new UserServiceImpl();        User admin = userService.login(&quot;admin&quot;, &quot;1234567&quot;);        System.out.println(admin.getUserPassword());    }
+<pre><code class="language-java">    @Test
+    public void testLogin() {
+        UserService userService = new UserServiceImpl();
+        User admin = userService.login(&quot;admin&quot;, &quot;1234567&quot;);
+        System.out.println(admin.getUserPassword());
+    }
 </code></pre>
 
 <h2 id="v-常用工具及概念">V. 常用工具及概念</h2>
@@ -1007,7 +1305,25 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>代码案例：</p>
 
-<pre><code class="language-javascript">$.ajax({  type:&quot;GET&quot;,//请求类型  url:path+&quot;/jsp/user.do&quot;,//请求的url  data:{method:&quot;getrolelist&quot;},//请求参数  dataType:&quot;json&quot;,//ajax接口（请求url）返回的数据类型  success:function(data){//data：返回数据（json对象）    if(data != null){      userRole.html(&quot;&quot;);      var options = &quot;&lt;option value=\&quot;0\&quot;&gt;请选择&lt;/option&gt;&quot;;      for(var i = 0; i &lt; data.length; i++){        options += &quot;&lt;option value=\&quot;&quot;+data[i].id+&quot;\&quot;&gt;&quot;+data[i].roleName+&quot;&lt;/option&gt;&quot;;      }      userRole.html(options);    }  },  error:function(data){//当访问时候，404，500 等非200的错误状态码    validateTip(userRole.next(),{&quot;color&quot;:&quot;red&quot;},imgNo+&quot; 获取用户角色列表error&quot;,false);  }});
+<pre><code class="language-javascript">$.ajax({
+  type:&quot;GET&quot;,//请求类型
+  url:path+&quot;/jsp/user.do&quot;,//请求的url
+  data:{method:&quot;getrolelist&quot;},//请求参数
+  dataType:&quot;json&quot;,//ajax接口（请求url）返回的数据类型
+  success:function(data){//data：返回数据（json对象）
+    if(data != null){
+      userRole.html(&quot;&quot;);
+      var options = &quot;&lt;option value=\&quot;0\&quot;&gt;请选择&lt;/option&gt;&quot;;
+      for(var i = 0; i &lt; data.length; i++){
+        options += &quot;&lt;option value=\&quot;&quot;+data[i].id+&quot;\&quot;&gt;&quot;+data[i].roleName+&quot;&lt;/option&gt;&quot;;
+      }
+      userRole.html(options);
+    }
+  },
+  error:function(data){//当访问时候，404，500 等非200的错误状态码
+    validateTip(userRole.next(),{&quot;color&quot;:&quot;red&quot;},imgNo+&quot; 获取用户角色列表error&quot;,false);
+  }
+});
 </code></pre>
 
 <h3 id="2-json">2. json</h3>
@@ -1016,7 +1332,28 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>例子：</p>
 
-<pre><code class="language-json">// 表示变量 {&quot;name&quot;: &quot;John Doe&quot;, &quot;age&quot;: 18, &quot;address&quot;: {&quot;country&quot; : &quot;china&quot;, &quot;zip-code&quot;: &quot;10000&quot;}}// 表示基础变量数组[3, 1, 4, 1, 5, 9, 2, 6]// 表示对象{&quot;firstName&quot;: &quot;Brett&quot;, &quot;lastName&quot;: &quot;McLaughlin&quot;}                                        // 表示数组{ &quot;people&quot;:[     {      &quot;firstName&quot;: &quot;Brett&quot;,                  &quot;lastName&quot;:&quot;McLaughlin&quot;            },          {              &quot;firstName&quot;:&quot;Jason&quot;,      &quot;lastName&quot;:&quot;Hunter&quot;    }  ]}
+<pre><code class="language-json">// 表示变量
+ {&quot;name&quot;: &quot;John Doe&quot;, &quot;age&quot;: 18, &quot;address&quot;: {&quot;country&quot; : &quot;china&quot;, &quot;zip-code&quot;: &quot;10000&quot;}}
+
+// 表示基础变量数组
+[3, 1, 4, 1, 5, 9, 2, 6]
+
+// 表示对象
+{&quot;firstName&quot;: &quot;Brett&quot;, &quot;lastName&quot;: &quot;McLaughlin&quot;}                                        
+
+// 表示数组
+{ 
+&quot;people&quot;:[ 
+    {
+      &quot;firstName&quot;: &quot;Brett&quot;,            
+      &quot;lastName&quot;:&quot;McLaughlin&quot;        
+    },      
+    {        
+      &quot;firstName&quot;:&quot;Jason&quot;,
+      &quot;lastName&quot;:&quot;Hunter&quot;
+    }
+  ]
+}
 </code></pre>
 
 <h3 id="3-jdbc">3. JDBC</h3>
@@ -1025,7 +1362,7 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>由于每一种数据库都有自己的驱动方式，如果我们每连接一个数据库就自己写一个数据库连接实现，那么工程过于繁琐。JDBC就是在Java应用和数据库之间用于解决此问题的中间层接口。这使得我们只需要使用JDBC就可以连接Java应用和各种数据库。</p>
 
-<p><img src="/images/CS/jdbc_原理.png" alt="jdbc_原理" /></p>
+<p><img src="/Users/yanyu/OneDrive/MacbookPro/创作/Website/mysite/content/images/CS/jdbc_原理.png" alt="jdbc_原理" /></p>
 
 <p><strong>JDBC固定步骤</strong>：</p>
 
@@ -1040,12 +1377,68 @@ response, FilterChain chain) throws IOException, ServletException {
 
 <p>代码演示：</p>
 
-<pre><code class="language-java">public class TestJdbc {  public static void main(String[] args) throws ClassNotFoundException,SQLException { //配置信息     //useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码    String url=&quot;jdbc:mysql://localhost:3306/jdbc?       useUnicode=true&amp;characterEncoding=utf-8&quot;;    String username = &quot;root&quot;;    String password = &quot;123456&quot;;       //1.加载驱动    Class.forName(&quot;com.mysql.jdbc.Driver&quot;);     //2.连接数据库,代表数据库     Connection connection = DriverManager.getConnection(url, username, password);       //3.向数据库发送SQL的对象 Statement,PreparedStatement : CRUD     Statement statement = connection.createStatement();     //4.编写SQL       String sql = &quot;select * from users&quot;;     //5.执行查询SQL，返回一个 ResultSet : 结果集 ResultSet rs = statement.executeQuery(sql);    while (rs.next()){      System.out.println(&quot;id=&quot;+rs.getObject(&quot;id&quot;));      System.out.println(&quot;name=&quot;+rs.getObject(&quot;name&quot;));      System.out.println(&quot;password=&quot;+rs.getObject(&quot;password&quot;));      System.out.println(&quot;email=&quot;+rs.getObject(&quot;email&quot;));      System.out.println(&quot;birthday=&quot;+rs.getObject(&quot;birthday&quot;));     }       //6.关闭连接，释放资源(一定要做) 先开后关 rs.close();        statement.close(); connection.close();      } }
+<pre><code class="language-java">public class TestJdbc {
+  public static void main(String[] args) throws ClassNotFoundException,
+SQLException { //配置信息
+		//useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码
+  	String url=&quot;jdbc:mysql://localhost:3306/jdbc?
+		useUnicode=true&amp;characterEncoding=utf-8&quot;;
+    String username = &quot;root&quot;;
+    String password = &quot;123456&quot;;
+  
+		//1.加载驱动 
+  	Class.forName(&quot;com.mysql.jdbc.Driver&quot;); 
+  	//2.连接数据库,代表数据库
+		Connection connection = DriverManager.getConnection(url, username, password);
+		//3.向数据库发送SQL的对象 Statement,PreparedStatement : CRUD 
+  	Statement statement = connection.createStatement();
+		//4.编写SQL
+		String sql = &quot;select * from users&quot;;
+		//5.执行查询SQL，返回一个 ResultSet : 结果集 ResultSet rs = statement.executeQuery(sql);
+    while (rs.next()){
+      System.out.println(&quot;id=&quot;+rs.getObject(&quot;id&quot;));
+      System.out.println(&quot;name=&quot;+rs.getObject(&quot;name&quot;));
+      System.out.println(&quot;password=&quot;+rs.getObject(&quot;password&quot;));
+      System.out.println(&quot;email=&quot;+rs.getObject(&quot;email&quot;));
+      System.out.println(&quot;birthday=&quot;+rs.getObject(&quot;birthday&quot;));
+		}
+		//6.关闭连接，释放资源(一定要做) 先开后关 rs.close();
+		statement.close(); connection.close();
+		} 
+}
 </code></pre>
 
 <p>JDBC预编译SQL:</p>
 
-<pre><code class="language-java">public class TestJDBC2 {    public static void main(String[] args) throws Exception {    //配置信息    //useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码 String url=&quot;jdbc:mysql://localhost:3306/jdbc?    useUnicode=true&amp;characterEncoding=utf-8&quot;;    String username = &quot;root&quot;;    String password = &quot;123456&quot;;    //1.加载驱动    Class.forName(&quot;com.mysql.jdbc.Driver&quot;);    //2.连接数据库,代表数据库    Connection connection = DriverManager.getConnection(url, username, password);    //3.编写SQL    String sql = &quot;insert into  users(id, name, password, email, birthday) values (?,?,?,?,?);&quot;;    //4.预编译    PreparedStatement preparedStatement =    connection.prepareStatement(sql);    preparedStatement.setInt(1,2);//给第一个占位符? 的值赋值为1;    preparedStatement.setString(2,&quot;狂神说Java&quot;);//给第二个占位符? 的值赋值为 狂神说Java;    preparedStatement.setString(3,&quot;123456&quot;);//给第三个占位符? 的值赋值为 123456;    preparedStatement.setString(4,&quot;24736743@qq.com&quot;);//给第四个占位符? 的 值赋值为1;    preparedStatement.setDate(5,new Date(new java.util.Date().getTime()));//给第五个占位符? 的值赋值为new                   Date(new     java.util.Date().getTime());    //5.执行SQL      int i = preparedStatement.executeUpdate();    if (i&gt;0){       System.out.println(&quot;插入成功@&quot;);    }     //6.关闭连接，释放资源(一定要做) 先开后关 preparedStatement.close(); connection.close(); }}
+<pre><code class="language-java">public class TestJDBC2 {
+	public static void main(String[] args) throws Exception {
+    //配置信息
+    //useUnicode=true&amp;characterEncoding=utf-8 解决中文乱码 String url=&quot;jdbc:mysql://localhost:3306/jdbc?
+    useUnicode=true&amp;characterEncoding=utf-8&quot;;
+    String username = &quot;root&quot;;
+    String password = &quot;123456&quot;;
+    //1.加载驱动
+    Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+    //2.连接数据库,代表数据库
+    Connection connection = DriverManager.getConnection(url, username, password);
+    //3.编写SQL
+    String sql = &quot;insert into  users(id, name, password, email, birthday) values (?,?,?,?,?);&quot;;
+    //4.预编译
+    PreparedStatement preparedStatement =
+    connection.prepareStatement(sql);
+    preparedStatement.setInt(1,2);//给第一个占位符? 的值赋值为1;
+    preparedStatement.setString(2,&quot;狂神说Java&quot;);//给第二个占位符? 的值赋值为 狂神说Java;
+    preparedStatement.setString(3,&quot;123456&quot;);//给第三个占位符? 的值赋值为 123456;
+    preparedStatement.setString(4,&quot;24736743@qq.com&quot;);//给第四个占位符? 的 值赋值为1;
+    preparedStatement.setDate(5,new Date(new java.util.Date().getTime()));//给第五个占位符? 的值赋值为new 					Date(new 	 java.util.Date().getTime());
+    //5.执行SQL
+		int i = preparedStatement.executeUpdate();
+    if (i&gt;0){ 
+      System.out.println(&quot;插入成功@&quot;);
+    }
+		//6.关闭连接，释放资源(一定要做) 先开后关 preparedStatement.close(); connection.close();
+	}
+}
 </code></pre>
 
 <h3 id="4-junit">4. JUnit</h3>
