@@ -6,10 +6,39 @@
     <description>Recent content in Java on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mybatis 总结</title>
+      <link>/blog/cs/mybatis/</link>
+      <pubDate>Fri, 02 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/mybatis/</guid>
+      <description>I. 简介 项目代码
+1. MyBatis是什么 MyBatis是一款优秀的持久层框架。其通过使用简单的XML(或注解)和映射原生信息来取代了几乎所有的JDBC代码、手动设置参数和获取结果集的过程。为了理解什么是持久层框架，我们需要首先了解什么是持久化以及持久层。
+持久化
+持久化是将程序数据在持久状态和瞬时状态间转化的机制。也就是说将数据从RAM(内存)中保存到ROM(存储设备比如磁盘)中。常见的持久化机制如JDBC, IO等。持久化的本质类似于将鲜肉冷藏，吃的时候拿出来解冻。
+持久层
+持久层是完成持久化工作的代码块（DAO层[Data Access Object, 数据访问对象]）。数据持久化意味着将内存中的数据保存到磁盘加以固化，而持久化的实现过程则大多通过各种关系型数据库完成。
+在我们的系统架构中，应该有一个相对独立的逻辑层面，专注于数据持久化逻辑的实现，也就是我们的持久层。（操作数据库的层）
+2. 为什么要使用MyBatis 如上所述，MyBatis是一款用于持久层的ORM框架(Object Relationship Mapping, 对象关系映射)。框架的使用其目的往往是避免繁琐的重复代码块，减少程序员的工作量，从而提高开发效率。MyBatis也是一样，使用它可以完全代替JDBC来实现持久层的所有功能。
+MyBatis的优点
+ 使用的人多
+ *简单易学*。不需要任何第三方依赖，只需要安装两个jar文件并配置几个SQL映射文件就好。通过文档和原代码，可以很好的掌握其设计思路和实现
+ *灵活*。myBatis不会对应用冲虚或者数据库的现有设计强加任何影响。SQL写在XML里，便于统一管理和优化
+ *解除SQL与程序代码的耦合*。通过提供DAO层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰、更以维护和做单元测试
+ 提供XML标签，支持编写动态SQL
+ &amp;hellip;
+  3. 文章概述 在II章节中本文会首先介绍MyBatis的工作原理。接着在III章节中介绍MyBatis项目的开发流程。第四章中会详细介绍MyBatis核心配置文件。随后的第五章节会讲解如何编写配置文件。第六章节会介绍更为简洁的注解开发。第七章介绍关系型数据库中常见的多对一、一对多处理。之后的两个章节分别介绍动态SQL和缓存。
+本文环境说明：
+ JDK 8+ MySQL 5.7.19 Maven-3.6.0 IDEA  学习前需要掌握：
+ JDBC MySQL Java基础 Maven JUnit  II. Mybatis工作原理 III. Mybatis项目开发流程 1. 准备工作 a. 搭建Maven环境 这一步没有什么好说的，用Idea自动生成Maven项目即可。
+b. 导入MyBatis依赖 找到MyBatis依赖，并配置到pom.xml中：
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+    </item>
     
     <item>
       <title>Java Web</title>
