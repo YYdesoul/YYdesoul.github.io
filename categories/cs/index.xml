@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CS on YY的主页</title>
+    <link>/categories/cs/</link>
+    <description>Recent content in CS on YY的主页</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="/categories/cs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring总结</title>
+      <link>/blog/cs/spring_summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/spring_summary/</guid>
+      <description>I. 简介  Spring是什么
+Spring是一个开源免费的轻量级且非侵入式的框架（容器），其通过注入Bean的方式实现了控制反转IOC(Inversion of Control)和面向切面编程AOP(Aspect Oriented Programming)，并且具备对事物和其它框架（如MyBatis）的支持。
+Spring的核心思想是简化开发
+ 为什么用Spring
+优势
+ 作为一个开发容器，Spring大大地简化了开发，提升了开发地效率 通过注入Bean的方式将控制从程序本身反转给了客户，使得程序的灵活性更高，改变了程序设计的逻辑 将Bean和代码分离，使得程序的耦合性降低，提升了开发的安全性和代码的可读性 通过AOP将程序解耦，使得业务和附加功能得以分离，大大地提升了开发地安全性和代码的可读性 支持多个常用的开源框架 用的人多，是经典的SSM框架的重要组成部分  劣势
+ 经过多年的演变，Spring已经编程了一个大杂烩，其配置已经越来越复杂，于是这时候Springboot应运而生   [代码链接][https://github.com/YYdesoul/spring5-study]
+II. 组成部分 Spring 框架是一个分层架构，由 7 个定义良好的模块组成。Spring 模块构建在核心容器之上，核心容器定义了创建、配置和管理 bean 的方式 。
+组成 Spring 框架的每个模块（或组件）都可以单独存在，或者与其他一个或多个模块联合实现。每个模块的功能如下：
+ 核心容器Core
+核心容器提供 Spring 框架的基本功能。核心容器的主要组件是 BeanFactory ，它是工厂模式的实现。BeanFactory 使用控反转（IOC） 模式将应用程序的配置和依赖性规范与实际的应用程序代码分开。
+ Spring 上下文Context
+Spring 上下文是一个配置文件，向 Spring 框架提供上下文信息。Spring 上下文包括企业服务，例如 JNDI、EJB、电子邮件、国际化、校验和调度功能。
+ Spring AOP
+通过配置管理特性，Spring AOP 模块直接将面向切面的编程功能 , 集成到了 Spring框架中。所以，可以很容易地使 Spring 框架管理任何支持 AOP的对象。Spring AOP 模块为基于Spring 的应用程序中的对象提供了事务管理服务。通过使用 Spring AOP，不用依赖组件，就可以将声明性事务管理集成到应用程序中。</description>
+    </item>
+    
+  </channel>
+</rss>

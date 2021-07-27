@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2021",
-        "datePublished": "2021-07-02 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2021-07-02 00:00:00 &#43;0000 UTC",
+        "datePublished": "2021-07-14 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2021-07-14 00:00:00 &#43;0000 UTC",
         "url" : "/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -70,7 +70,7 @@
 <meta property="og:description" content="YY,柏林工大在读学生，主修计算机与经济学。本网站是YY的一些人生感悟和知识分享，希望能让大家的闲暇时光多一份快乐~" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2021-07-02T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2021-07-14T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -284,6 +284,30 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/cs/springmvc_summary/">SpringMVC总结</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2021-07-14'>
+                                    July 14, 2021</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/cs/spring_summary/">Spring总结</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2021-07-06'>
+                                    July 6, 2021</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/cs/mybatis/">Mybatis 总结</a></h3>
                                 
                                 <time class="published" datetime=
@@ -345,30 +369,6 @@
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/algorithms_binary-search/">二分查找</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-08-28'>
-                                    August 28, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/cs/regular-expression/">正则表达式</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-08-15'>
-                                    August 15, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
 
                 
                     <a href=
@@ -391,7 +391,7 @@
   <header>
     <div class="title">
         
-            <h2><a href="/blog/cs/mybatis/">Mybatis 总结</a></h2>
+            <h2><a href="/blog/cs/springmvc_summary/">SpringMVC总结</a></h2>
         
         
     </div>
@@ -399,11 +399,11 @@
         
 
         <time class="published"
-            datetime='2021-07-02'>
-            July 2, 2021</time>
+            datetime='2021-07-14'>
+            July 14, 2021</time>
         <span class="author">小羽</span>
         
-            <p>10 minute read</p>
+            <p>5 minute read</p>
         
         
     </div>
@@ -419,1272 +419,638 @@
 
 <h2 id="i-简介">I. 简介</h2>
 
-<p><a href="https://github.com/YYdesoul/MyBatis-Study">项目代码</a></p>
-
-<h3 id="1-mybatis是什么">1. MyBatis是什么</h3>
-
-<p>MyBatis是一款优秀的<strong>持久层框架</strong>。其通过使用<strong>简单的XML</strong>(或<strong>注解</strong>)和<strong>映射原生信息</strong>来取代了几乎所有的JDBC代码、手动设置参数和获取结果集的过程。为了理解什么是<strong>持久层框架</strong>，我们需要首先了解什么是<strong>持久化</strong>以及<strong>持久层</strong>。</p>
-
-<p><strong>持久化</strong></p>
-
-<p><strong>持久化是将程序数据在持久状态和瞬时状态间转化的机制。</strong>也就是说将数据从RAM(内存)中保存到ROM(存储设备比如磁盘)中。常见的持久化机制如JDBC, IO等。持久化的本质类似于将鲜肉冷藏，吃的时候拿出来解冻。</p>
-
-<p><strong>持久层</strong></p>
-
-<p><strong>持久层是完成持久化工作的代码块</strong>（DAO层[Data Access Object, 数据访问对象]）。数据持久化意味着将内存中的数据保存到磁盘加以固化，而持久化的实现过程则大多通过各种关系型数据库完成。</p>
-
-<p><strong>在我们的系统架构中，应该有一个相对独立的逻辑层面，专注于数据持久化逻辑的实现，也就是我们的持久层</strong>。（操作数据库的层）</p>
-
-<h3 id="2-为什么要使用mybatis">2. 为什么要使用MyBatis</h3>
-
-<p>如上所述，MyBatis是一款用于持久层的ORM框架(Object Relationship Mapping, 对象关系映射)。<strong>框架的使用其目的往往是避免繁琐的重复代码块，减少程序员的工作量，从而提高开发效率</strong>。MyBatis也是一样，使用它可以完全代替JDBC来实现持久层的所有功能。</p>
-
-<p><strong>MyBatis的优点</strong></p>
+<p>在说什么是SpringMVC之前，我们先来说说什么是<strong>MVC</strong>三层架构。MVC是<strong>模型（Model）、视图（View）和控制器（Controller）</strong>的简写，是一种软件设计规范。它们各自的定义和分工如下：</p>
 
 <ul>
-<li><p>使用的人多</p></li>
-
-<li><p>*简单易学*。不需要任何第三方依赖，只需要安装两个jar文件并配置几个SQL映射文件就好。通过文档和原代码，可以很好的掌握其设计思路和实现</p></li>
-
-<li><p>*灵活*。myBatis不会对应用冲虚或者数据库的现有设计强加任何影响。SQL写在XML里，便于统一管理和优化</p></li>
-
-<li><p>*解除SQL与程序代码的耦合*。通过提供DAO层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰、更以维护和做单元测试</p></li>
-
-<li><p>提供XML标签，支持编写动态SQL</p></li>
-
-<li><p>&hellip;</p></li>
+<li><strong>Model</strong>：数据模型，提供要展示的数据，因此包含数据和行为，可以认为是领域模型或JavaBean组件（包含数据和行为），不过现在一般都分离开来：<strong>Value Object（数据Dao）和服务层（行为Service）</strong>。也就是模型提供了模型数据查询和模型数据的状态更新等功能，包括<strong>数据和业务</strong>。</li>
+<li><strong>View</strong>: 负责进行模型的展示，一般就是我们见到的用户界面，客户想看到的东西。</li>
+<li><strong>Controller</strong>: <strong>接收用户请求，委托给模型进行处理（状态改变），处理完毕后把返回的模型数据返回给视图</strong>，由视图负责展示。 也就是说控制器做了个调度员的工作。</li>
 </ul>
 
-<h3 id="3-文章概述">3. 文章概述</h3>
+<p>最典型的MVC就是JSP+Servlet+Javabean的模式。其中JSP负责视图部分，即展示数据；Servlet负责Controller部分，处理用户的响应和请求；而Service和Dao层用于将数据库中的数据以Java Bean的形式提取到程序中并处理相应的业务。</p>
 
-<p>在II章节中本文会首先介绍MyBatis的<strong>工作原理</strong>。接着在III章节中介绍MyBatis项目的<strong>开发流程</strong>。第四章中会详细介绍MyBatis<strong>核心配置文件</strong>。随后的第五章节会讲解<strong>如何编写配置文件</strong>。第六章节会介绍更为简洁的<strong>注解开发</strong>。第七章介绍关系型数据库中常见的<strong>多对一、一对多处理</strong>。之后的两个章节分别介绍<strong>动态SQL</strong>和<strong>缓存</strong>。</p>
+<p><img src="/images/CS/springmvc/mvc_theory.png" alt="mvc_theory" /></p>
 
-<p>本文环境说明：</p>
+<p>在了解了MVC三层架构后，我们来说说什么是SpringMVC。<strong>SpringMVC是Spring用于实现MVC框架的产品</strong>。Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建Web应用程序的全功能 MVC 模块。</p>
+
+<p>使用SpringMVC进行开发大大地减小了web开发难度，提升了开发效率且提升了性能。除此之外，SpringMVC还有以下优势：</p>
 
 <ul>
-<li>JDK 8+</li>
-<li>MySQL 5.7.19</li>
-<li>Maven-3.6.0</li>
-<li>IDEA</li>
+<li>轻量级，简单易学</li>
+<li>高效 , 基于请求响应的MVC框架</li>
+<li>与Spring兼容性好，无缝结合（无缝集成SpringIOC和AOP）</li>
+<li>约定优于配置</li>
+<li>功能强大：RESTful、数据验证、格式化、本地化、主题等</li>
+<li>简洁灵活</li>
 </ul>
 
-<p>学习前需要掌握：</p>
+<p><strong><a href="https://github.com/YYdesoul/SpringMVC-study">代码链接</a></strong></p>
 
-<ul>
-<li>JDBC</li>
-<li>MySQL</li>
-<li>Java基础</li>
-<li>Maven</li>
-<li>JUnit</li>
-</ul>
+<h2 id="ii-原理">II. 原理</h2>
 
-<h2 id="ii-mybatis工作原理">II. Mybatis工作原理</h2>
+<p>SpringMVC工作的核心是一个<strong>DispatcherServlet</strong>类。Spring的web框架就是围绕它而设计的。简单来说，原本JavaWeb框架中，用户每发送一个请求，程序首先要找到请求对应的Servlet(因此每写一个Servlet都要在web.xml中配置)，然后再来执行这个Servlet。而在SpringMVC中，在这个过程中增加了一层类似过滤器的DispatcherServlet。当用户发送请求到服务器后，请求首先会被DispatcherServlet接收，然后由DispatcherServlet将请求转发给对应的Controller(Servlet)，当请求的业务完成后，Controller会返回一个<strong>ModelAndView</strong>对象给DispatcherServlet。接着DispatcherServlet再将这个对象发送给视图层（通常是前端），最后将相应由View层展示给用户。</p>
 
-<p><img src="/images/CS/mybatis/mybatis原理.png" alt="mybatis原理" /></p>
+<p><img src="/images/CS/springmvc/springmvc执行过程.png" alt="springmvc执行过程" /></p>
 
-<h2 id="iii-mybatis项目开发流程">III. Mybatis项目开发流程</h2>
+<p><strong>SpringMVC的执行流程</strong></p>
 
-<h3 id="1-准备工作">1. 准备工作</h3>
+<p>SpringMVC的执行流程如下图所示。其中实线部分是其自动执行的业务，而虚线部分是我们真正需要在代码中实现的业务。</p>
 
-<h4 id="a-搭建maven环境">a. 搭建Maven环境</h4>
+<ol>
+<li>DispatcherServlet接收到用户请求</li>
+<li>DispatcherServlet调用HandlerMapping，由HandlerMapping根据请求的url查钊Handler</li>
+<li>HandlerExecution表示具体的Handler,接下来它会根据url查找对应的Controller</li>
+<li>将解析后的信息传回给DispatcherServlet(如解析控制器映射等)</li>
+<li>DispatcherServlet调用HandlerAdapter(处理适配器)，它会按照特定的规则来执行Handler</li>
+<li>Handler让具体的Controller被执行（接下来是Controller调用Model层执行业务）</li>
+<li>Controller将执行结果返回给HandlerAdapter</li>
+<li>HandlerAdapter将结果返回给DispatcherServlet（ModelAndView名或者Model名）</li>
+<li>DispatcherServlet调用视图解析器来解析HandlerAdapter传递来的逻辑视图名</li>
+<li>ViewResolver解析逻辑视图名并传回给DispatcherServlet</li>
+<li>DispatcherServlet根据视图解析器解析的视图结果，调用具体的视图</li>
+<li>View层将最终视图呈现给用户</li>
+</ol>
 
-<p>这一步没有什么好说的，用Idea自动生成Maven项目即可。</p>
+<p>从中总结我们发现DispatcherServlet主要做了以下事情：</p>
 
-<h4 id="b-导入mybatis依赖">b. 导入MyBatis依赖</h4>
+<ol>
+<li>接收用户请求并匹配对应的Handler</li>
+<li>找到对应的Handler后，使其调用对应的Controller从而执行业务</li>
+<li>收到Controller的执行结果后，将其交给视图解析器ViewResolver,并将结果交给View层最终把视图展示给用户</li>
+</ol>
 
-<p>找到MyBatis依赖，并配置到pom.xml中：</p>
+<p><img src="/images/CS/springmvc/springmvc流程图.png" alt="springmvc流程图" /></p>
 
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
-    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
-    &lt;version&gt;3.5.2&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;version&gt;5.1.47&lt;/version&gt;
-&lt;/dependency&gt;
+<h2 id="iii-使用">III. 使用</h2>
+
+<h3 id="1-准备工作-配置项目">1. 准备工作（配置项目）</h3>
+
+<ol>
+<li><p>新建一个Maven项目，导入所需要的依赖并添加web支持</p>
+
+<pre><code class="language-xml">    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+            &lt;version&gt;5.1.9.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+            &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+            &lt;version&gt;2.5&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+            &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+            &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+            &lt;version&gt;1.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.18.20&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre></li>
+
+<li><p>配置Tomcat</p></li>
+
+<li><p>配置web.xml，注册DispatcherServlet</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;
+         version=&quot;4.0&quot;&gt;
+    &lt;!--1.注册DispatcherServlet--&gt;
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;
+            org.springframework.web.servlet.DispatcherServlet
+        &lt;/servlet-class&gt;
+        &lt;!--关联一个springmvc的配置文件: applicationContext.xml--&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+            &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;!--启动级别-1--&gt;
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;!--/ 匹配所有的请求；（不包括.jsp）--&gt;
+    &lt;!--/* 匹配所有的请求；（包括.jsp）--&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</code></pre></li>
+
+<li><p>在resources中创建并编写总的配置文件applicationContext.xml和springmvc-servlet.xml,并在applicationContext.xml中import springmvc-servlet.xml</p>
+
+<pre><code class="language-xml">&lt;!-- applicationContext.xml --&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+        
+    &lt;!-- import springmvc配置文件 --&gt;
+    &lt;import resource=&quot;springmvc-servlet.xml&quot;/&gt;
+        
+&lt;/beans&gt;
 </code></pre>
 
-<h4 id="c-编写核心配置文件">c. 编写核心配置文件</h4>
+<pre><code class="language-xml">&lt;!-- springmvc-servlet.xml --&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+    &lt;!-- 自动扫描包，让指定包下的注解生效,由IOC容器统一管理 --&gt;
+    &lt;context:component-scan base-package=&quot;com.soul.controller&quot;/&gt;
+    &lt;!-- 配置各种handler，（让Spring MVC不处理静态资源） --&gt;
+    &lt;mvc:default-servlet-handler/&gt;
+    &lt;!--
+    支持mvc注解驱动
+    在spring中一般采用@RequestMapping注解来完成映射关系
+    要想使@RequestMapping注解生效
+    必须向上下文中注册DefaultAnnotationHandlerMapping
+    和一个AnnotationMethodHandlerAdapter实例
+    这两个实例分别在类级别和方法级别处理。
+    而annotation-driven配置帮助我们自动完成上述两个实例的注入。
+    --&gt;
+    &lt;mvc:annotation-driven/&gt;
+    &lt;!-- 视图解析器 --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; id=&quot;internalResourceViewResolver&quot;&gt;
+        &lt;!-- 前缀 --&gt;
+        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+        &lt;!-- 后缀 --&gt;
+        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+    &lt;/bean&gt;
+    
+&lt;/beans&gt;
+</code></pre>
 
-<p>编写核心配置文件<strong>mybatis-config.xml</strong>：</p>
+<p>这样我们的SpringMVC项目就配置完毕了</p></li>
+</ol>
+
+<h3 id="2-controller实现">2. Controller实现</h3>
+
+<p>我们可以以注解的方式编写Controller</p>
+
+<pre><code class="language-java">@Controller	// 使用这个注解表示这个Controller已被SpringMVC托管
+@RequestMapping(&quot;/encoding&quot;)	// 这个类下所有url的总访问路径
+public class HelloController {
+    @PostMapping(&quot;/t1&quot;)	// 设置url地址，可以为restful风格
+    public String sendChinese(Model model, String name){	// 如果需要传递参数可以使用Model对象
+        model.addAttribute(&quot;msg&quot;,name); //获取表单提交的值
+        return &quot;hello&quot;; //跳转到test页面显示输入的值
+    }
+    
+    /** 
+     * 转发和重定向
+     */
+    
+    @GetMapping(&quot;/forward&quot;)	
+    public String forwardTest() {
+        return &quot;hello&quot;;	// 转发到jsp/hello.jsp 前缀和后缀是在springmvc的配置文件中定义的
+    }
+
+    @GetMapping(&quot;/redirect&quot;)
+    public String redirectTest() {
+        return &quot;redirect:/index.jsp&quot;;	// 重定向到web/index.jsp
+    }
+    
+    
+    @GetMapping(&quot;/receiveObject&quot;)
+    public String receiveObject(User user) {	// 可以接收对象
+        System.out.println(user);
+        return &quot;hello&quot;;
+    }
+    
+    @GetMapping(&quot;/add/{a}/{b}&quot;) // Restful风格
+    public String add(Model model, @PathVariable int a, @PathVariable int b) {
+        int res = a + b;
+        model.addAttribute(&quot;msg&quot;, &quot;result is: &quot; + res);
+        return &quot;hello&quot;;
+    }
+    
+    @RequestMapping(&quot;/json2&quot;)
+    @ResponseBody // 使用这个标签就不会走视图解析器，会直接返回一个字符串
+    public String json2() {
+
+        User user = new User(&quot;David&quot;, 3);
+        return JsonUtils.getJson(user);	// 需要导入fastjson包
+    }
+}
+</code></pre>
+
+<p>我们也可以在类上使用@RestController使得返回值都为json</p>
+
+<pre><code class="language-java">@RestController
+public class HelloController {
+
+    @RequestMapping(&quot;/hello&quot;)
+    public String sayHello(Model model) {
+        model.addAttribute(&quot;msg&quot;, &quot;Hello, Springmvc-annotation!&quot;);
+        return &quot;hello&quot;;
+    }
+</code></pre>
+
+<h2 id="iv-整合ssm框架">IV. 整合SSM框架</h2>
+
+<p>SSM框架集即为：Spring+SpringMVC+MyBatis。其分工如下：</p>
+
+<ul>
+<li><strong>Spring</strong>
+Spring就像是整个项目中装配bean的大工厂，在配置文件中可以指定使用特定的参数去调用实体类的构造方法来实例化对象。也可以称之为项目中的粘合剂。
+Spring的核心思想是IoC（控制反转），即不再需要程序员去显式地<code>new</code>一个对象，而是让Spring框架帮你来完成这一切。</li>
+<li><strong>SpringMVC</strong>
+SpringMVC在项目中拦截用户请求，它的核心Servlet即DispatcherServlet承担中介或是前台这样的职责，将用户请求通过HandlerMapping去匹配Controller，Controller就是具体对应请求所执行的操作。SpringMVC相当于SSH框架中struts。</li>
+<li><strong>mybatis</strong>
+mybatis是对jdbc的封装，它让数据库底层操作变的透明。mybatis的操作都是围绕一个sqlSessionFactory实例展开的。mybatis通过配置文件关联到各实体类的Mapper文件，Mapper文件中配置了每个类对数据库所需进行的sql语句映射。在每次与数据库交互时，通过sqlSessionFactory拿到一个sqlSession，再执行sql命令。</li>
+</ul>
+
+<p>页面发送请求给控制器，控制器调用业务层处理逻辑，逻辑层向持久层发送请求，持久层与数据库交互，后将结果返回给业务层，业务层将处理逻辑发送给控制器，控制器再调用视图展现数据。</p>
+
+<p><strong>配置SSM框架</strong></p>
+
+<p>整合SSM框架只需要在SpringMVC配置流程的基础上加上以下步骤：</p>
+
+<ol>
+<li><p>在resource中新建必备的配置文件：</p>
+
+<ul>
+<li>applicationContext.xml (已建)</li>
+<li>springmvc-servlet.xml (已建)</li>
+<li>database.properties</li>
+<li>mybatis-config.xml</li>
+<li>spring-dao.xml</li>
+<li>spring-service.xml</li>
+</ul></li>
+
+<li><p>编写配置文件</p>
+
+<ul>
+<li><p>database.properties</p>
+
+<pre><code class="language-properties">jdbc.driver=com.mysql.jdbc.Driver
+# 如果使用MySQL8.0以上加上时区的配置
+jdbc.url=jdbc:mysql://localhost:3306/ssmbuild?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC
+jdbc.username=root
+jdbc.password=123456
+</code></pre></li>
+
+<li><p>mybatis-config.xml</p>
 
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
 &lt;!DOCTYPE configuration
         PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
         &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
 &lt;configuration&gt;
-    &lt;environments default=&quot;development&quot;&gt;
-        &lt;environment id=&quot;development&quot;&gt;
-            &lt;transactionManager type=&quot;JDBC&quot;/&gt;
-            &lt;dataSource type=&quot;POOLED&quot;&gt;
-                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
-                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8&quot;/&gt;
-                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
-                &lt;property name=&quot;password&quot; value=&quot;123456&quot;/&gt;
-            &lt;/dataSource&gt;
-        &lt;/environment&gt;
-    &lt;/environments&gt;
-    &lt;mappers&gt;
-        &lt;mapper resource=&quot;com/kuang/dao/userMapper.xml&quot;/&gt;
-    &lt;/mappers&gt;
+    &lt;!-- 别名 --&gt;
+    &lt;typeAliases
+        &lt;package name=&quot;com.soul.pojo&quot;/&gt;
+    &lt;/typeAliases&gt;
 &lt;/configuration&gt;
+</code></pre></li>
+
+<li><p>spring-dao.xml</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+        
+    &lt;!-- 配置整合mybatis --&gt;
+    &lt;!-- 1.关联数据库文件 --&gt;
+    &lt;context:property-placeholder location=&quot;classpath:database.properties&quot;/&gt;
+        
+        
+    &lt;!-- 2.数据库连接池 --&gt;
+    &lt;!--数据库连接池
+    dbcp 半自动化操作 不能自动连接
+    c3p0 自动化操作（自动的加载配置文件 并且设置到对象里面）
+    --&gt;
+    &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;!-- 配置连接池属性 --&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;${jdbc.driver}&quot;/&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;${jdbc.url}&quot;/&gt;
+        &lt;property name=&quot;user&quot; value=&quot;${jdbc.username}&quot;/&gt;
+        &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;/&gt;
+        &lt;!-- c3p0连接池的私有属性 --&gt;
+        &lt;property name=&quot;maxPoolSize&quot; value=&quot;30&quot;/&gt;
+        &lt;property name=&quot;minPoolSize&quot; value=&quot;10&quot;/&gt;
+        &lt;!-- 关闭连接后不自动commit --&gt;
+        &lt;property name=&quot;autoCommitOnClose&quot; value=&quot;false&quot;/&gt;
+        &lt;!-- 获取连接超时时间 --&gt;
+        &lt;property name=&quot;checkoutTimeout&quot; value=&quot;10000&quot;/&gt;
+        &lt;!-- 当获取连接失败重试次数 --&gt;
+        &lt;property name=&quot;acquireRetryAttempts&quot; value=&quot;2&quot;/&gt;
+    &lt;/bean&gt;
+        
+        
+    &lt;!-- 3.配置SqlSessionFactory对象 --&gt;
+    &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+        &lt;!-- 注入数据库连接池 --&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+        &lt;!-- 配置MyBaties全局配置文件:mybatis-config.xml --&gt;
+        &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot;/&gt;
+    &lt;/bean&gt;
+        
+        
+    &lt;!-- 4.配置扫描Dao接口包，动态实现Dao接口注入到spring容器中 --&gt;
+    &lt;!--解释 ： https://www.cnblogs.com/jpfss/p/7799806.html--&gt;
+    &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+        &lt;!-- 注入sqlSessionFactory --&gt;
+        &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt;
+        &lt;!-- 给出需要扫描Dao接口包 --&gt;
+        &lt;property name=&quot;basePackage&quot; value=&quot;com.soul.dao&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre></li>
+
+<li><p>spring-service.xml</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+    &lt;!-- 扫描service相关的bean --&gt;
+    &lt;context:component-scan base-package=&quot;com.soul.service&quot; /&gt;
+        
+    &lt;!--BookServiceImpl注入到IOC容器中--&gt;
+    &lt;bean id=&quot;BookServiceImpl&quot; class=&quot;com.soul.service.BookServiceImpl&quot;&gt;
+        &lt;property name=&quot;bookMapper&quot; ref=&quot;bookMapper&quot;/&gt;
+    &lt;/bean&gt;
+        
+    &lt;!-- 配置事务管理器 --&gt;
+    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+        &lt;!-- 注入数据库连接池 --&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre></li>
+</ul></li>
+
+<li><p>在applicationContext.xml中import spring和mybatis(当然包括之前import的springmvc-servlet)的配置文件：</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;import resource=&quot;spring-dao.xml&quot;/&gt;
+    &lt;import resource=&quot;spring-service.xml&quot;/&gt;
+    &lt;import resource=&quot;springmvc-servlet.xml&quot;/&gt;
+&lt;/beans&gt;
+</code></pre></li>
+</ol>
+
+<p><strong>加入功能流程</strong></p>
+
+<ol>
+<li><p>编写controller层的controller</p>
+
+<pre><code class="language-java">package com.soul.controller;
+    
+import com.soul.pojo.Book;
+import com.soul.service.BookService;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+    
+import java.util.List;
+    
+@Controller
+@RequestMapping(&quot;/book&quot;)
+public class BookController {
+    @Autowired
+    @Qualifier(&quot;BookServiceImpl&quot;)
+    BookService bookService;
+    
+    @GetMapping(&quot;/getAllBooks&quot;)
+    public String getAllBooks(Model model) {
+        List&lt;Book&gt; books = bookService.getAllBooks();
+        model.addAttribute(&quot;booklist&quot;, books);
+        return &quot;displayAllbooks&quot;;
+    }
+    
+    @RequestMapping(&quot;/toAddBook&quot;)
+    // 转跳到addBook的页面
+    public String toAddBookPage() {
+        return &quot;addBook&quot;;
+    }
+    
+    @RequestMapping(&quot;/addBook&quot;)
+    public String addBook(Book book) {
+        System.out.println(book);
+        bookService.addBook(book);
+        return &quot;redirect:/book/getAllBooks&quot;;
+    }
+    
+    @RequestMapping(&quot;/toUpdateBook&quot;)
+    public String toUpdateBook(Model model, @Param(&quot;id&quot;) int id) {
+        System.out.println(&quot;entered toUpdateBook method&quot;);
+        Book book = bookService.getBookById(id);
+        model.addAttribute(&quot;book&quot;, book);
+        return &quot;updateBook&quot;;
+    }
+    
+    @PostMapping(&quot;/updateBook&quot;)
+    public String updateBook(Model model, Book book) {
+        System.out.println(&quot;entered updateBook method&quot;);
+        bookService.updateBook(book);
+        System.out.println(&quot;executed bookService.updateBook() method&quot;);
+        return &quot;redirect:/book/getAllBooks&quot;;
+    }
+    
+    @RequestMapping(&quot;/deleteBook/{bookId}&quot;)
+    public String deleteBook(@PathVariable(&quot;bookId&quot;) int id) {
+        bookService.deleteBookById(id);
+        return &quot;redirect:/book/getAllBooks&quot;;
+    }
+    
+    
+    
+}
+    
+</code></pre></li>
+
+<li><p>编写service层业务接口和实现类</p></li>
+</ol>
+
+<pre><code class="language-java">  package com.soul.service;
+  
+  import com.soul.dao.BookMapper;
+  import com.soul.pojo.Book;
+  import org.apache.ibatis.annotations.Param;
+  
+  import java.util.List;
+  
+  public interface BookService {
+  
+      int addBook(Book book);
+  
+      int deleteBookById(int id);
+  
+      int updateBook(Book book);
+  
+      Book getBookById(int id);
+  
+      List&lt;Book&gt; getAllBooks();
+  }
 </code></pre>
 
-<h4 id="d-编写mybatis工具类">d. 编写MyBatis工具类</h4>
-
-<p>类似于JDBC中的工具类：</p>
-
-<pre><code class="language-java">import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import java.io.IOException;
-import java.io.InputStream;
-
-public class MybatisUtils {
-    private static SqlSessionFactory sqlSessionFactory;
-
-  static { 
-    try {
-                // 使用Mybatis获取sqlSessionFactory对象
-            String resource = &quot;mybatis-config.xml&quot;;
-            InputStream inputStream = Resources.getResourceAsStream(resource);
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-                } 
-  }
+<pre><code class="language-java">  package com.soul.service;
   
-  //获取SqlSession连接, 类似JDBC的Connection对象
-  public static SqlSession getSession(){
-          return sqlSessionFactory.openSession();
+  import com.soul.dao.BookMapper;
+  import com.soul.pojo.Book;
+  
+  import java.util.List;
+  
+  public class BookServiceImpl implements BookService{
+  
+      BookMapper bookMapper;
+  
+      public void setBookMapper(BookMapper bookMapper) {
+          this.bookMapper = bookMapper;
+      }
+  
+      @Override
+      public int addBook(Book book) {
+          return bookMapper.addBook(book);
+      }
+  
+      @Override
+      public int deleteBookById(int id) {
+          return bookMapper.deleteBookById(id);
+      }
+  
+      @Override
+      public int updateBook(Book book) {
+          return bookMapper.updateBook(book);
+      }
+  
+      @Override
+      public Book getBookById(int id) {
+          return bookMapper.getBookById(id);
+      }
+  
+      @Override
+      public List&lt;Book&gt; getAllBooks() {
+          return bookMapper.getAllBooks();
       }
   }
 </code></pre>
 
-<h3 id="2-编写一个mybatis功能">2. 编写一个Mybatis功能</h3>
-
-<h4 id="a-创建实体类">a. 创建实体类</h4>
-
-<pre><code class="language-java">import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-// 可以使用lombok来简化代码
-@Data   
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
-  
-    private int id; //id 
-  private String name; //姓名 
-  private String pwd; //密码
-  
-//构造,有参,无参 //set/get //toString()
-}
-</code></pre>
-
-<h4 id="b-编写mapper接口">b. 编写Mapper接口</h4>
-
-<p>Mapper接口相当于JDBC中DAO层的接口，用于定义操作数据库的方法：</p>
-
-<pre><code class="language-java">import com.kuang.pojo.User;
-import java.util.List;
-public interface UserMapper {
-    List&lt;User&gt; selectUser();
-}
-</code></pre>
-
-<h4 id="c-编写mapper-xml配置文件">c. 编写Mapper.xml配置文件</h4>
-
-<p>Mapper.xml文件相当于JDBC中DAO层的接口实现类，用于定义实际操作数据库的配置：</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE mapper
-        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;mapper namespace=&quot;com.kuang.dao.UserMapper&quot;&gt;
-  &lt;select id=&quot;selectUser&quot; resultType=&quot;com.kuang.pojo.User&quot;&gt;
-    select * from user
-  &lt;/select&gt;
-&lt;/mapper&gt;
-</code></pre>
-
-<p><em>Note</em>: namespace对应DAO层接口，非常重要，不能写错。</p>
-
-<h4 id="d-编写junit单元测试">d. 编写JUnit单元测试</h4>
-
-<pre><code class="language-java">public class MyTest {
-  @Test
-    public void selectUser() {
-        SqlSession session = MybatisUtils.getSession(); 
-    //方法一:
-        //List&lt;User&gt; users = session.selectList(&quot;com.kuang.mapper.UserMapper.selectUser&quot;); 
-    
-    //方法二:
-    UserMapper mapper = session.getMapper(UserMapper.class);
-    List&lt;User&gt; users = mapper.selectUser();
-    for (User user: users){
-      System.out.println(user);
-        }
-    session.close();
-    }
-}
-</code></pre>
-
-<h4 id="e-运行测试">e. 运行测试</h4>
-
-<h2 id="iv-核心配置文件详解">IV. 核心配置文件详解</h2>
-
-<p><strong>mybatis-config.xml</strong>是myBatis项目中的核心配置文件，下面是模板：</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE configuration
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
-&lt;configuration&gt;
-    &lt;!--引入外部配置文件--&gt;
-    &lt;properties resource=&quot;db.properties&quot;&gt;&lt;/properties&gt;
-    &lt;typeAliases&gt;
-        &lt;package name=&quot;com.soul.pojo&quot;/&gt;
-    &lt;/typeAliases&gt;
-    &lt;environments default=&quot;development&quot;&gt;
-        &lt;environment id=&quot;development&quot;&gt;
-            &lt;transactionManager type=&quot;JDBC&quot;/&gt;   &lt;!--默认JDBC, type = JDBC | MANAGED--&gt;
-            &lt;dataSource type=&quot;POOLED&quot;&gt;  &lt;!--数据库连接池 type= UNPOOLED| POOLED --&gt;
-                &lt;property name=&quot;driver&quot; value=&quot;${driver}&quot;/&gt;
-                &lt;property name=&quot;url&quot; value=&quot;${url}&quot;/&gt;
-                &lt;property name=&quot;username&quot; value=&quot;${username}&quot;/&gt;
-                &lt;property name=&quot;password&quot; value=&quot;${password}&quot;/&gt;
-            &lt;/dataSource&gt;
-        &lt;/environment&gt;
-        &lt;!--第二个环境，想切就换environments的default--&gt;
-        &lt;environment id=&quot;test&quot;&gt;
-            &lt;transactionManager type=&quot;&quot;&gt;&lt;/transactionManager&gt;
-            &lt;dataSource type=&quot;&quot;&gt;&lt;/dataSource&gt;
-        &lt;/environment&gt;
-    &lt;/environments&gt;
-
-    &lt;!--绑定接口--&gt;
-    &lt;mappers&gt;
-        &lt;mapper class=&quot;com.soul.dao.TeacherMapper&quot;/&gt;
-        &lt;mapper class=&quot;com.soul.dao.StudentMapper&quot;/&gt;
-    &lt;/mappers&gt;
-&lt;/configuration&gt;
-</code></pre>
-
-<p><strong>Note: 配置文件的元素顺序不能错！！！</strong></p>
-
-<p>mybatis-config.xml主要元素包括:</p>
-
 <ol>
-<li><p><strong>environments</strong></p>
-
-<ul>
-<li>配置MyBatis的多套运行环境，将SQL映射到多个不同的数据库上，必须指定其中一个为默认运行 环境(通过default指定)</li>
-<li>子元素节点:<strong>environment</strong> 具体的一套环境，通过设置id进行区别，id保证唯一!</li>
-</ul></li>
-
-<li><p><strong>properties</strong></p>
-
-<ul>
-<li><p>数据库这些属性都是可外部配置且可动态替换的，既可以在典型的 Java 属性文件中配置，亦可通过</p>
-
-<p>properties 元素的子元素来传递：</p>
-
-<ul>
-<li>第一步 ; 在资源目录下新建一个db.properties：</li>
-</ul>
-
-<pre><code class="language-properties">driver=com.mysql.jdbc.Driver
-url=jdbc:mysql://localhost:3306/mybatis?
-useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8
-username=root
-password=123456
-</code></pre>
-
-<ul>
-<li>第二步 : 将文件导入properties 配置文件</li>
-</ul>
-
-<pre><code class="language-xml">&lt;!--导入properties文件--&gt;
-&lt;properties resource=&quot;db.properties&quot;/&gt;
-</code></pre></li>
-</ul></li>
-
-<li><p><strong>mappers</strong></p>
-
-<p>mappers中可定义多个<strong>映射器mapper</strong>，即映射SQL语句的文件，其目的是为了告诉MyBatis到哪里能够找到这些mapper文件。</p>
-
-<p>MyBatis的真正强大在于它的映射语句，这是它的魔力所在。由于它的异常强大，映射器的XML文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近 95% 的代码。MyBatis为聚焦于 SQL而构建，以尽可能地为你减少麻烦。</p>
-
-<pre><code class="language-xml">&lt;!-- 引用资源的各种方式 --&gt;
-    
-&lt;!-- 使用相对于类路径的资源引用 --&gt; 
-&lt;mappers&gt;
-  &lt;mapper resource=&quot;org/mybatis/builder/PostMapper.xml&quot;/&gt;
-&lt;/mappers&gt;
-    
-&lt;!-- 使用完全限定资源定位符(URL) --&gt; &lt;mappers&gt;
-  &lt;mapper url=&quot;file:///var/mappers/AuthorMapper.xml&quot;/&gt;
-&lt;/mappers&gt;
-    
-&lt;!-- 使用映射器接口实现类的完全限定类名 需要配置文件名称和接口名称一致，并且位于同一目录下 --&gt;
-&lt;mappers&gt;
-  &lt;mapper class=&quot;org.mybatis.builder.AuthorMapper&quot;/&gt;
-&lt;/mappers&gt;
-    
-&lt;!-- 将包内的映射器接口实现全部注册为映射器 但是需要配置文件名称和接口名称一致，并且位于同一目录下 --&gt;
-&lt;mappers&gt;
-  &lt;package name=&quot;org.mybatis.builder&quot;/&gt;
-&lt;/mappers&gt;
-</code></pre></li>
-
-<li><p><strong>typeAliases</strong></p>
-
-<p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
-
-<pre><code class="language-xml">&lt;!--配置别名,注意顺序--&gt; 
-&lt;typeAliases&gt;
-    &lt;!--当这样配置时， User 可以用在任何使用 com.kuang.pojo.User 的地方。--&gt; 
-    &lt;typeAlias type=&quot;com.kuang.pojo.User&quot; alias=&quot;User&quot;/&gt;
-&lt;/typeAliases&gt;
-    
-&lt;!-- 也可以指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean --&gt;
-&lt;!-- 每一个在包 com.kuang.pojo 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的 非限定类名来作为它的别名。 --&gt;
-&lt;typeAliases&gt;
-    &lt;package name=&quot;com.kuang.pojo&quot;/&gt;
-&lt;/typeAliases&gt;
-</code></pre></li>
-
-<li><p><strong>settings</strong></p></li>
+<li>编写dao层接口和mapper.xml:</li>
 </ol>
 
-<p>可以设置各种设置。在这里介绍一种使用Log4j格式的log用于Debug:</p>
-
-<p><strong>Log4j</strong></p>
-
-<p>使用步骤：</p>
-
-<p>​   第一步：导入log4j包</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;log4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
-    &lt;version&gt;1.2.17&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<p>​   第二步：配置文件log4j.properties编写</p>
-
-<pre><code class="language-properties">#将等级为DEBUG的日志信息输出到console和file这两个目的地，console和file的定义在下 面的代码
-log4j.rootLogger=DEBUG,console,file
-
-#控制台输出的相关设置
-log4j.appender.console = org.apache.log4j.ConsoleAppender 
-log4j.appender.console.Target = System.out
-log4j.appender.console.Threshold=DEBUG 
-log4j.appender.console.layout = org.apache.log4j.PatternLayout 
-log4j.appender.console.layout.ConversionPattern=[%c]-%m%n
-
-#文件输出的相关设置
-log4j.appender.file = org.apache.log4j.RollingFileAppender 
-log4j.appender.file.File=./log/soul.log 
-log4j.appender.file.MaxFileSize=10mb 
-log4j.appender.file.Threshold=DEBUG 
-log4j.appender.file.layout=org.apache.log4j.PatternLayout 
-log4j.appender.file.layout.ConversionPattern=[%p][%d{yy-MM-dd}][%c]%m%n
-
-#日志输出级别
-log4j.logger.org.mybatis=DEBUG 
-log4j.logger.java.sql=DEBUG 
-log4j.logger.java.sql.Statement=DEBUG 
-log4j.logger.java.sql.ResultSet=DEBUG 
-log4j.logger.java.sql.PreparedStatement=DEBUG
-</code></pre>
-
-<p>​   第三步：setting设置日志实现：</p>
-
-<pre><code class="language-xml">&lt;settings&gt;
-    &lt;setting name=&quot;logImpl&quot; value=&quot;LOG4J&quot;/&gt;
-&lt;/settings&gt;
-</code></pre>
-
-<p>​   第四步：在程序中使用Log4j进行输出：</p>
-
-<pre><code class="language-java">    @Test
-    public void testLog4j() {
-        logger.info(&quot;info: 进入了testLog4j方法&quot;);
-        logger.debug(&quot;debug: 进入了testLog4j方法&quot;);
-        logger.error(&quot;error: 进入了testLog4j方法&quot;);
-    }
-</code></pre>
-
-<h2 id="v-配置文件">V. 配置文件</h2>
-
-<h3 id="1-crud操作">1. CRUD操作</h3>
-
-<p>a. select</p>
-
-<p>select语句有很多属性可以详细配置每一条SQL语句:</p>
-
-<ul>
-<li>id
-
-<ul>
-<li>命名空间中唯一的标识符</li>
-<li>接口中的方法名与映射文件中的SQL语句ID 一一对应</li>
-</ul></li>
-<li>parameterType
-
-<ul>
-<li>传入SQL语句的参数类型 。【万能的Map，可以多尝试使用】</li>
-</ul></li>
-<li>resultType
-
-<ul>
-<li>SQL语句返回值类型。【完整的类名或者别名】</li>
-</ul></li>
-</ul>
-
-<p>b. insert</p>
-
-<p>c. update</p>
-
-<p>d. delete</p>
-
-<p><strong>具体流程</strong></p>
-
-<p>第一步：编写DAO层接口中的方法：</p>
-
-<pre><code class="language-java">package com.soul.dao;
-
-import com.soul.pojo.User;
-
-import java.util.List;
-import java.util.Map;
-
-public interface UserMapper {
-    // 获取全部用户
-    List&lt;User&gt; getUserList();
-
-    // 根据ID查询用户
-    User getUserById(int id);
-
-    User getUserByMap(Map&lt;String, Object&gt; map);
-
-    // insert一个用户
-    int addUser(User user);
-
-    // 用Mapinsert用户
-    int addUserByMap(Map&lt;String, Object&gt; map);
-
-    int updateUser(User user);
-
-    int deleteById(int id);
-}
-</code></pre>
-
-<p>第二步：编写Mapper.xml：</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE mapper
-        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;!--namespace=绑定一个对应的Dao/Mapper接口--&gt;
-&lt;mapper namespace=&quot;com.soul.dao.UserMapper&quot;&gt;
-    &lt;!--id 对应方法名--&gt;
-    &lt;select id=&quot;getUserList&quot; resultType=&quot;hello&quot;&gt;
-        select * from user;
-    &lt;/select&gt;
-
-    &lt;select id=&quot;getUserById&quot; parameterType=&quot;int&quot; resultType=&quot;User&quot;&gt;
-        select * from user where id = #{id};
-    &lt;/select&gt;
-
-    &lt;select id=&quot;getUserByMap&quot; parameterType=&quot;map&quot; resultType=&quot;User&quot; &gt;
-        select * from user where id = #{id} and name = #{name};
-    &lt;/select&gt;
-
-    &lt;!--属性的对象可以直接取出--&gt;
-    &lt;insert id=&quot;addUser&quot; parameterType=&quot;User&quot;&gt;
-        insert into user (id, name, pwd) values (#{id}, #{name}, #{pwd});
-    &lt;/insert&gt;
-
-    &lt;insert id=&quot;addUserByMap&quot; parameterType=&quot;map&quot;&gt;
-        insert into user (id, name, pwd) values (#{userId}, #{userName}, #{userPwd});
-    &lt;/insert&gt;
-
-    &lt;update id=&quot;updateUser&quot; parameterType=&quot;User&quot;&gt;
-        update user set name = #{name}, pwd=#{pwd} where id = #{id};
-    &lt;/update&gt;
-
-    &lt;delete id=&quot;deleteById&quot; parameterType=&quot;int&quot;&gt;
-        delete from user where id = #{id}
-    &lt;/delete&gt;
-&lt;/mapper&gt;
-</code></pre>
-
-<p>第三步：在mybatis-config.properties中配置mapper:</p>
-
-<pre><code class="language-xml">    &lt;!--每一个Mapper.xml都需要在Mybatis核心配置文件中注册！--&gt;
-    &lt;mappers&gt;
-        &lt;mapper resource=&quot;com/soul/dao/UserMapper.xml&quot;/&gt;
-    &lt;/mappers&gt;
-</code></pre>
-
-<p>第四步：编写JUnit测试类测试：</p>
-
-<pre><code class="language-java">    @Test
-    public void testGetUserById() {
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = userMapper.getUserById(1);
-        System.out.println(user);
-        sqlSession.close();
-    }
-
-        @Test
-    public void testGetUserByMap() {
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
-        map.put(&quot;id&quot;, 3);
-        map.put(&quot;name&quot;, &quot;李四&quot;);
-        User user = userMapper.getUserByMap(map);
-        System.out.println(user);
-        sqlSession.close();
-    }
-
-    @Test
-    public void testAddUser() {
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = new User(4, &quot;小红&quot;, &quot;123&quot;);
-        int res = userMapper.addUser(user);
-        if (res &gt; 0) {
-            System.out.println(&quot;插入成功&quot;);
-        } else {
-            System.out.println(&quot;插入失败&quot;);
-        }
-        // 增删改需要提交事务
-        sqlSession.commit();
-        sqlSession.close();
-    }
-</code></pre>
-
-<h3 id="2-resultmap">2. ResultMap</h3>
-
-<p>当数据库中返回的结果对应的是Java中的一个对象时，使用ResultMap可以<strong>避免Field对应不上从而导致值为空的情况</strong>。ResultMap用来指定返回结果的类型和格式。</p>
-
-<h4 id="a-自动映射">a. 自动映射</h4>
-
-<ul>
-<li>ResultMap元素是 MyBatis 中最重要最强大的元素。它可以让你从 90% 的 JDBC ResultSets 数据提取代码中解放出来</li>
-<li>实际上，在为一些比如连接的复杂语句编写映射代码的时候，一份 resultMap 能够代替实现同 等功能的长达数千行的代码</li>
-<li>ResultMap 的设计思想是，对于简单的语句根本不需要配置显式的结果映射，而对于复杂一点的语 句只需要描述它们的关系就行了</li>
-</ul>
-
-<pre><code class="language-xml">&lt;select id=&quot;selectUserById&quot; resultType=&quot;map&quot;&gt;
-    select id , name , pwd
-    from user
-    where id = #{id}
-&lt;/select&gt;
-</code></pre>
-
-<p>上述语句只是简单地将所有的列映射到 HashMap 的键上，这由 resultType 属性指定。虽然在 大部分情况下都够用，但是 HashMap 不是一个很好的模型。你的程序更可能会使用 JavaBean 或 POJO(Plain Old Java Objects，普通老式 Java 对象)作为模型。</p>
-
-<h4 id="b-手动映射">b. 手动映射</h4>
-
-<p>1). 返回值类型为resultMap：</p>
-
-<pre><code class="language-xml">&lt;select id=&quot;selectUserById&quot; resultMap=&quot;UserMap&quot;&gt;
-    select id , name , pwd from user where id = #{id}
-&lt;/select&gt;
-</code></pre>
-
-<p>2) 编写resultMap, 实现手动映射：</p>
-
-<pre><code class="language-xml">&lt;resultMap id=&quot;UserMap&quot; type=&quot;User&quot;&gt; 
-  &lt;!-- id为主键 --&gt;
-  &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
-  &lt;!-- column是数据库表的列名 , property是对应实体类的属性名 --&gt; 
-  &lt;result column=&quot;name&quot; property=&quot;name&quot;/&gt;
-  &lt;result column=&quot;pwd&quot; property=&quot;password&quot;/&gt;
-&lt;/resultMap&gt;
-</code></pre>
-
-<p>此外，在数据库中，存在一对多，多对一的情况，我们之后会 使用到一些高级的结果集映射，association，collection这些，我们将在之后讲解，今天你们需要把这 些知识都消化掉才是最重要的!理解结果集映射的这个概念!</p>
-
-<h2 id="vi-注解开发-代替配置文件">VI. 注解开发（代替配置文件）</h2>
-
-<p><strong>mybatis最初配置信息是基于XML ,映射语句(SQL)也是定义在XML中的。而到MyBatis 3提供了新的基于注解的配置。不幸的是，Java注解的的表达力和灵活性十分有限。最强大的MyBatis映 射并不能用注解来构建。</strong></p>
-
-<p>sql 类型主要分成 :</p>
-
-<ul>
-<li>@select ()</li>
-<li>@update ()</li>
-<li>@Insert ()</li>
-<li>@delete ()</li>
-</ul>
-
-<p><em>Note</em>: 利用注解开发就不需要mapper.xml映射文件了。</p>
-
-<h3 id="注解开发步骤">注解开发步骤：</h3>
-
-<ol>
-<li><p>在接口中添加注解</p>
-
-<pre><code class="language-java">package com.soul.dao;
-    
-import com.soul.pojo.User;
-import org.apache.ibatis.annotations.*;
-    
-import java.util.List;
-    
-public interface UserMapper {
-    // 获取全部用户
-    @Select(&quot;select * from user&quot;)
-    List&lt;User&gt; getUserList();
-    
-    // 方法存在多个参数，所有参数前面必须加上@Param(&quot;var&quot;)注解
-    @Select(&quot;select * from user where id = #{id}&quot;)
-    User getUserByID(@Param(&quot;id&quot;) int id, @Param(&quot;name&quot;) String name);
-    
-    @Insert(&quot;insert into user (id, name, pwd) values (#{id}, #{name}, #{pwd});&quot;)
-    int addUser(User user);
-    
-    @Update(&quot;update user set name = #{name}, pwd = #{pwd} where id = #{id};&quot;)
-    int updateUser(User user);
-    
-    @Delete(&quot;delete from user where id = #{id};&quot;)
-    int deleteUser(@Param(&quot;id&quot;) int id);
-    
-}
-</code></pre></li>
-
-<li><p>在MyBatis的核心配置文件中注入Mapper(注入接口)</p>
-
-<pre><code class="language-xml">    &lt;!--使用class绑定接口--&gt;    
-    &lt;mappers&gt;
-    &lt;mapper class=&quot;com.soul.dao.UserMapper&quot;/&gt;
-    &lt;/mappers&gt;
-</code></pre></li>
-
-<li><p>JUnit测试</p></li>
-</ol>
-
-<pre><code class="language-java">  @Test
-  public void testGetAllUser() {
-    SqlSession session = MybatisUtils.getSession(); //本质上利用了jvm的动态代理机制
-    UserMapper mapper = session.getMapper(UserMapper.class);
-    
-    List&lt;User&gt; users = mapper.getAllUser(); 
-    for (User user : users){
-      System.out.println(user);
-    }
-    session.close();
+<pre><code class="language-java">  import org.apache.ibatis.annotations.Param;
+  
+  import java.util.List;
+  
+  public interface BookMapper {
+  
+      int addBook(Book book);
+  
+      int deleteBookById(@Param(&quot;bookID&quot;) int id);
+  
+      int updateBook(Book book);
+  
+      Book getBookById(@Param(&quot;bookID&quot;) int id);
+  
+      List&lt;Book&gt; getAllBooks();
   }
 </code></pre>
 
-<h3 id="关于-param">关于@Param</h3>
-
-<p>@Param注解用于给方法参数起一个名字。以下是总结的使用原则:</p>
-
-<ul>
-<li>在方法只接受一个参数的情况下，可以不使用@Param。</li>
-<li>在方法接受多个参数的情况下，建议一定要使用@Param注解给参数命名。</li>
-<li>如果参数是 JavaBean ， 则不能使用@Param。</li>
-<li>不使用@Param注解时，参数只能有一个，并且是Javabean。</li>
-</ul>
-
-<h3 id="与-的区别">#与$的区别</h3>
-
-<ul>
-<li>#{} 的作用主要是替换预编译语句(PrepareStatement)中的占位符? 【推荐使用】</li>
-</ul>
-
-<pre><code class="language-SQL">INSERT INTO user(name) VALUES (#{name}); 
-INSERT INTO user(name) VALUES (?);
+<pre><code class="language-xml">  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+  &lt;!DOCTYPE mapper
+          PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+          &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  &lt;mapper namespace=&quot;com.soul.dao.BookMapper&quot;&gt;
+      &lt;insert id=&quot;addBook&quot; parameterType=&quot;book&quot;&gt;
+          insert into ssmbuild.books(bookName, bookCounts, detail)
+          VALUES (#{bookName}, #{bookCounts}, #{detail});
+      &lt;/insert&gt;
+  
+      &lt;delete id=&quot;deleteBookById&quot;&gt;
+          delete from ssmbuild.books where bookID = #{bookID};
+      &lt;/delete&gt;
+  
+      &lt;update id=&quot;updateBook&quot; parameterType=&quot;book&quot;&gt;
+          update ssmbuild.books
+          set bookName = #{bookName}, bookCounts = #{bookCounts}, detail = #{detail}
+          where bookID = #{bookID};
+      &lt;/update&gt;
+  
+      &lt;select id=&quot;getBookById&quot; resultType=&quot;book&quot;&gt;
+          select * from ssmbuild.books where bookID = #{bookID};
+      &lt;/select&gt;
+  
+      &lt;select id=&quot;getAllBooks&quot; resultType=&quot;book&quot;&gt;
+          select * from ssmbuild.books;
+      &lt;/select&gt;
+  &lt;/mapper&gt;
 </code></pre>
 
-<ul>
-<li>\${} 的作用是直接进行字符串替换(${} 不安全，无法防止sql注入)</li>
-</ul>
-
-<h2 id="vii-多对一-一对多处理">VII.多对一、一对多处理</h2>
-
-<p>在调用数据库数据时，我们往往会遇到多对一和一对多的处理，这时候就要在mapper.xml中使用到<code>&lt;association&gt;</code> 和<code>&lt;collection&gt;</code>标签。我们通过下面老师和学生的例子来详解如何实现此功能。</p>
-
-<h3 id="多对一">多对一</h3>
+<h2 id="v-容易踩的坑">V. 容易踩的坑</h2>
 
 <ul>
-<li>多个学生对应一个老师。</li>
-<li>如果对于学生这边，就是一个多对一的现象，即从学生这边关联（<strong>association</strong>）一个老师!</li>
-</ul>
+<li>导包到Maven项目后，不要忘记也要把包通过Project Structure导入到Tomcat中
 
 <ol>
-<li><p>我们首先编写实体类：</p>
-
-<pre><code class="language-java">@Data //GET,SET,ToString，有参，无参构造 public class Teacher {
-    private int id;
-    private String name;
-}
-    
-@Data
-public class Student {
-  private int id;
-    private String name; 
-  //多个学生可以是同一个老师，即多对一 
-  private Teacher teacher;
-}
-</code></pre></li>
-
-<li><p>编写实体类对应的Mapper接口</p>
-
-<pre><code class="language-java">package com.soul.dao;
-    
-import com.soul.pojo.Student;
-import java.util.List;
-    
-public interface StudentMapper {
-    List&lt;Student&gt; getAllStudent();
-    
-    List&lt;Student&gt; getAllStudent2();
-}
-</code></pre>
-
-<pre><code class="language-java">package com.soul.dao;
-    
-import com.soul.pojo.Teacher;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-    
-public interface TeacherMapper {
-    
-    @Select(&quot;select * from teacher where id = #{tid};&quot;)
-    Teacher getTeacher(@Param(&quot;tid&quot;) int id);
-    
-}
-</code></pre></li>
-
-<li><p>编写对应的两个mapper.xml</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE mapper
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;mapper namespace=&quot;com.soul.dao.StudentMapper&quot;&gt;
-  &lt;!--方式一--&gt;
-    &lt;!--思路
-    1. 查询所有的学生信息
-    2. 根据查询出来的学生的tid,寻找对应的老师--&gt;
-    &lt;select id=&quot;getAllStudent&quot; resultMap=&quot;StudentTeacher&quot;&gt;
-        select * from student;
-    &lt;/select&gt;
-    &lt;resultMap id=&quot;StudentTeacher&quot; type=&quot;student&quot;&gt;
-        &lt;result property=&quot;id&quot; column=&quot;id&quot;/&gt;
-        &lt;result property=&quot;name&quot; column=&quot;name&quot;/&gt;
-        &lt;!--复杂的实行，我们需要单独处理
-            对象： association
-            集合： collection--&gt;
-        &lt;association property=&quot;teacher&quot; column=&quot;tid&quot; javaType=&quot;teacher&quot; select=&quot;getTeacher&quot;/&gt;
-    &lt;/resultMap&gt;
-    &lt;select id=&quot;getTeacher&quot; resultType=&quot;teacher&quot;&gt;
-        select * from teacher where id = #{id};
-    &lt;/select&gt;
-    
-    &lt;!--方式二，推荐！！！--&gt;
-    &lt;!--按照结果嵌套处理--&gt;
-    &lt;select id = &quot;getAllStudent2&quot; resultMap=&quot;StudentTeacher2&quot;&gt;
-        select s.id as sid, s.name as sname, t.id as tid, t.name as tname from student s, teacher t where s.tid = t.id;
-    &lt;/select&gt;
-    &lt;resultMap id=&quot;StudentTeacher2&quot; type=&quot;Student&quot;&gt;
-        &lt;result property=&quot;id&quot; column=&quot;sid&quot;/&gt;
-        &lt;result property=&quot;name&quot; column=&quot;sname&quot;/&gt;
-        &lt;association property=&quot;teacher&quot; javaType=&quot;Teacher&quot;&gt;
-            &lt;result property=&quot;id&quot; column=&quot;tid&quot;/&gt;
-            &lt;result property=&quot;name&quot; column=&quot;tname&quot;/&gt;
-        &lt;/association&gt;
-    &lt;/resultMap&gt;
-&lt;/mapper&gt;
-</code></pre></li>
-
-<li><p>配置mapper, JUnit测试</p></li>
-</ol>
-
-<p>###一对多</p>
-
-<ul>
-<li>一个老师拥有多个学生</li>
-<li>如果对于老师这边，就是一个一对多的现象，即从一个老师下面拥有一群学生(<strong>collection</strong>)!</li>
+<li>打开Project Structure后点击Artifacts</li>
+<li>选择对应的项目</li>
+<li>在WEB-INF下创建lib文件夹</li>
+<li>导入所有jar包（点击小+号）</li>
+</ol></li>
+<li>不要忘记配置tomcat</li>
 </ul>
 
-<ol>
-<li><p>编写实体类：</p>
+<h2 id="vi-总结">VI.总结</h2>
 
-<pre><code class="language-java">package com.soul.pojo;
-    
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-    
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Student {
-    private int id;
-    private String name;
-    private int tid;
-}
-</code></pre>
+<p><strong>SpringMVC是Spring用于实现MVC框架的产品</strong>。由于其易用性和高性能，使得开发难度大大降低，开发效率大大提高。但是，我们在学习过程中不难发现，SpringMVC的配置过程仍然非常繁琐，于是乎Springboot应运而生。比起SpringMVC，SpringBoot更加简单容易，而我们现在还去学习SpringMVC的目的是为了了解其原理，这样我们才能很好的使用SpringBoot。</p>
 
-<pre><code class="language-java">package com.soul.pojo;
-    
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-    
-import java.util.List;
-    
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Teacher {
-    private int id;
-    private String name;
-    private List&lt;Student&gt; students;
-}
-</code></pre></li>
+<h2 id="vii-参考">VII. 参考</h2>
 
-<li><p>编写DAO层接口：</p>
+<p><a href="https://www.bilibili.com/video/BV1aE41167Tu">狂神说: SpringMVC</a></p>
 
-<pre><code class="language-java">package com.soul.dao;
-    
-import com.soul.pojo.Teacher;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-    
-public interface TeacherMapper {
-    
-    @Select(&quot;select * from teacher;&quot;)
-    Teacher getAllTeacher();
-    
-    // 获取指定老师下的所有学生及老师的信息
-    Teacher getTeacher(@Param(&quot;tid&quot;) int id);
-}
-</code></pre></li>
-
-<li><p>编写Mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE mapper
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;mapper namespace=&quot;com.soul.dao.TeacherMapper&quot;&gt;
-    
-    &lt;!--按照结果嵌套查询--&gt;
-    &lt;select id=&quot;getTeacher&quot; resultMap=&quot;TeacherStudent&quot;&gt;
-        select s.id as sid, s.name as sname, t.id as tid, t.name as tname
-        from student s, teacher t
-        where s.tid = t.id and tid = #{tid}
-    &lt;/select&gt;
-    &lt;resultMap id=&quot;TeacherStudent&quot; type=&quot;Teacher&quot;&gt;
-        &lt;result property=&quot;id&quot; column=&quot;tid&quot;/&gt;
-        &lt;result property=&quot;name&quot; column=&quot;tid&quot;/&gt;
-        &lt;!--JavaType=&quot;&quot; 制定属性的类型
-            集合中的泛型信息，我们使用ofType获取--&gt;
-        &lt;collection property=&quot;students&quot; ofType=&quot;Student&quot;&gt;
-            &lt;result property=&quot;id&quot; column=&quot;sid&quot;/&gt;
-            &lt;result property=&quot;name&quot; column=&quot;sname&quot;/&gt;
-            &lt;result property=&quot;tid&quot; column=&quot;tid&quot;/&gt;
-        &lt;/collection&gt;
-    &lt;/resultMap&gt;
-&lt;/mapper&gt;
-</code></pre></li>
-
-<li><p>配置Mapper，JUnit测试</p></li>
-</ol>
-
-<h2 id="viii-动态sql">VIII. 动态SQL</h2>
-
-<p><strong>动态SQL指的是根据不同的查询条件 , 生成不同的Sql语句。</strong></p>
-
-<pre><code>官网描述:
-MyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 或其它类似框架的经验，你
-就能体会到根据不同条件拼接 SQL 语句的痛苦。例如拼接时要确保不能忘记添加必要的空格，还要注意 去掉列表最后一个列名的逗号。利用动态 SQL 这一特性可以彻底摆脱这种痛苦。
-虽然在以前使用动态 SQL 并非一件易事，但正是 MyBatis 􏰀供了可以被用在任意 SQL 映射语 句中的强大的动态 SQL 语言得以改进这种情形。
-动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在 MyBatis 之前的版本中，有 很多元素需要花时间了解。MyBatis 3 大大精简了元素种类，现在只需学习原来一半的元素便可。 MyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。
-    -------------------------------
-    - if
-    - choose (when, otherwise)
-    - trim (where, set)
-    - foreach
-    -------------------------------
-</code></pre>
-
-<p>我们之前写的 SQL 语句都比较简单，如果有比较复杂的业务，我们需要写复杂的 SQL 语句，往往需 要拼接，而拼接 SQL ，稍微不注意，由于引号，空格等缺失可能都会导致错误。</p>
-
-<p>那么怎么去解决这个问题呢?这就要使用 mybatis 动态SQL，通过 if, choose, when, otherwise, trim, where, set, foreach等标签，可组合成非常灵活的SQL语句，从而在提高 SQL 语句的准确性的同 时，也大大提高了开发人员的效率。</p>
-
-<h3 id="1-if">1. if</h3>
-
-<p>Dao层接口：</p>
-
-<pre><code class="language-java">//需求1
-List&lt;Blog&gt; queryBlogIf(Map map);
-</code></pre>
-
-<p>mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;!--需求1:
-根据作者名字和博客名字来查询博客! 如果作者名字为空，那么只根据博客名字查询，反之，则根据作者名来查询
-select * from blog where title = #{title} and author = #{author} --&gt;
-&lt;select id=&quot;queryBlogIf&quot; parameterType=&quot;map&quot; resultType=&quot;blog&quot;&gt;
-    select * from blog where
-    &lt;if test=&quot;title != null&quot;&gt;
-        title = #{title}
-    &lt;/if&gt;
-    &lt;if test=&quot;author != null&quot;&gt;
-        and author = #{author}
-    &lt;/if&gt;
-&lt;/select&gt;
-</code></pre>
-
-<p>JUnit测试：</p>
-
-<pre><code class="language-java">@Test
-public void testQueryBlogIf(){
-  SqlSession session = MybatisUtils.getSession();
-  BlogMapper mapper = session.getMapper(BlogMapper.class);
-    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;(); 
-  map.put(&quot;title&quot;,&quot;Mybatis如此简单&quot;);       
-  map.put(&quot;author&quot;,&quot;狂神说&quot;);
-    List&lt;Blog&gt; blogs = mapper.queryBlogIf(map);
-  System.out.println(blogs);
-  session.close();
-}
-</code></pre>
-
-<p>这样写我们可以看到，如果 author 等于 null，那么查询语句为 select * from user where title=#{title}, 但是如果title为空呢?那么查询语句为 select * from user where and author=#{author}，这是错误的 SQL 语句，如何解决呢?请看下面的 where 语句!</p>
-
-<h3 id="2-where">2. where</h3>
-
-<p>mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;select id=&quot;queryBlogIf&quot; parameterType=&quot;map&quot; resultType=&quot;blog&quot;&gt;
-    select * from blog
-    &lt;where&gt;
-        &lt;if test=&quot;title != null&quot;&gt;
-            title = #{title}
-        &lt;/if&gt;
-        &lt;if test=&quot;author != null&quot;&gt;
-            and author = #{author}
-        &lt;/if&gt;
-    &lt;/where&gt;
-&lt;/select&gt;
-</code></pre>
-
-<p>这个“where”标签会知道如果它包含的标签中有返回值的话，它就插入一个‘where’。此外，如果标签返 回的内容是以AND 或OR 开头的，则它会剔除掉。【这是我们使用的最多的案例】</p>
-
-<h3 id="3-set-用于update">3. Set (用于Update)</h3>
-
-<p>Dao层接口：</p>
-
-<pre><code class="language-java">int updateBlog(Map map);
-</code></pre>
-
-<p>mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;!--注意set是用的逗号隔开--&gt;
-&lt;update id=&quot;updateBlog&quot; parameterType=&quot;map&quot;&gt;
-    update blog
-  &lt;set&gt;
-    &lt;if test=&quot;title != null&quot;&gt;
-      title = #{title},
-    &lt;/if&gt;
-    &lt;if test=&quot;author != null&quot;&gt;
-      author = #{author}
-        &lt;/if&gt; 
-  &lt;/set&gt;
-    where id = #{id};
-&lt;/update&gt;
-</code></pre>
-
-<p>JUnit测试：</p>
-
-<pre><code class="language-java">@Test
-public void testUpdateBlog(){
-    SqlSession session = MybatisUtils.getSession();
-    BlogMapper mapper = session.getMapper(BlogMapper.class);
-    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;(); 
-    map.put(&quot;title&quot;,&quot;动态SQL&quot;);
-    map.put(&quot;author&quot;,&quot;秦疆&quot;); 
-    map.put(&quot;id&quot;,&quot;9d6a763f5e1347cebda43e2a32687a77&quot;);
-    mapper.updateBlog(map);
-    session.close();
-}
-</code></pre>
-
-<h3 id="4-choose">4. choose</h3>
-
-<p>有时候，我们不想用到所有的查询条件，只想选择其中的一个，查询条件有一个满足即可，使用 choose 标签可以解决此类问题，类似于 Java 的 switch 语句</p>
-
-<p>Dao层接口：</p>
-
-<pre><code class="language-java">List&lt;Blog&gt; queryBlogChoose(Map map);
-</code></pre>
-
-<p>mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;select id=&quot;queryBlogChoose&quot; parameterType=&quot;map&quot; resultType=&quot;blog&quot;&gt;
-    select * from blog
-    &lt;where&gt;
-        &lt;choose&gt;
-            &lt;when test=&quot;title != null&quot;&gt;
-                 title = #{title}
-            &lt;/when&gt;
-            &lt;when test=&quot;author != null&quot;&gt;
-                and author = #{author}
-            &lt;/when&gt;
-            &lt;otherwise&gt;
-                and views = #{views}
-            &lt;/otherwise&gt;
-        &lt;/choose&gt;
-    &lt;/where&gt;
-&lt;/select&gt;
-</code></pre>
-
-<p>JUnit测试：</p>
-
-<pre><code class="language-java">@Test
-public void testQueryBlogChoose(){
-    SqlSession session = MybatisUtils.getSession();
-    BlogMapper mapper = session.getMapper(BlogMapper.class);
-        HashMap&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;(); 
-    map.put(&quot;title&quot;,&quot;Java如此简单&quot;);
-        map.put(&quot;author&quot;,&quot;狂神说&quot;);
-        map.put(&quot;views&quot;,9999);
-    List&lt;Blog&gt; blogs = mapper.queryBlogChoose(map);
-    System.out.println(blogs);
-    session.close();
-}
-</code></pre>
-
-<h3 id="5-foreach">5. Foreach</h3>
-
-<p>将数据库中前三个数据的id修改为1,2,3;</p>
-
-<p>需求:我们需要查询 blog 表中 id 分别为1,2,3的博客信息</p>
-
-<p>DAO层接口：</p>
-
-<pre><code class="language-java">List&lt;Blog&gt; queryBlogForeach(Map map);
-</code></pre>
-
-<p>mapper.xml:</p>
-
-<pre><code class="language-xml">&lt;select id=&quot;queryBlogForeach&quot; parameterType=&quot;map&quot; resultType=&quot;blog&quot;&gt;
-    select * from blog
-    &lt;where&gt;
-        &lt;!--
-        collection:指定输入对象中的集合属性
-        item:每次遍历生成的对象
-        open:开始遍历时的拼接字符串
-        close:结束时拼接的字符串
-        separator:遍历对象之间需要拼接的字符串
-        select * from blog where 1=1 and (id=1 or id=2 or id=3)
-        --&gt;
-        &lt;foreach collection=&quot;ids&quot;  item=&quot;id&quot; open=&quot;and (&quot; close=&quot;)&quot; separator=&quot;or&quot;&gt;
-                        id=#{id}
-        &lt;/foreach&gt;
-    &lt;/where&gt;
-&lt;/select&gt;
-</code></pre>
-
-<p>JUnit测试：</p>
-
-<pre><code class="language-java">@Test
-public void testQueryBlogForeach(){
-    SqlSession session = MybatisUtils.getSession();
-    BlogMapper mapper = session.getMapper(BlogMapper.class);
-    HashMap map = new HashMap();
-    List&lt;Integer&gt; ids = new ArrayList&lt;Integer&gt;();
-    ids.add(1);
-    ids.add(2);
-    ids.add(3);
-    map.put(&quot;ids&quot;,ids);
-    List&lt;Blog&gt; blogs = mapper.queryBlogForeach(map);
-    System.out.println(blogs);
-    session.close();
-}
-</code></pre>
-
-<p>小结:其实动态 sql 语句的编写往往就是一个拼接的问题，为了保证拼接准确，我们最好首先要写原生 的 sql 语句出来，然后在通过 mybatis 动态sql 对照着改，防止出错。多在实践中使用才是熟练掌握它 的技巧</p>
-
-<h3 id="sql片段">SQL片段</h3>
-
-<p>有时候可能某个 sql 语句我们用的特别多，为了增加代码的重用性，简化代码，我们需要将这些代码抽 取出来，然后使用时直接调用。</p>
-
-<p><strong>提取SQL片段:</strong></p>
-
-<pre><code class="language-xml">&lt;sql id=&quot;if-title-author&quot;&gt;
-    &lt;if test=&quot;title != null&quot;&gt;
-        title = #{title}
-    &lt;/if&gt;
-    &lt;if test=&quot;author != null&quot;&gt;
-        and author = #{author}
-&lt;/if&gt; &lt;/sql&gt;
-</code></pre>
-
-<p><strong>引用SQL片段:</strong></p>
-
-<pre><code class="language-xml">&lt;select id=&quot;queryBlogIf&quot; parameterType=&quot;map&quot; resultType=&quot;blog&quot;&gt;
-    select * from blog
-    &lt;where&gt;
-      &lt;!-- 引用 sql 片段，如果refid 指定的不在本文件中，那么需要在前面加上namespace --&gt;
-      &lt;include refid=&quot;if-title-author&quot;&gt;&lt;/include&gt;
-            &lt;!-- 在这里还可以引用其他的 sql 片段 --&gt; 
-    &lt;/where&gt;
-&lt;/select&gt;
-
-</code></pre>
-
-<p><em>Note</em>:</p>
-
-<pre><code>- 最好基于 单表来定义 sql 片段，提高片段的可重用性
-- 在 sql 片段中不要包括 where
-</code></pre>
-
-<h2 id="ix-缓存">IX. 缓存</h2>
-
-<h3 id="1-定义">1. 定义</h3>
-
-<ul>
-<li><p>什么是缓存 [ Cache ]?</p>
-
-<p>存在内存中的临时数据。 将用户经常查询的数据放在缓存(内存)中，用户去查询数据就不用从磁盘上(关系型数据库 数据文件)查询，从缓存中查询，从而提高查询效率，解决了高并发系统的性能问题。</p></li>
-
-<li><p>为什么使用缓存?</p>
-
-<p>减少和数据库的交互次数，减少系统开销，提高系统效率。</p></li>
-
-<li><p>什么样的数据能使用缓存?</p>
-
-<p>经常查询并且不经常改变的数据。</p></li>
-</ul>
-
-<h3 id="2-mybatis中的缓存">2. MyBatis中的缓存</h3>
-
-<ul>
-<li><p>MyBatis包含一个非常强大的查询缓存特性，它可以非常方便地定制和配置缓存。缓存可以极大的</p></li>
-
-<li><p>提升查询效率。 MyBatis系统中默认定义了两级缓存:<strong>一级缓存</strong>和<strong>二级缓存</strong></p>
-
-<ul>
-<li>默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称为本地缓存)</li>
-<li>二级缓存需要手动开启和配置，他是基于namespace级别的缓存</li>
-<li>为了提高扩展性，MyBatis定义了缓存接口Cache。我们可以通过实现Cache接口来自定义二级缓存</li>
-</ul></li>
-</ul>
-
-<h3 id="3-一级缓存">3. 一级缓存</h3>
-
-<ul>
-<li>一级缓存也叫本地缓存:
-
-<ul>
-<li>与数据库同一次会话期间查询到的数据会放在本地缓存中。<br /></li>
-<li>以后如果需要获取相同的数据，直接从缓存中拿，没必须再去查询数据库;</li>
-</ul></li>
-<li>一级缓存的四种情况：
-
-<ul>
-<li>一级缓存是SqlSession级别的缓存，是一直开启的，我们关闭不了它;</li>
-<li>一级缓存失效情况:没有使用到当前的一级缓存，效果就是，还需要再向数据库中发起一次查询请求!
-
-<ul>
-<li>1) sqlSession不同 (每个sqlSession中的缓存相互独立)</li>
-<li>2) sqlSession相同，查询条件不同(当前缓存中，不存在这个数据)</li>
-<li>3) sqlSession相同，两次查询之间执行了增删改操作! (因为增删改操作可能会对当前数据产生影响)</li>
-<li>4) sqlSession相同，手动清除一级缓存</li>
-</ul></li>
-</ul></li>
-</ul>
-
-<h3 id="4-二级缓存">4. 二级缓存</h3>
-
-<ul>
-<li>二级缓存也叫全局缓存，一级缓存作用域太低了，所以诞生了二级缓存</li>
-<li>基于namespace级别的缓存，一个名称空间，对应一个二级缓存;</li>
-<li>工作机制
-
-<ul>
-<li>一个会话查询一条数据，这个数据就会被放在当前会话的一级缓存中;</li>
-<li>如果当前会话关闭了，这个会话对应的一级缓存就没了;但是我们想要的是，会话关闭了，一级缓存中的数据被保存到二级缓存中;</li>
-<li>新的会话查询信息，就可以从二级缓存中获取内容;</li>
-<li>不同的mapper查出的数据会放在自己对应的缓存(map)中;</li>
-</ul></li>
-<li>结论
-
-<ul>
-<li>只要开启了二级缓存，我们在同一个Mapper中的查询，可以在二级缓存中拿到数据</li>
-<li>查出的数据都会被默认先放在一级缓存中</li>
-<li>只有会话提交或者关闭以后，一级缓存中的数据才会转到二级缓存中</li>
-</ul></li>
-</ul>
-
-<h3 id="5-缓存原理">5. 缓存原理</h3>
-
-<p><img src="/images/CS/mybatis/缓存原理.png" alt="mybatis原理" /></p>
-
-<h2 id="x-坑">X. 坑</h2>
-
-<ol>
-<li><p>绑定接口错误：org.apache.ibatis.binding.BindingException</p>
-
-<ul>
-<li>每一个mapper.xml都需要在mybatis-config.xml中配置</li>
-<li>命名空间一定要正确（mapper.xml中的namespace标签和接口类名称对应）</li>
-</ul></li>
-
-<li><p>方法名不对</p>
-
-<ul>
-<li>mapper.xml中每个SQL描述标记的id对应的方法名必须和接口中一致</li>
-</ul></li>
-
-<li><p>返回类型不对</p>
-
-<ul>
-<li>mapper.xml中每个SQL描述标记的resultType/resultMap标签对应返回类型</li>
-</ul></li>
-
-<li><p>Maven导出资源问题：java文件夹下除了.java文件没有被编译进target</p>
-
-<ul>
-<li>Maven配置文件需要在build中配置</li>
-</ul></li>
-
-<li><p>事务：增删改后数据没有更新</p>
-
-<ul>
-<li>增删改需要提交事务</li>
-</ul></li>
-</ol>
-
-<h2 id="xi-总结">XI. 总结</h2>
-
-<p>MyBatis是一款优秀的<strong>持久层框架</strong>。使用它让我们代替了繁琐的JDBC代码，其灵活性、简单易学等各种特性帮助我们在开发中省时省力。</p>
-
-<p>MyBatis是SSM框架中的一部分，在大量的实战开发中被广泛使用。在理解好JavaWeb的前提下，使用MyBatis使得我们的开发更加高效，所以说MyBatis是程序员从理论到应用的重要一步。</p>
-
-<h2 id="xii-参考">XII. 参考</h2>
-
-<p><a href="https://www.bilibili.com/video/BV1NE411Q7Nx?from=search&amp;seid=12974044181112636960">狂神说Java MyBatis</a></p>
+<p><a href="https://baike.baidu.com/">百度百科</a></p>
 
   </div>
 
@@ -1730,8 +1096,8 @@ public void testQueryBlogForeach(){
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/cs/javaweb/"
-                class="button big previous">Java Web</a></li>
+        <li><a href="/blog/cs/spring_summary/"
+                class="button big previous">Spring总结</a></li>
     
 
     
@@ -1750,7 +1116,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//twitter.com/share?url=%2fblog%2fcs%2fmybatis%2f&amp;text=Mybatis%20%e6%80%bb%e7%bb%93&amp;via=" target="_blank" class="share-btn twitter">
+  <a href="//twitter.com/share?url=%2fblog%2fcs%2fspringmvc_summary%2f&amp;text=SpringMVC%e6%80%bb%e7%bb%93&amp;via=" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -1760,7 +1126,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fmybatis%2f" target="_blank" class="share-btn google-plus">
+  <a href="//plus.google.com/share?url=%2fblog%2fcs%2fspringmvc_summary%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
   </a>
@@ -1771,7 +1137,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fmybatis%2f" target="_blank" class="share-btn facebook">
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fcs%2fspringmvc_summary%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -1781,7 +1147,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fmybatis%2f&amp;title=Mybatis%20%e6%80%bb%e7%bb%93" target="_blank" class="share-btn reddit">
+  <a href="//reddit.com/submit?url=%2fblog%2fcs%2fspringmvc_summary%2f&amp;title=SpringMVC%e6%80%bb%e7%bb%93" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
   </a>
@@ -1791,7 +1157,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fmybatis%2f&amp;title=Mybatis%20%e6%80%bb%e7%bb%93" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fcs%2fspringmvc_summary%2f&amp;title=SpringMVC%e6%80%bb%e7%bb%93" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -1801,7 +1167,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fmybatis%2f&amp;title=Mybatis%20%e6%80%bb%e7%bb%93" target="_blank" class="share-btn stumbleupon">
+  <a href="//www.stumbleupon.com/submit?url=%2fblog%2fcs%2fspringmvc_summary%2f&amp;title=SpringMVC%e6%80%bb%e7%bb%93" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
   </a>
@@ -1811,7 +1177,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fmybatis%2f&amp;description=Mybatis%20%e6%80%bb%e7%bb%93" target="_blank" class="share-btn pinterest">
+  <a href="//www.pinterest.com/pin/create/button/?url=%2fblog%2fcs%2fspringmvc_summary%2f&amp;description=SpringMVC%e6%80%bb%e7%bb%93" target="_blank" class="share-btn pinterest">
     <i class="fa fa-pinterest-p"></i>
     <p>Pinterest</p>
   </a>
@@ -1821,7 +1187,7 @@ public void testQueryBlogForeach(){
 
 
 <li>
-  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fmybatis%2f" target="_blank" class="share-btn email">
+  <a href="mailto:?subject=Check out this post by %e5%b0%8f%e7%be%bd&amp;body=%2fblog%2fcs%2fspringmvc_summary%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
   </a>
@@ -1968,6 +1334,34 @@ public void testQueryBlogForeach(){
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/blog/cs/springmvc_summary/">SpringMVC总结</a>
+              </h3>
+              
+              <time class="published" datetime='2021-07-14'>
+                July 14, 2021
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/cs/spring_summary/">Spring总结</a>
+              </h3>
+              
+              <time class="published" datetime='2021-07-06'>
+                July 6, 2021
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/blog/cs/mybatis/">Mybatis 总结</a>
               </h3>
               
@@ -2034,34 +1428,6 @@ public void testQueryBlogForeach(){
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/algorithms_binary-search/">二分查找</a>
-              </h3>
-              
-              <time class="published" datetime='2020-08-28'>
-                August 28, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/blog/cs/regular-expression/">正则表达式</a>
-              </h3>
-              
-              <time class="published" datetime='2020-08-15'>
-                August 15, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
       </div>
 
       
@@ -2095,7 +1461,7 @@ public void testQueryBlogForeach(){
             <header>
               
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                <span style="float:right;">11</span>
+                <span style="float:right;">13</span>
               
             </header>
           </article>

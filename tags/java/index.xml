@@ -6,10 +6,52 @@
     <description>Recent content in Java on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 02 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringMVC总结</title>
+      <link>/blog/cs/springmvc_summary/</link>
+      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/springmvc_summary/</guid>
+      <description>I. 简介 在说什么是SpringMVC之前，我们先来说说什么是MVC三层架构。MVC是模型（Model）、视图（View）和控制器（Controller）的简写，是一种软件设计规范。它们各自的定义和分工如下：
+ Model：数据模型，提供要展示的数据，因此包含数据和行为，可以认为是领域模型或JavaBean组件（包含数据和行为），不过现在一般都分离开来：Value Object（数据Dao）和服务层（行为Service）。也就是模型提供了模型数据查询和模型数据的状态更新等功能，包括数据和业务。 View: 负责进行模型的展示，一般就是我们见到的用户界面，客户想看到的东西。 Controller: 接收用户请求，委托给模型进行处理（状态改变），处理完毕后把返回的模型数据返回给视图，由视图负责展示。 也就是说控制器做了个调度员的工作。  最典型的MVC就是JSP+Servlet+Javabean的模式。其中JSP负责视图部分，即展示数据；Servlet负责Controller部分，处理用户的响应和请求；而Service和Dao层用于将数据库中的数据以Java Bean的形式提取到程序中并处理相应的业务。
+在了解了MVC三层架构后，我们来说说什么是SpringMVC。SpringMVC是Spring用于实现MVC框架的产品。Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建Web应用程序的全功能 MVC 模块。
+使用SpringMVC进行开发大大地减小了web开发难度，提升了开发效率且提升了性能。除此之外，SpringMVC还有以下优势：
+ 轻量级，简单易学 高效 , 基于请求响应的MVC框架 与Spring兼容性好，无缝结合（无缝集成SpringIOC和AOP） 约定优于配置 功能强大：RESTful、数据验证、格式化、本地化、主题等 简洁灵活  代码链接
+II. 原理 SpringMVC工作的核心是一个DispatcherServlet类。Spring的web框架就是围绕它而设计的。简单来说，原本JavaWeb框架中，用户每发送一个请求，程序首先要找到请求对应的Servlet(因此每写一个Servlet都要在web.xml中配置)，然后再来执行这个Servlet。而在SpringMVC中，在这个过程中增加了一层类似过滤器的DispatcherServlet。当用户发送请求到服务器后，请求首先会被DispatcherServlet接收，然后由DispatcherServlet将请求转发给对应的Controller(Servlet)，当请求的业务完成后，Controller会返回一个ModelAndView对象给DispatcherServlet。接着DispatcherServlet再将这个对象发送给视图层（通常是前端），最后将相应由View层展示给用户。
+SpringMVC的执行流程
+SpringMVC的执行流程如下图所示。其中实线部分是其自动执行的业务，而虚线部分是我们真正需要在代码中实现的业务。
+ DispatcherServlet接收到用户请求 DispatcherServlet调用HandlerMapping，由HandlerMapping根据请求的url查钊Handler HandlerExecution表示具体的Handler,接下来它会根据url查找对应的Controller 将解析后的信息传回给DispatcherServlet(如解析控制器映射等) DispatcherServlet调用HandlerAdapter(处理适配器)，它会按照特定的规则来执行Handler Handler让具体的Controller被执行（接下来是Controller调用Model层执行业务） Controller将执行结果返回给HandlerAdapter HandlerAdapter将结果返回给DispatcherServlet（ModelAndView名或者Model名） DispatcherServlet调用视图解析器来解析HandlerAdapter传递来的逻辑视图名 ViewResolver解析逻辑视图名并传回给DispatcherServlet DispatcherServlet根据视图解析器解析的视图结果，调用具体的视图 View层将最终视图呈现给用户  从中总结我们发现DispatcherServlet主要做了以下事情：
+ 接收用户请求并匹配对应的Handler 找到对应的Handler后，使其调用对应的Controller从而执行业务 收到Controller的执行结果后，将其交给视图解析器ViewResolver,并将结果交给View层最终把视图展示给用户  III. 使用 1. 准备工作（配置项目）  新建一个Maven项目，导入所需要的依赖并添加web支持
+&amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+    </item>
+    
+    <item>
+      <title>Spring总结</title>
+      <link>/blog/cs/spring_summary/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/spring_summary/</guid>
+      <description>I. 简介  Spring是什么
+Spring是一个开源免费的轻量级且非侵入式的框架（容器），其通过注入Bean的方式实现了控制反转IOC(Inversion of Control)和面向切面编程AOP(Aspect Oriented Programming)，并且具备对事物和其它框架（如MyBatis）的支持。
+Spring的核心思想是简化开发
+ 为什么用Spring
+  优势
+ 作为一个开发容器，Spring大大地简化了开发，提升了开发地效率 通过注入Bean的方式将控制从程序本身反转给了客户，使得程序的灵活性更高，改变了程序设计的逻辑 将Bean和代码分离，使得程序的耦合性降低，提升了开发的安全性和代码的可读性 通过AOP将程序解耦，使得业务和附加功能得以分离，大大地提升了开发地安全性和代码的可读性 支持多个常用的开源框架 用的人多，是经典的SSM框架的重要组成部分  劣势
+ 经过多年的演变，Spring已经编程了一个大杂烩，其配置已经越来越复杂，于是这时候Springboot应运而生  [代码链接][https://github.com/YYdesoul/spring5-study]
+II. 组成部分 Spring 框架是一个分层架构，由 7 个定义良好的模块组成。Spring 模块构建在核心容器之上，核心容器定义了创建、配置和管理 bean 的方式 。
+组成 Spring 框架的每个模块（或组件）都可以单独存在，或者与其他一个或多个模块联合实现。每个模块的功能如下：
+ 核心容器Core
+核心容器提供 Spring 框架的基本功能。核心容器的主要组件是 BeanFactory ，它是工厂模式的实现。BeanFactory 使用控反转（IOC） 模式将应用程序的配置和依赖性规范与实际的应用程序代码分开。
+ Spring 上下文Context
+Spring 上下文是一个配置文件，向 Spring 框架提供上下文信息。Spring 上下文包括企业服务，例如 JNDI、EJB、电子邮件、国际化、校验和调度功能。
+ Spring AOP
+通过配置管理特性，Spring AOP 模块直接将面向切面的编程功能 , 集成到了 Spring框架中。所以，可以很容易地使 Spring 框架管理任何支持 AOP的对象。Spring AOP 模块为基于Spring 的应用程序中的对象提供了事务管理服务。通过使用 Spring AOP，不用依赖组件，就可以将声明性事务管理集成到应用程序中。</description>
+    </item>
     
     <item>
       <title>Mybatis 总结</title>
