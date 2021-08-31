@@ -6,10 +6,79 @@
     <description>Recent content on YY的主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 14 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git简明教程</title>
+      <link>/blog/cs/git/</link>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/git/</guid>
+      <description>Github是目前世界上最先进的分布时版本控制系统。我们可以借助它来托管我们的项目。可以说Github是程序员必不可少的高效工具，事实上，我的博客网站正是借助Github来发布到网上的。既然Github如此重要，下面我就来介绍一下Github以及它的基础使用吧。
+Github是一种分布式版本控制系统，极大的方便了开发者们存储项目以及多人开发。开发者们可以将项目上传到Github托管，然后团队中不同的人可以将项目下载到本地进行修改，完成后再将其传回到Github上，所有的修改日志都会显示在Github上，这样就极大的方便了团队共同开发项目。Github也是一个非常大的开源社区，开发者们可以在这里将自己的代码发布出来供其它人观看和使用，Github用户可以查看、星标、Fork各种各样的项目，这样的社区方便了开发者们的交流，促进了项目的发展，帮助了学者学习代码。
+I. Github基础概念 下面我们首先来介绍一下Github的基础概念。
+仓库（Repository）
+仓库是用来存放项目代码的地方，每个项目对应一个仓库，每个Github用户可以有多个仓库。开发者们也可以对别人的项目进行关注(Watch)、收藏（Star)、复制克隆（Fork）、发起请求（Pull Request）、发送事务卡片（Issue）。下面我们来一一解释这些概念。
+关注（Watch）：如果一个开发者关注了别人的项目，那么他将会收到项目的修改、更新等信息的通知。
+收藏（Star）：如果一个开发者收藏了别人的项目，那么他就可以在自己的Github主页上找到这个项目的链接。
+复制克隆项目（Fork）：如果一个开发者Fork了别人的仓库，那么这个仓库就会被复制到他的Github主页上，复制的仓库和原仓库是彼此独立的，开发者对复制到自己主页的仓库内容进行修改不会影响到原仓库内的项目。
+发起请求（Pull Request）：发起请求是基于Fork之上的。当一个开发者Fork了别人的仓库内的项目，加以修改后想要通知原项目的Git用户代码在他的修改下被优化了，希望原用户将原项目改为他修改后的版本，就可以发送Pull Request申请。如果原项目的用户同意了，那么原项目就会被修改成新的版本。
+发送事务卡片（Issue）：当一个开发者在查看别人仓库中的项目时发现了bug，可以在仓库中发送Issue来和项目开发者进行交流。
+II. Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，Git仓库分为本地和远程仓库两个部分，本地部分又分为三个区域：工作区(workingspace)、缓存区(index)和仓库区(repository)。
+ 工作区(workingspace)：工作区就是我们本地对项目修改的区域 缓存区(index)：当修改完成后，我们可以将修改的内容上传，为了避免传入之后又想修改，Git会让修改的文件首先传入缓存区 本地仓库区(local repository)：当我们确定所有修改都已完成的时候，就可以将缓存区内的所有文件传入到Git本地仓库； 远程仓库区(remote repository)： 最后，我们再将本地仓库的文件传到远程仓库即可  上传代码流程
+ 使用命令git clone url(仓库地址)将项目从远程仓库下载到本地。   git clone url   修改项目代码。
+ 使用命令git add xxx (要添加的文件，&amp;rdquo;.&amp;ldquo;代表所有文件)将指定文件从工作区传入缓存区。
+  git add xxx   使用命令git commit -m &amp;lsquo;描述&amp;rsquo;将缓存区内的所有文件传入Git本地仓库。   git commit -m &#39;描述&#39;   使用命令git remote add origin url(远程项目地址) 将Git本地仓库和Git远程仓库连接起来。   git remote add origin url   使用命令git push -u origin master 将Git本地仓库内的项目上传到Git远程仓库。   git push -u origin master  从远程更新本地代码</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot总结</title>
+      <link>/blog/cs/springboot_summary/</link>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/springboot_summary/</guid>
+      <description>I. 简介 代码
+Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。
+随着 Spring 不断的发展，涉及的领域越来越多，项目整合开发需要配合各种各样的文件，慢慢变得不那 么易用简单，违背了最初的理念，甚至人称配置地狱。Spring Boot 正是在这样的一个背景下被抽象出 来的开发框架，目的为了让大家更容易的使用 Spring 、更容易的集成各种常用的中间件、开源软件。
+Spring Boot 基于 Spring 开发，Spirng Boot 本身并不提供 Spring 框架的核心特性以及扩展功能，只是 用于快速、敏捷地开发新一代基于 Spring 框架的应用程序。也就是说，它并不是用来替代 Spring 的解 决方案，而是和 Spring 框架紧密结合用于提升 Spring 开发者体验的工具。Spring Boot 以约定大于配 置的核心思想，默认帮我们进行了很多设置，多数 Spring Boot 应用只需要很少的 Spring 配置。同时它 集成了大量常用的第三方库配置(例如 Redis、MongoDB、Jpa、RabbitMQ、Quartz 等等)，Spring Boot 应用中这些第三方库几乎可以零配置的开箱即用。
+简单来说就是SpringBoot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合 了所有的jar包，spring boot整合了所有的框架 。
+Spring Boot的主要优点有：
+ 为所有Spring开发者更快的入门 开箱即用，提供各种默认配置来简化项目配置 内嵌式容器简化Web项目 没有冗余代码生成和XML配置的要求  II. 原理 SpringBoot的启动流程如下图：
+SpringBoot原理的核心是自动装配。而自动装配是主启动类来启动的。
+自动配置真正实现是从classpath中搜寻所有的META-INF/spring.factories配置文件 ，并将其中对应的org.springframework.boot.autoconfigure. 包下的配置项，通过反射实例化为对应标注了 @Configuration的JavaConfig形式的IOC容器配置类 ， 然后将这些都汇总成为一个实例并加载到IOC容 器中。</description>
+    </item>
+    
+    <item>
+      <title>Docker 总结</title>
+      <link>/blog/cs/docker_summary/</link>
+      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/cs/docker_summary/</guid>
+      <description>I. 简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。
+由于本地开发好的程序往往都需要部署到服务器上进行运行，这就导致了程序需要运行在不同的环境上，这通常是一个令人头痛的事情。在过去，开发团队需要清楚的告诉运维部署团队，其所使用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。
+于是乎，虚拟化技术应运而生。开发团队将开发好的程序在虚拟机上运行，这样就能解决运维的问题。但是由于虚拟机技术过重的特性导致了其资源占用多、冗余步骤多以及启动慢的缺陷。而这个时候一种新的虚拟化技术搭配上容器化的思想的产品便出现了，而它就是Docker。
+下图是虚拟机技术和容器化技术架构的对比。我们可以得出以下总结：
+ 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程 而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。 因此容器要比传统虚拟机更为轻便。 每个容器之间互相隔离，每个容器有自己的文件系统 ，容器之间进程不会相互影响，能区分计算资源。  于是乎相比于虚拟机技术，容器化技术具有以下优势：
+ 更快速的应用交付和部署
+传统的应用开发完成后，需要提供一堆安装程序和配置说明文档，安装部署后需根据配置文档进行繁杂 的配置才能正常运行。Docker化之后只需要交付少量容器镜像文件，在正式生产环境加载镜像并运行即 可，应用安装配置在镜像里已经内置好，大大节省部署配置和测试验证时间
+ 更便捷的升级和扩缩容
+随着微服务架构和Docker的发展，大量的应用会通过微服务方式架构，应用的开发构建将变成搭乐高积 木一样，每个Docker容器将变成一块“积木”，应用的升级将变得非常容易。当现有的容器不足以支撑业 务处理时，可通过镜像运行新的容器进行快速扩容，使应用系统的扩容从原先的天级变成分钟级甚至秒级
+ 更简单的系统运维
+应用容器化运行后，生产环境运行的应用可与开发、测试环境的应用高度一致，容器会将应用程序相关 的环境和状态完全封装起来，不会因为底层基础架构和操作系统的不一致性给应用带来影响，产生新的 BUG。当出现程序异常时，也可以通过测试环境的相同容器进行快速定位和修复
+ 更高效的计算资源利用
+Docker是内核级虚拟化，其不像传统的虚拟化技术一样需要额外的Hypervisor [管理程序] 支持，所以在 一台物理机上可以运行很多个容器实例，可大大提升物理服务器的CPU和内存的利用率
+  相关网站
+ Docker官网：http://www.docker.com
+ Docker中文网站：https://www.docker-cn.com
+ Docker Hub官网：https://hub.docker.com （仓库）
+  II. 基本原理 如下图所示，Docker使用客户端-服务器（C/S）架构模式，使用远程API来管理和创建Docker容器。服务器端分为Docker daemon, Image和Container三个部分。此外还有Docker Registry。
+下面首先来介绍一下Docker中的主要概念
+ 镜像（Image）
+Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很 多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！</description>
+    </item>
     
     <item>
       <title>SpringMVC总结</title>
@@ -226,28 +295,6 @@ Player llorris = new Player(&amp;quot;Llprris&amp;quot;, &amp;quot;Hugo&amp;quot
 也就是在栈(Stack)中首先申明了引用变量llorris和kane，接着在堆(Heap)中创建了两个Player对象，最后将左边的引用变量指向右边对应的对象。
 这时候，我们首先将队长设置为洛里，代码为：
 Player captain = llorris;  通过这行代码，我们首先申明了引用变量captain，并将其指向变量llorris指向的对象。其情况如下图所示：</description>
-    </item>
-    
-    <item>
-      <title>Git简明教程</title>
-      <link>/blog/cs/git/</link>
-      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/cs/git/</guid>
-      <description>Github是目前世界上最先进的分布时版本控制系统。我们可以借助它来托管我们的项目。可以说Github是程序员必不可少的高效工具，事实上，我的博客网站正是借助Github来发布到网上的。既然Github如此重要，下面我就来介绍一下Github以及它的基础使用吧。
-Github是一种分布式版本控制系统，极大的方便了开发者们存储项目以及多人开发。开发者们可以将项目上传到Github托管，然后团队中不同的人可以将项目下载到本地进行修改，完成后再将其传回到Github上，所有的修改日志都会显示在Github上，这样就极大的方便了团队共同开发项目。Github也是一个非常大的开源社区，开发者们可以在这里将自己的代码发布出来供其它人观看和使用，Github用户可以查看、星标、Fork各种各样的项目，这样的社区方便了开发者们的交流，促进了项目的发展，帮助了学者学习代码。
-I. Github基础概念 下面我们首先来介绍一下Github的基础概念。
-仓库（Repository）
-仓库是用来存放项目代码的地方，每个项目对应一个仓库，每个Github用户可以有多个仓库。开发者们也可以对别人的项目进行关注(Watch)、收藏（Star)、复制克隆（Fork）、发起请求（Pull Request）、发送事务卡片（Issue）。下面我们来一一解释这些概念。
-关注（Watch）：如果一个开发者关注了别人的项目，那么他将会收到项目的修改、更新等信息的通知。
-收藏（Star）：如果一个开发者收藏了别人的项目，那么他就可以在自己的Github主页上找到这个项目的链接。
-复制克隆项目（Fork）：如果一个开发者Fork了别人的仓库，那么这个仓库就会被复制到他的Github主页上，复制的仓库和原仓库是彼此独立的，开发者对复制到自己主页的仓库内容进行修改不会影响到原仓库内的项目。
-发起请求（Pull Request）：发起请求是基于Fork之上的。当一个开发者Fork了别人的仓库内的项目，加以修改后想要通知原项目的Git用户代码在他的修改下被优化了，希望原用户将原项目改为他修改后的版本，就可以发送Pull Request申请。如果原项目的用户同意了，那么原项目就会被修改成新的版本。
-发送事务卡片（Issue）：当一个开发者在查看别人仓库中的项目时发现了bug，可以在仓库中发送Issue来和项目开发者进行交流。
-II. Git工作原理 下面我来介绍一下Git的工作原理。如上图所示，Git仓库分为本地和远程仓库两个部分，本地部分又分为三个区域：工作区、缓存区和仓库区。工作区就是我们本地对项目修改的区域；当修改完成后，我们可以将修改的内容上传，为了避免传入之后又想修改，Git会让修改的文件首先传入缓存区，当我们确定所有修改都已完成的时候，就可以将缓存区内的所有文件传入到Git本地仓库；最后，我们再将本地仓库的文件传到远程仓库即可。一般来说工作流程如下：
- 使用命令git clone url(仓库地址)将项目从远程仓库下载到本地。   git clone url   修改项目代码。
- 使用命令git add xxx (要添加的文件，&amp;rdquo;.&amp;ldquo;代表所有文件)将指定文件从工作区传入缓存区。
-  git add xxx   使用命令git commit -m &amp;lsquo;描述&amp;rsquo;将缓存区内的所有文件传入Git本地仓库。   git commit -m &#39;描述&#39;   使用命令git remote add origin url(远程项目地址) 将Git本地仓库和Git远程仓库连接起来。   git remote add origin url   使用命令git push -u origin master 将Git本地仓库内的项目上传到Git远程仓库。   git push -u origin master  III.</description>
     </item>
     
     <item>
